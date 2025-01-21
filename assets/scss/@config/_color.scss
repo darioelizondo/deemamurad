@@ -1,0 +1,46 @@
+// Color
+.primary {
+	color: $primary;
+}
+.secondary {
+	color: $secondary;
+}
+.text {
+	color: $text;
+}
+.soft-gray {
+	color: $soft-gray;
+}
+.white {
+	color: $white;
+}
+
+
+// Background color
+.bg--primary {
+	background-color: $primary;
+}
+.bg--secondary {
+	background-color: $secondary;
+}
+.bg--text {
+	background-color: $text;
+}
+.bg--soft-gray {
+	background-color: $soft-gray;
+}
+
+// Border color
+
+.border--primary {
+	border: solid 1px $primary;
+}
+.border--secondary {
+	border: solid 1px $secondary;
+}
+.border--text {
+	border: solid 1px $text;
+}
+.border--soft-gray {
+	border: solid 1px $soft-gray;
+}

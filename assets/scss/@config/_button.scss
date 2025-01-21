@@ -1,0 +1,23 @@
+// Button
+.button {
+    width: auto;
+    color: $text;
+    padding: calc( $lh / 3 ) calc( $lh / 2 );
+    border-radius: 100px;
+    background-color: $primary;
+
+    &:hover {
+        background-color: $primary-dark;
+    }
+
+    @include m {
+        width: auto;
+        padding: calc( $lh / 3 ) $lh * .8;
+    }
+
+    @include l {
+        width: auto;
+        padding: calc( $lh / 3 ) $lh * 1.4;
+    }
+
+}

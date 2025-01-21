@@ -1,0 +1,23 @@
+{
+  "name": "deema-murad",
+  "version": "1.0.0",
+  "description": "Website development for Deema Murad",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "test"
+  },
+  "type": "module",
+  "author": "Dario Elizondo",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "browser-sync": "^3.0.3",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^9.0.0",
+    "gulp-cli": "^3.0.0",
+    "gulp-sass": "^6.0.0",
+    "gulp-uglify": "^3.0.2",
+    "sass": "^1.83.4",
+    "uglify-js": "^3.19.3"
+  }
+}
