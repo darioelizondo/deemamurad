@@ -11,7 +11,6 @@
 /wp-content/plugins/index.php
 /wp-content/themes/index.php
 /wp-includes/
-/index.php
 /license.txt
 /readme.html
 /wp-*.php
@@ -54,6 +53,8 @@ Thumbs.db
 
 # Build assets
 # /assets/css/*
-# /assets/js/prod/components/*
-# /assets/js/prod/general/*
-# /assets/js/prod/pages/*
+# /assets/javascript/production/*
+
+# Develop assets
+/assets/scss/*
+/assets/javascript/develop/*
