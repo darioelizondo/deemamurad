@@ -1,13 +1,15 @@
+@use 'index';
+
 * {
 	box-sizing: border-box;
-	font-family: $matter;
+	// font-family: $matter;
 	font-size: 14px;
 	line-height: 22px;
-	@include l {
+	@include index.l {
 		font-size: 15px;
 		line-height: 23px;
 	}
-	@include xl {
+	@include index.xl {
 		font-size: 18px;
 		line-height: 26px;
 	}
@@ -19,24 +21,24 @@ html {
 }
 
 body {
-	color: $text;
-	font-family: $matter;
+	color: index.$text;
+	// font-family: $matter;
 	font-variant-ligatures: none;
 	font-weight: 400;
-	line-height: $lh;
+	line-height: index.$lh;
 	overflow: hidden;
-	background: $soft-gray;
+	background: index.$soft-gray;
 }
 
 p,
 ul {
 	font-size: 14px;
 	line-height: 22px;
-	@include l {
+	@include index.l {
 		font-size: 15px;
 		line-height: 23px;
 	}	
-	@include xl {
+	@include index.xl {
 		font-size: 18px;
 		line-height: 26px;
 	}
@@ -51,7 +53,7 @@ p a {
 	text-decoration: underline;
 	transition: color .3s ease;
 	&:hover {
-		color: $primary;
+		color: index.$text;
 	}
 }
 
@@ -59,18 +61,18 @@ input:focus-visible {
 	outline: none;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	font-family: $matter;
-}
+// h1,
+// h2,
+// h3,
+// h4,
+// h5,
+// h6 {
+// 	// font-family: $matter;
+// }
 
 pre {
-	background: $white;
-	color: $black;
+	background: index.$white;
+	color: index.$black;
 	font-family: monospace;
 }
 
@@ -80,7 +82,7 @@ em {
 
 ul {
 	list-style: disc;
-	margin-left: calc( $lh / 1.5 );
+	margin-left: calc( index.$lh / 1.5 );
 }
 
 strong {
@@ -89,7 +91,7 @@ strong {
 
 blockquote, q {
 	font-style: italic;
-	margin: calc( $lh / 2 ) 0 calc( $lh / 2 ) calc( $lh * 1.3 );
+	margin: calc( index.$lh / 2 ) 0 calc( index.$lh / 2 ) calc( index.$lh * 1.3 );
 }
 blockquote p:before,
 q p:before {
@@ -112,8 +114,8 @@ button:focus {
 }
 
 ::selection {
-	color: $white;
-	background: $text;
+	color: index.$white;
+	background: index.$text;
 	
 }
 
@@ -153,29 +155,29 @@ button:focus {
 .container {
 	margin: 0 auto;
 	width: calc(100% - 40px);
-	@include m {
+	@include index.m {
 		width: calc(100% - 104px);
 	}
-	@include l {
+	@include index.l {
 		width: 960px;
 	}
-	@include xl {
+	@include index.xl {
 		width: 1280px;
 	}
-	@include xxl {
+	@include index.xxl {
 		width: 1400px;
 	}
 }
 
 .d-mobile {
-	@include l {
+	@include index.l {
 		display: none !important;
 	}
 }
 
 .d-desktop {
 	display: none !important;
-	@include l {
+	@include index.l {
 		display: block !important;
 	}
 }

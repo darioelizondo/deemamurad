@@ -1,6 +1,7 @@
 import gulp from 'gulp';
 import sass from 'gulp-sass';
 import dartSass from 'sass';
+import cleanCSS from 'gulp-clean-css';
 import uglify from 'gulp-uglify';
 import autoprefixer from 'gulp-autoprefixer';
 import browserSync from 'browser-sync';
@@ -13,11 +14,12 @@ function sassInit() {
         .src('./assets/scss/**/*.scss')
         .pipe(
             sassCompiler.sync({
-                outputStyle: 'compressed',
+                outputStyle: 'expanded',
                 sourceComments: false,
             }).on('error', sassCompiler.logError)
         )
         .pipe(autoprefixer({ cascade: false }))
+        .pipe(cleanCSS({ compatibility: 'ie8' })) // Minify the CSS
         .pipe(gulp.dest('./assets/css'))
         .pipe(browserSync.stream());
 }

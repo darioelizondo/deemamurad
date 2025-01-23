@@ -1,9 +1,6 @@
 // @Config
-@import '@config/reset';
-@import '@config/fonts';
-@import '@config/variables';
-@import '@config/breakpoints';
-@import '@config/base';
-@import '@config/color';
-@import '@config/headings';
-@import '@config/button';
+@use '@config/reset';
+@use '@config/base';
+@use '@config/color';
+@use '@config/headings';
+@use '@config/button';
