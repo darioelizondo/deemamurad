@@ -2,16 +2,16 @@
 
 * {
 	box-sizing: border-box;
-	// font-family: $matter;
-	font-size: 14px;
-	line-height: 22px;
+	font-family: index.$font-primary-light;
+	font-size: 13px;
+	line-height: 19px;
 	@include index.l {
 		font-size: 15px;
-		line-height: 23px;
+		line-height: 21px;
 	}
 	@include index.xl {
-		font-size: 18px;
-		line-height: 26px;
+		font-size: 17px;
+		line-height: 23px;
 	}
 }
 
@@ -22,7 +22,7 @@ html {
 
 body {
 	color: index.$text;
-	// font-family: $matter;
+	font-family: index.$font-primary-light;
 	font-variant-ligatures: none;
 	font-weight: 400;
 	line-height: index.$lh;
@@ -32,15 +32,15 @@ body {
 
 p,
 ul {
-	font-size: 14px;
-	line-height: 22px;
+	font-size: 13px;
+	line-height: 19px;
 	@include index.l {
 		font-size: 15px;
 		line-height: 23px;
 	}	
 	@include index.xl {
-		font-size: 18px;
-		line-height: 26px;
+		font-size: 17px;
+		line-height: 23px;
 	}
 }
 
@@ -61,14 +61,14 @@ input:focus-visible {
 	outline: none;
 }
 
-// h1,
-// h2,
-// h3,
-// h4,
-// h5,
-// h6 {
-// 	// font-family: $matter;
-// }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: index.$font-primary-medium;
+}
 
 pre {
 	background: index.$white;

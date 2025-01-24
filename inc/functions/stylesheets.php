@@ -13,5 +13,5 @@
         // Libs
         // wp_enqueue_style( 'swiper', TDU . '/assets/third/swiper/swiper-bundle.min.css', array(), '1.1.3' );
         // App
-        // wp_enqueue_style( 'stylesheets', TDU . '/assets/css/stylesheets.css', array(), filemtime( TD . '/assets/css/stylesheets.css' ) );
+        wp_enqueue_style( 'stylesheets', TDU . '/assets/css/stylesheets.css', array(), filemtime( TD . '/assets/css/stylesheets.css' ) );
     }
