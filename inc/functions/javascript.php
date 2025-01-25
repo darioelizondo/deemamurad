@@ -14,5 +14,5 @@
         // wp_register_script( 'swiper', TDU . '/assets/third/swiper/swiper-bundle.min.js', array( 'jquery' ), '11.1.3', true );
         
         // App
-        // wp_register_script( 'complacer.language-login', TDU . '/assets/javascript/production/language-login.js', array( 'jquery' ), filemtime( TD . '/assets/javascript/production/language-login.js' ), true );
+        wp_register_script( 'deemamurad.hamburger-icon', TDU . '/assets/javascript/production/hamburger-icon.js', array( 'jquery' ), filemtime( TD . '/assets/javascript/production/hamburger-icon.js' ), true );
     }
