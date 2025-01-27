@@ -30,6 +30,10 @@ body {
 	background: index.$soft-gray;
 }
 
+.home {
+	background-color: index.$white;
+}
+
 p,
 ul {
 	font-size: 13px;
@@ -155,18 +159,28 @@ button:focus {
 .container {
 	margin: 0 auto;
 	width: calc(100% - 40px);
+
 	@include index.m {
-		width: calc(100% - 104px);
+		width: calc(100% - 52px);
 	}
+
 	@include index.l {
-		width: 960px;
+		width: 95%;
 	}
+
 	@include index.xl {
-		width: 1280px;
+		width: 97%;
 	}
-	@include index.xxl {
-		width: 1400px;
-	}
+
+	// @include index.l {
+	// 	width: 960px;
+	// }
+	// @include index.xl {
+	// 	width: 1280px;
+	// }
+	// @include index.xxl {
+	// 	width: 1400px;
+	// }
 }
 
 .d-mobile {
