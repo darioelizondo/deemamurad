@@ -1,1 +1,0 @@
-let toggleOpenCloseMenu=()=>{var e=document.getElementById("btnHamburgerIcon");let t=document.getElementById("hamburgerIcon"),n=document.getElementById("menu");e.addEventListener("click",e=>{e.preventDefault(),t.classList.toggle("active"),n.classList.toggle("active")})};document.addEventListener("DOMContentLoaded",toggleOpenCloseMenu,!1);

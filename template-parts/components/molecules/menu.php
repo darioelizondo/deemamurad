@@ -7,6 +7,8 @@
      * 
      */
 
+     wp_enqueue_script( 'deemamurad.menu' );
+
 ?>
 
 <!-- Menu -->

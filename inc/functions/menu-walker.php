@@ -14,11 +14,12 @@ class DeemaMurad_Menu_Walker extends Walker_Nav_Menu {
         $output .= "<li class='" . esc_attr($classes) . "'>";
 
         // Determine if the item has children
-        $has_children = !empty($args->has_children);
+        $has_children = !empty($args->walker->has_children);
 
         // Build the link
         $link_class = $has_children ? "menu__link menu__has-child" : "menu__link";
-        $output .= '<a class="' . esc_attr($link_class) . '" href="' . esc_url($item->url) . '" data-title="' . esc_attr($item->title) . '" target="' . esc_attr($item->target) . '">';
+        $link_class_first_level = $has_children && $depth == 0 ? "menu__has-child--first-level" : "";
+        $output .= '<a class="' . esc_attr($link_class). ' ' . esc_attr($link_class_first_level) . '" href="' . esc_url($item->url) . '" data-title="' . esc_attr($item->title) . '" target="' . esc_attr($item->target) . '">';
 
         // Additional content if it is top level
         // if ($depth == 0) {
@@ -27,6 +28,10 @@ class DeemaMurad_Menu_Walker extends Walker_Nav_Menu {
 
         // Link title
         $output .= '<span class="menu__link-title">' . esc_html($item->title) . '</span>';
+
+        if( $has_children && $depth == 1 ) {
+            $output .= '<span class="menu__plus-minus-toggle collapsed"></span>';
+        }
 
         // Close tag <a>
         $output .= '</a>';
@@ -41,7 +46,7 @@ class DeemaMurad_Menu_Walker extends Walker_Nav_Menu {
         }
 		
 		if ($depth != 0) {
-			$output .= '<ul class="submenu">';
+			$output .= '<ul class="submenu submenu--second-level">';
 		}
 		
         

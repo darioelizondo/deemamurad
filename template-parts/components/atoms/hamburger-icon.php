@@ -7,7 +7,6 @@
      * 
      */
 
-     wp_enqueue_script( 'deemamurad.hamburger-icon' );
 ?>
 
 <!-- Hamburger Icon -->
