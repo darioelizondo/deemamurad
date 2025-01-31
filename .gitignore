@@ -56,5 +56,5 @@ Thumbs.db
 # /assets/javascript/production/*
 
 # Develop assets
-/assets/scss/*
-/assets/javascript/develop/*
+# /assets/scss/*
+# /assets/javascript/develop/*
