@@ -241,6 +241,37 @@
 
     }
 
+    // All collections
+    &__all-collections {
+        display: none;
+
+        @include index.l {
+            display: flex;
+        }
+
+    }
+
+    // Back collections
+    &__back-collections {
+        display: flex;
+        align-items: center;
+        gap: calc( index.$lh / 3 );
+
+        @include index.l {
+            display: none;
+        }
+
+        a {
+            color: index.$black;
+            text-decoration: none;
+            transition: color .3s ease;
+        }
+
+        a:hover {
+            color: index.$gray;
+        }
+    }
+
     // Ul
     ul {
         margin: 0;
@@ -250,4 +281,18 @@
         list-style: none;
     }
     
+}
+
+.logged-in {
+    .wrapper-submenu {
+        &.active {
+            top: 96px;
+
+            @include index.l {
+                top: 100px;
+            }
+
+        }
+
+    }
 }

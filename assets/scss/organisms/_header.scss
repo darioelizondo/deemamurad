@@ -126,12 +126,22 @@
         display: flex;
         align-items: center;
         justify-content: flex-end;
+        gap: index.$lh;
         order: 2;
 
         @include index.l {
+            gap: 0;
             order: 3;
         }
 
     }
 
+}
+
+.logged-in {
+    .header__center {
+        &.active {
+            top: 96px;
+        }
+    }
 }

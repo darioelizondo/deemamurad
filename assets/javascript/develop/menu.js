@@ -119,9 +119,55 @@ const clickAwayListenerForSubmenu = () => {
     document.addEventListener('click', handleClickOutside);
 }
 
+const addItemInSubmenuCollection = () => {
 
-// Ejecutar la función al cargar el DOM
+    // Mega menu
+    const megaMenu = document.querySelector( '.wrapper-submenu' );
+
+    // Collections item
+    const liCollections = document.querySelector( '.all-collections-item' );
+    
+    // Add class to 'All Collections' for handle it
+    liCollections.firstChild.classList.add( 'menu__all-collections' );
+
+    // New back item
+    const newItem = document.createElement( 'a' );
+    newItem.setAttribute( 'href', '#' );
+    newItem.classList.add( 'menu__back-collections' );
+
+    // Arrow SVG
+    const svgArrowString = `
+        <svg width="32" height="9" viewBox="0 0 32 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4.52941 8L1 4.5M1 4.5L4.52941 1M1 4.5L31 4.5" stroke="#3F3F46" stroke-linecap="square" stroke-linejoin="round"/>
+        </svg>`;
+    const parser = new DOMParser();
+    const svgDoc = parser.parseFromString( svgArrowString, 'image/svg+xml' );
+    const svgElement = svgDoc.documentElement;
+
+    // Span text
+    const spanText = document.createElement( 'span' );
+    spanText.textContent = 'Collections';
+
+    // Add SVG to new link
+    newItem.appendChild( svgElement );
+
+    // Add span to new link
+    newItem.appendChild( spanText );
+
+    // Add new link with SVG to collections item
+    liCollections.appendChild( newItem );
+
+    liCollections.addEventListener( 'click', ( event ) => {
+        event.preventDefault();
+        megaMenu.classList.remove( 'active' );
+        megaMenu.previousSibling.classList.remove( 'active' );
+    });
+
+}
+
+// Ejecutar funciones al cargar el DOM
 document.addEventListener( 'DOMContentLoaded', toggleOpenCloseMenu, false );
 document.addEventListener( 'DOMContentLoaded', toggleOpenCloseMegaMenu, false );
 document.addEventListener( 'DOMContentLoaded', toggleOpenCloseSubmenu, false );
 document.addEventListener( 'DOMContentLoaded', clickAwayListenerForSubmenu, false );
+document.addEventListener( 'DOMContentLoaded', addItemInSubmenuCollection, false );
