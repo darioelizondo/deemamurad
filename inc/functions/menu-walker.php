@@ -9,9 +9,18 @@ class DeemaMurad_Menu_Walker extends Walker_Nav_Menu {
 
     function start_el( &$output, $item, $depth = 0, $args = null, $id = 0 ) {
 
+        // Get image placeholder
+        $image = get_field( 'image_menu_item', $item->ID );
+
         // CSS class of the <li> element
         $classes = implode(" ", $item->classes);
-        $output .= "<li class='" . esc_attr($classes) . "'>";
+
+        if( isset( $image ) && !empty( $image ) ) {
+            $output .= "<li class='" . esc_attr( $classes ) . "' data-image='" . esc_url( $image ) . "'>";
+        }
+        else {
+            $output .= "<li class='" . esc_attr( $classes ) . "'>";
+        }
 
         // Determine if the item has children
         $has_children = !empty($args->walker->has_children);
@@ -55,7 +64,9 @@ class DeemaMurad_Menu_Walker extends Walker_Nav_Menu {
     function end_lvl( &$output, $depth = 0, $args = null ) {
 		
 		if( $depth == 0 ) {
-			$output .= '<div class="menu__image-placeholder"></div>';
+			$output .= '<div class="menu__wrapper-image-placeholder">
+                            <img id="imagePlaceholder" class="menu__image-placeholder image--fluid" data-image="' . TDU . '/assets/images/menu/menu-item-generic.jpg' . '" src="' . TDU . '/assets/images/menu/menu-item-generic.jpg' . '" alt="Menu image">
+                        </div>';
 		}
 
         $output .= '</ul>';

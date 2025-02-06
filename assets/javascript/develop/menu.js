@@ -6,6 +6,7 @@ const toggleOpenCloseMenu = () => {
 	const headerCenter = document.getElementById( 'headerCenter' );
     const submenus = document.querySelectorAll( '.wrapper-submenu' );
     const submenusSecondLevel = document.querySelectorAll( '.submenu--second-level' );
+    const imagePlaceholder = document.getElementById( 'imagePlaceholder' );
 
 	button.addEventListener( 'click', ( event ) => {
         event.preventDefault();
@@ -24,6 +25,12 @@ const toggleOpenCloseMenu = () => {
             jQuery( submenu ).find( '.menu__plus-minus-toggle' ).removeClass( 'collapsed' );
         });
 
+        // Restaurar imagen de placeholder
+        setTimeout( () => {
+            imagePlaceholder.src = imagePlaceholder.dataset.image;
+        }, 1000 );
+        
+
 	}); 
 
 };
@@ -36,7 +43,7 @@ const toggleOpenCloseMegaMenu = () => {
         link.addEventListener( 'click', ( event ) => {
             event.preventDefault();
             // Link active
-            jQuery( link ).addClass( 'active' );
+            jQuery( link ).parent().addClass( 'active' );
             // Megamenu active
             jQuery( link ).next().addClass( 'active' );
         });
@@ -98,6 +105,7 @@ const clickAwayListenerForSubmenu = () => {
     // Menu
     const menu = document.querySelector( '.menu' );
     const megaMenu = document.querySelector( '.wrapper-submenu' );
+    const imagePlaceholder = document.getElementById( 'imagePlaceholder' );
 
     // Función para manejar el click fuera del div
     const handleClickOutside = ( event ) => {
@@ -109,7 +117,11 @@ const clickAwayListenerForSubmenu = () => {
             if( megaMenu.classList.contains( 'active' ) ) {
                 // Remueve la clase 'active'
                 megaMenu.classList.remove( 'active' );
-                megaMenu.previousSibling.classList.remove( 'active' );
+                megaMenu.previousSibling.parentElement.classList.remove( 'active' );
+                // Restaura la imagen de placeholder
+                setTimeout( () => {
+                    imagePlaceholder.src = imagePlaceholder.dataset.image;
+                }, 1000 );
             }
         
         }
@@ -165,9 +177,29 @@ const addItemInSubmenuCollection = () => {
 
 }
 
+const changeImagePlaceholderMenu = () => {
+    
+    const menuItems = document.querySelectorAll( '.menu-item' );
+    const imagePlaceholder = document.getElementById( 'imagePlaceholder' );
+
+    menuItems.forEach( ( item ) => {
+
+        const dataImage = item.dataset.image;
+        
+        item.addEventListener( 'mouseover', () => {
+            if( dataImage ) {
+                imagePlaceholder.src = dataImage;
+            }
+        });
+
+    });
+
+}
+
 // Ejecutar funciones al cargar el DOM
 document.addEventListener( 'DOMContentLoaded', toggleOpenCloseMenu, false );
 document.addEventListener( 'DOMContentLoaded', toggleOpenCloseMegaMenu, false );
 document.addEventListener( 'DOMContentLoaded', toggleOpenCloseSubmenu, false );
 document.addEventListener( 'DOMContentLoaded', clickAwayListenerForSubmenu, false );
 document.addEventListener( 'DOMContentLoaded', addItemInSubmenuCollection, false );
+document.addEventListener( 'DOMContentLoaded', changeImagePlaceholderMenu, false );

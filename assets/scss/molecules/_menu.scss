@@ -46,38 +46,41 @@
 
     // Link
     &__link {
+        display: block;
         color: index.$black;
         text-decoration: none;
-        transition: color .3s ease;
         position: relative;
+        overflow: hidden;
+        transition: color .3s ease;
 
-        &::before {
-            content: '';
-            display: none;
-            position: absolute;
-            top: 0;
-            right: -7px;
-            width: 5px;
-            height: 5px;
-            background-color: index.$black;
-            border-radius: 100%;
-            opacity: 0;
-            transition: opacity .3s ease;
+        &:after {
+			content: attr( data-title );
+			display: block;
+			position: absolute;
+			top: 110%;
+			transition: top .5s cubic-bezier(.86,0,.07,1) , color .5s cubic-bezier(.86,0,.07,1);
+		}
+
+        &:hover:after {
+			top: 8px;
+			color: index.$gray;
 
             @include index.l {
-                display: block;
+                top: 0;
             }
 
-        }
+		}
 
-        &:hover {
-            color: index.$gray;
-        }
+		&:hover .menu__link-title {
+			transform: translateY(-30px);
+		}
 
-        &.active::before {
-            opacity: 1;
-        }
+    }
 
+    // Menu link title
+    &__link-title {
+        display: inline-block;
+		transition: transform .5s cubic-bezier(.86,0,.07,1);
     }
 
     // Button
@@ -114,10 +117,34 @@
             width: 100%;
             padding: calc( index.$lh / 3 ) 0;
             border-bottom: solid 1px #A4A49C;
+            position: relative;
 
             @include index.l {
                 width: auto;
                 border-bottom: none;
+            }
+
+            &::before {
+                content: '';
+                display: none;
+                position: absolute;
+                top: 8px;
+                right: -7px;
+                width: 5px;
+                height: 5px;
+                background-color: index.$black;
+                border-radius: 100%;
+                opacity: 0;
+                transition: opacity .3s ease;
+    
+                @include index.l {
+                    display: block;
+                }
+    
+            }
+    
+            &.active::before {
+                opacity: 1;
             }
 
         }
@@ -134,6 +161,7 @@
             @include index.l {
                 width: auto;
                 border-bottom: none;
+                padding: 0;
             }
         }
 
@@ -280,6 +308,25 @@
     li {
         list-style: none;
     }
+
+    // Image placeholder
+    &__wrapper-image-placeholder {
+        display: none;
+
+        @include index.l {
+            display: block;
+            max-width: 400px;
+        }
+
+        @include index.xl {
+            max-width: 500px;
+        }
+
+    }
+
+    &__image-placeholder {
+        width: 100%;
+    }
     
 }
 
@@ -295,4 +342,5 @@
         }
 
     }
+
 }
