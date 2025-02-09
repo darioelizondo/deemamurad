@@ -1,0 +1,68 @@
+// Scroll indicator
+@use '../@config/index';
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 90px;
+    left: 26px;
+    z-index: 2;
+
+    @include index.l {
+        bottom: 120px;
+        left: 50px;
+    }
+    
+    // Scroll
+    &__scroll {
+        position: relative;
+        margin: auto;
+        text-align: center;
+        height: 75px;
+        overflow: hidden;
+
+        @include index.l {
+            height: 120px;
+        }
+
+    }
+
+    // Line
+    &__line {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        display: block;
+        width: 1px;
+        height: 100%;
+        z-index: 10;
+        background-color: #fff;
+        animation: scroll 2.4s infinite normal;
+        transform: translateY(-50%);
+    }
+    
+      // Arrow
+    &__arrow {
+        display: block;
+        position: relative;
+        z-index: 111;
+        padding-left: 1px;
+        top: -13px
+    }
+
+  }
+  
+  
+  @keyframes scroll {
+    0% {
+      transform: translate3d(0, -100%, 0)
+    }
+    15% {
+      transform: translate3d(0, -95%, 0)
+    }
+    85% {
+      transform: translate3d(0, 95%, 0)
+    }
+    100% {
+      transform: translate3d(0, 100%, 0)
+    }
+  }

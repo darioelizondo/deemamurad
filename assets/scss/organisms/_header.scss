@@ -1,0 +1,168 @@
+// Header
+@use './../@config/index';
+@use './../@config/base';
+
+.logged-in {
+    .header {
+        margin-top: 46px;
+
+        @include index.l {
+            margin-top: 32px;
+        }
+    }
+
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    background-color: index.$soft-gray;
+    border-top: solid 1px #A4A49C;
+
+    @include index.l {
+        border-top: none;
+        border-bottom: solid 1px #A4A49C;
+    }
+
+    // Inner
+    &__inner {
+        display: grid;
+        justify-content: space-between;
+        grid-template-columns: repeat( 2, minmax( 0, 1fr ) );
+        gap: index.$lh;
+        padding: calc( index.$lh / 2 ) 0;
+
+        @include index.l {
+            grid-template-columns: auto 1fr auto;
+        }
+
+    }
+
+    // Left
+    &__left {
+        display: flex;
+        align-items: center;
+        order: 1
+    }
+
+    // Wrapper logo
+    &__wrapper-logo {
+        overflow: hidden;
+    }
+
+    // Center
+    &__center {
+        flex: 1 0 100%;
+        position: fixed;
+        width: 100%;
+        top: -150%;
+        left: 0;
+        grid-column: span 2;
+        order: 3;
+        transition: top .8s cubic-bezier(.86,0,.07,1);
+        background-color: index.$soft-gray;
+       
+        &.active {
+            top: 50px;
+        }
+
+        @include index.l {
+            grid-column: span 1;
+            position: static;
+            width: auto;
+            display: flex;
+            order: 2;
+        }
+
+    }
+
+    // Center inner
+    &__center-inner {
+        @extend .container;
+        display: flex;
+        flex-direction: column;
+        gap: calc( index.$lh * 3 );
+        padding-bottom: calc( index.$lh * 2 );
+        
+
+        @include index.l {
+            width: 100%;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            gap: calc( index.$lh / 2 );
+            padding-bottom: 0;
+        }
+
+        @include index.e {
+            gap: index.$lh;
+        }
+
+        @include index.xl {
+            width: 100%; 
+        }
+
+    }
+
+    // Wrapper currency & account
+    &__wrapper-currency-account {
+        display: flex;
+        flex-direction: column;
+        gap: calc( index.$lh / 2 );
+
+        @include index.l {
+            flex-direction: row;
+            align-items: center;
+        }
+
+        @include index.e {
+            gap: index.$lh;
+        }
+
+
+    }
+
+    // Wrapper menu
+    &__wrapper-menu {
+
+        @include index.e {
+            padding-left: calc( index.$lh * 2 );
+        }
+
+        @include index.xl {
+            padding-left: calc( index.$lh * 2.5 );
+        }
+
+        @include index.xxl {
+            padding-left: calc( index.$lh * 3 );
+        }
+
+    }
+
+    // Right
+    &__right {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: index.$lh;
+        order: 2;
+
+        @include index.l {
+            gap: 0;
+            order: 3;
+        }
+
+    }
+
+}
+
+.logged-in {
+    .header__center {
+        &.active {
+            top: 96px;
+        }
+    }
+}

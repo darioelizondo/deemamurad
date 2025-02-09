@@ -1,0 +1,35 @@
+<?php
+
+    /**
+     * Component: Molecule: Menu
+     * 
+     * @package Darío Elizondo
+     * 
+     */
+
+     wp_enqueue_script( 'deemamurad.menu' );
+
+?>
+
+<!-- Menu -->
+<div id="menu" class="menu">
+    <div class="menu__inner">
+
+        <!-- Menu navigation -->
+        <div class="menu__wrapper">
+            <?php
+                wp_nav_menu( array(
+                    'theme_location'  => 'main_menu',
+                    'menu'            => 'menu__main',
+                    'container_class' => 'menu__list',
+                    'menu_class'      => 'menu__nav',
+                    'echo'            => true,
+                    'items_wrap'      => '<ul id = "%1$s" class = "%2$s">%3$s</ul>',
+                    'depth'           => 0,
+    		 		'walker'          => new DeemaMurad_Menu_Walker, 
+                ));
+            ?>
+        </div>
+
+    </div>
+</div>

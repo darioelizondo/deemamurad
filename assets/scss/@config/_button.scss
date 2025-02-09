@@ -1,23 +1,25 @@
+@use 'index';
+
 // Button
 .button {
     width: auto;
-    color: $text;
-    padding: calc( $lh / 3 ) calc( $lh / 2 );
+    color: index.$text;
+    padding: calc( index.$lh / 3 ) calc( index.$lh / 2 );
     border-radius: 100px;
-    background-color: $primary;
+    background-color: index.$black;
 
     &:hover {
-        background-color: $primary-dark;
+        background-color: index.$gray;
     }
 
-    @include m {
+    @include index.m {
         width: auto;
-        padding: calc( $lh / 3 ) $lh * .8;
+        padding: calc( index.$lh / 3 ) index.$lh * .8;
     }
 
-    @include l {
+    @include index.l {
         width: auto;
-        padding: calc( $lh / 3 ) $lh * 1.4;
+        padding: calc( index.$lh / 3 ) index.$lh * 1.4;
     }
 
 }

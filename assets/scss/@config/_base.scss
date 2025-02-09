@@ -1,15 +1,17 @@
+@use 'index';
+
 * {
 	box-sizing: border-box;
-	font-family: $matter;
-	font-size: 14px;
-	line-height: 22px;
-	@include l {
+	font-family: index.$font-primary-light;
+	font-size: 13px;
+	line-height: 19px;
+	@include index.l {
 		font-size: 15px;
-		line-height: 23px;
+		line-height: 21px;
 	}
-	@include xl {
-		font-size: 18px;
-		line-height: 26px;
+	@include index.xl {
+		font-size: 17px;
+		line-height: 23px;
 	}
 }
 
@@ -19,26 +21,30 @@ html {
 }
 
 body {
-	color: $text;
-	font-family: $matter;
+	color: index.$text;
+	font-family: index.$font-primary-light;
 	font-variant-ligatures: none;
 	font-weight: 400;
-	line-height: $lh;
+	line-height: index.$lh;
 	overflow: hidden;
-	background: $soft-gray;
+	background: index.$soft-gray;
+}
+
+.home {
+	background-color: index.$white;
 }
 
 p,
 ul {
-	font-size: 14px;
-	line-height: 22px;
-	@include l {
+	font-size: 13px;
+	line-height: 19px;
+	@include index.l {
 		font-size: 15px;
 		line-height: 23px;
 	}	
-	@include xl {
-		font-size: 18px;
-		line-height: 26px;
+	@include index.xl {
+		font-size: 17px;
+		line-height: 23px;
 	}
 }
 
@@ -51,7 +57,7 @@ p a {
 	text-decoration: underline;
 	transition: color .3s ease;
 	&:hover {
-		color: $primary;
+		color: index.$text;
 	}
 }
 
@@ -65,12 +71,12 @@ h3,
 h4,
 h5,
 h6 {
-	font-family: $matter;
+	font-family: index.$font-primary-medium;
 }
 
 pre {
-	background: $white;
-	color: $black;
+	background: index.$white;
+	color: index.$black;
 	font-family: monospace;
 }
 
@@ -80,7 +86,7 @@ em {
 
 ul {
 	list-style: disc;
-	margin-left: calc( $lh / 1.5 );
+	margin-left: calc( index.$lh / 1.5 );
 }
 
 strong {
@@ -89,7 +95,7 @@ strong {
 
 blockquote, q {
 	font-style: italic;
-	margin: calc( $lh / 2 ) 0 calc( $lh / 2 ) calc( $lh * 1.3 );
+	margin: calc( index.$lh / 2 ) 0 calc( index.$lh / 2 ) calc( index.$lh * 1.3 );
 }
 blockquote p:before,
 q p:before {
@@ -112,8 +118,8 @@ button:focus {
 }
 
 ::selection {
-	color: $white;
-	background: $text;
+	color: index.$white;
+	background: index.$text;
 	
 }
 
@@ -153,29 +159,39 @@ button:focus {
 .container {
 	margin: 0 auto;
 	width: calc(100% - 40px);
-	@include m {
-		width: calc(100% - 104px);
+
+	@include index.m {
+		width: calc(100% - 52px);
 	}
-	@include l {
-		width: 960px;
+
+	@include index.l {
+		width: 95%;
 	}
-	@include xl {
-		width: 1280px;
+
+	@include index.xl {
+		width: 97%;
 	}
-	@include xxl {
-		width: 1400px;
-	}
+
+	// @include index.l {
+	// 	width: 960px;
+	// }
+	// @include index.xl {
+	// 	width: 1280px;
+	// }
+	// @include index.xxl {
+	// 	width: 1400px;
+	// }
 }
 
 .d-mobile {
-	@include l {
+	@include index.l {
 		display: none !important;
 	}
 }
 
 .d-desktop {
 	display: none !important;
-	@include l {
+	@include index.l {
 		display: block !important;
 	}
 }

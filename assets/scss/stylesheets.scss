@@ -1,9 +1,20 @@
 // @Config
-@import '@config/reset';
-@import '@config/fonts';
-@import '@config/variables';
-@import '@config/breakpoints';
-@import '@config/base';
-@import '@config/color';
-@import '@config/headings';
-@import '@config/button';
+@use '@config/reset';
+@use '@config/base';
+@use '@config/color';
+@use '@config/headings';
+@use '@config/button';
+
+// Atoms
+@use 'atoms/logo';
+@use 'atoms/hamburger-icon';
+@use 'atoms/scroll-indicator';
+
+// Molecules
+@use 'molecules/menu';
+@use 'molecules/header-cart';
+
+// Organisms
+@use 'organisms/header';
+@use 'organisms/overlay-transition';
+@use 'organisms/hero';
