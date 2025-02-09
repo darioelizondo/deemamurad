@@ -7,9 +7,15 @@
      * 
      */
 
-     wp_enqueue_script( 'complacer.header' );
+    wp_enqueue_script( 'animejs' );
+    wp_enqueue_script( 'deemamurad.header' );
 
 ?>
+
+<?php
+    // Overlay transition
+    include TD . '/template-parts/components/organisms/overlay-transition.php';
+?> 
 
 <!-- Header -->
 <header class="header">

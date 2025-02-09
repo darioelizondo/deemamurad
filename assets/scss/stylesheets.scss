@@ -8,6 +8,7 @@
 // Atoms
 @use 'atoms/logo';
 @use 'atoms/hamburger-icon';
+@use 'atoms/scroll-indicator';
 
 // Molecules
 @use 'molecules/menu';
@@ -15,3 +16,5 @@
 
 // Organisms
 @use 'organisms/header';
+@use 'organisms/overlay-transition';
+@use 'organisms/hero';

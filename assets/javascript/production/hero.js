@@ -1,0 +1,1 @@
+let animeHero=()=>{document.querySelectorAll(".hero").forEach(e=>{e=e.querySelectorAll(".hero__wrapper-image");anime({targets:e,easing:"easeInOutSine",translateY:[1e3,0],delay:anime.stagger(200)})})};document.addEventListener("DOMContentLoaded",animeHero);

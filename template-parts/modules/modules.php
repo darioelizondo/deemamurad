@@ -7,11 +7,11 @@
      * 
      */
 
-    $module_count = 0;
+    $module_count = 1;
 
     if ( have_rows( 'modules' ) ) : while ( have_rows( 'modules' ) ) : the_row( 'modules' );
      
-        // if ( get_row_layout() === 'cover' ) require TD . '/template-parts/components/organisms/cover.php';
+        if ( get_row_layout() === 'hero' ) require TD . '/template-parts/components/organisms/hero.php';
      
         $module_count++;
      

@@ -272,6 +272,7 @@
     // All collections
     &__all-collections {
         display: none;
+        pointer-events: none;
 
         @include index.l {
             display: flex;
@@ -336,7 +337,7 @@
             top: 96px;
 
             @include index.l {
-                top: 100px;
+                top: 99px;
             }
 
         }

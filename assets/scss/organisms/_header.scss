@@ -2,7 +2,23 @@
 @use './../@config/index';
 @use './../@config/base';
 
+.logged-in {
+    .header {
+        margin-top: 46px;
+
+        @include index.l {
+            margin-top: 32px;
+        }
+    }
+
+}
+
 .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
     background-color: index.$soft-gray;
     border-top: solid 1px #A4A49C;
 
@@ -30,6 +46,11 @@
         display: flex;
         align-items: center;
         order: 1
+    }
+
+    // Wrapper logo
+    &__wrapper-logo {
+        overflow: hidden;
     }
 
     // Center
