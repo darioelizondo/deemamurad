@@ -13,8 +13,11 @@
 // Molecules
 @use 'molecules/menu';
 @use 'molecules/header-cart';
+@use 'molecules/our-collections-slide';
 
 // Organisms
 @use 'organisms/header';
 @use 'organisms/overlay-transition';
 @use 'organisms/hero';
+@use 'organisms/our-collections-slider';
+@use 'organisms/full-image-linked';

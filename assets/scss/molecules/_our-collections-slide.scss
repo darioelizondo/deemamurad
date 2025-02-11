@@ -1,0 +1,40 @@
+// Our collections slide
+@use '../@config/index';
+
+.our-collections-slide {
+
+    // Wrapper image
+    &__wrapper-image {
+        overflow: hidden;
+        margin-bottom: calc( index.$lh / 2 );
+        font-size: 0;
+        line-height: 1;
+    }
+
+    // Image
+    &__image {
+        transition: transform .3s ease, filter .3s ease;
+
+        &:hover {
+            transform: scale( 1.05 );
+            filter: grayscale( 1 );
+        }
+
+    }
+
+    // Title
+    &__title {
+        font-family: index.$font-primary-light;
+        font-size: 14px;
+        line-height: 20px;
+        @include index.l {
+            font-size: 16px;
+            line-height: 20px;
+        }
+        @include index.xl {
+            font-size: 18px;
+            line-height: 22px;
+        }
+    }
+
+}

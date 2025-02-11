@@ -1,0 +1,56 @@
+// Our collections slider
+@use '../@config/index';
+
+.our-collections-slider {
+    background-color: index.$soft-gray;
+
+    // Content
+    &__content-slider {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: index.$lh;
+        padding-bottom: index.$lh;
+    }
+
+    // Title
+    &__title {
+        font-family: index.$font-primary-light;
+        font-size: 14px;
+        line-height: 20px;
+        @include index.l {
+            font-size: 18px;
+            line-height: 22px;
+        }
+        @include index.xl {
+            font-size: 20px;
+            line-height: 24px;
+        }
+    }
+
+    // Wrapper buttons
+    &__wrapper-buttons {
+        display: flex;
+        align-items: center;
+        gap: index.$lh;
+    }
+
+    // Prev button
+    &__prev-button {
+        transition: transform .3s ease;
+
+        &:hover {
+            transform: translateX( -7px );
+        }
+    }
+
+     // Next button
+     &__next-button {
+        transition: transform .3s ease;
+
+        &:hover {
+            transform: translateX( 7px );
+        }
+    }
+
+}

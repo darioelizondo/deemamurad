@@ -1,0 +1,123 @@
+// Full image linked
+@use '../@config/index';
+
+.full-image-linked {
+    background-color: index.$soft-gray;
+
+    // Inner
+    &__inner {
+        position: relative;
+    }
+
+    // Wrapper image
+    &__wrapper-image {
+        height: calc( 100dvh - 50px );
+        position: relative;
+        overflow: hidden;
+
+        @include index.l {
+            height: calc( 100dvh - 67px );
+        }
+
+    }
+
+    // Picture
+    &__picture {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: -300px;
+        left: 50%;
+        transform: translateX(-50%);
+        will-change: transform;
+
+        @include index.l {
+            top: -400px;
+        }
+
+        @include index.xl {
+            top: -450px;    
+        }
+
+        @include index.xxl {
+            top: -500px;
+        }
+
+      }
+      
+    // Image
+    &__image {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    // Link
+    &__link {
+        display: block;
+    }
+
+    // Wrapper content
+    &__wrapper-content {
+        position: absolute;
+        bottom: 60px;
+        left: 50%;
+        transform: translateX( -50% );
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: calc( index.$lh / 3 );
+
+        @include index.l {
+            bottom: 110px;
+            gap: calc( index.$lh / 2 );
+        }
+
+    }
+
+    // Title
+    &__title {
+        color: index.$white;
+        font-family: index.$font-primary-light;
+        font-size: 18px;
+        line-height: 24px;
+
+        @include index.l {
+            font-size: 26px;
+            line-height: 30px;
+        }
+
+        @include index.xl {
+            font-size: 30px;
+            line-height: 34px;
+        }
+
+    }
+
+    // Link button
+    &__link-button {
+        display: inline-block;
+        color: index.$white;
+        font-family: index.$font-primary-light;
+        font-size: 14px;
+        line-height: 20px;
+        text-decoration: underline;
+        transition: transform .3s ease;
+
+        @include index.l {
+            font-size: 17px;
+            line-height: 21px;
+        }
+
+        @include index.xl {
+            font-size: 20px;
+            line-height: 24px;
+        }
+
+        &:hover {
+            transform: translateY( 7px );
+        }
+
+    }
+    
+}

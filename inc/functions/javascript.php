@@ -14,6 +14,7 @@
         // Libs
         wp_register_script( 'animejs', TDU . '/assets/third/anime-js/anime.min.js', array( 'jquery' ), '3.2.2', true );
         wp_register_script( 'swiper', TDU . '/assets/third/swiper/swiper-bundle.min.js', array( 'jquery' ), '11.2.2', true );
+        wp_register_script( 'aos', TDU . '/assets/third/aos/aos.js', array( 'jquery' ), '3.0.0', true );
 
         
         // App
@@ -22,5 +23,7 @@
         wp_register_script( 'deemamurad.overlay-transition', TDU . '/assets/javascript/production/overlay-transition.js', array( 'jquery' ), filemtime( TD . '/assets/javascript/production/overlay-transition.js' ), true );
         wp_register_script( 'deemamurad.hero', TDU . '/assets/javascript/production/hero.js', array( 'jquery' ), filemtime( TD . '/assets/javascript/production/hero.js' ), true );
         wp_register_script( 'deemamurad.our-collections-slider', TDU . '/assets/javascript/production/our-collections-slider.js', array( 'jquery' ), filemtime( TD . '/assets/javascript/production/our-collections-slider.js' ), true );
+        wp_register_script( 'deemamurad.aos-init', TDU . '/assets/javascript/production/aos.js', array( 'jquery' ), filemtime( TD . '/assets/javascript/production/aos.js' ), true );
+        wp_register_script( 'deemamurad.full-image-linked', TDU . '/assets/javascript/production/full-image-linked.js', array( 'jquery' ), filemtime( TD . '/assets/javascript/production/full-image-linked.js' ), true );
 
     }
