@@ -13,16 +13,16 @@ const animateImagesOnScroll = () => {
         
         // Assign different positions every 3 images
         let positionStyles = [
-            { top: "0", left: "10%" },
-            { top: "10%", right: "18%" },
-            { top: "20%", left: "20%" }
+            { top: "0", left: "7%" },
+            { top: "15%", right: "14%" },
+            { top: "35%", left: "20%" }
         ];
 
         // Get style based on index (every 3 images reset)
         let style = positionStyles[index % 3];
         
         // Define a different speed for each image
-        let speed = ( index % 3 ) + 2; // 2x, 3x, 4x of speed
+        let speed = ( index % 3 ) + 1; // 1x, 2x, 3x of speed
 
         // Apply position to element
         Object.assign(image.style, style);

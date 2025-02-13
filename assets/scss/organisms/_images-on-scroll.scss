@@ -7,11 +7,24 @@
     // Inner
     &__inner {
         position: relative;
-        height: 350vh; /* So that there is enough scroll */
+        height: 175vh; /* So that there is enough scroll */
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: space-around;
+
+        @include index.l {
+            height: 230vh;
+        }
+
+        @include index.xl {
+            height: 220vh;
+        }
+
+        @include index.xxl {
+            height: 210vh;
+        }
+
     }
 
     // Wrapper image
@@ -19,6 +32,61 @@
         position: absolute;
         font-size: 0;
         line-height: 1;
+
+        &:nth-child( 1n ) {
+            .images-on-scroll__image {
+
+                @include index.l {
+                    max-width: 500px;
+                }
+
+                @include index.xl {
+                    max-width: 550px;
+                }
+
+                @include index.xxl {
+                    max-width: 100%;
+                }
+
+            }
+        }
+
+        &:nth-child( 2n ) {
+            .images-on-scroll__image {
+
+                @include index.l {
+                    max-width: 450px;
+                }
+
+                @include index.xl {
+                    max-width: 500px;
+                }
+
+                @include index.xxl {
+                    max-width: 100%;
+                }
+
+            }
+        }
+
+        &:nth-child( 3n ) {
+            .images-on-scroll__image {
+
+                @include index.l {
+                    max-width: 600px;
+                }
+
+                @include index.xl {
+                    max-width: 650px;
+                }
+
+                @include index.xxl {
+                    max-width: 100%;
+                }
+
+            }    
+        }
+
     }
 
 }
