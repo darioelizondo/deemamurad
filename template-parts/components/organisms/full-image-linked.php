@@ -13,7 +13,7 @@
 ?>
 
 <!-- Full image linked -->
-<div class="full-image-linked" data-aos="fade-left" data-aos-easing="ease-in-out"  data-aos-delay="100">
+<section class="full-image-linked module-<?php echo $module_count; ?>" style="padding-top: <?php echo $group[ 'padding_top' ]; ?>; padding-bottom: <?php echo $group[ 'padding_bottom' ]; ?>;" data-aos="fade-left" data-aos-easing="ease-in-out"  data-aos-delay="100" >
     <?php if( $group[ 'image_s' ] && $group[ 'link' ] ) : ?>
         <div class="full-image-linked__inner container">
             <!-- Image -->
@@ -44,5 +44,5 @@
             </div>
         </div>
     <?php endif; ?>
-</div>
+</section>
 <!-- End full image linked -->

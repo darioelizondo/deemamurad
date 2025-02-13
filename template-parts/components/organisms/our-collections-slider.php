@@ -17,7 +17,7 @@
 ?>
 
 <!-- Our collections slider -->
-<div class="our-collections-slider module-<?php echo $module_count; ?>" style="padding-top: <?php echo $group[ 'padding_top' ]; ?>; padding-bottom: <?php echo $group[ 'padding_bottom' ]; ?>;">
+<section class="our-collections-slider module-<?php echo $module_count; ?>" style="padding-top: <?php echo $group[ 'padding_top' ]; ?>; padding-bottom: <?php echo $group[ 'padding_bottom' ]; ?>;">
     <div class="our-collections-slider__inner container" data-aos="fade-up" data-aos-easing="ease-in-out"  data-aos-delay="100">
         <!-- Swiper -->
         <?php if( count( $group[ 'items' ] ) > 0 ) : ?>
@@ -58,5 +58,5 @@
             </div>
         <?php endif; ?>
     </div>
-</div>
+</section>
 <!-- End Out collectons slider -->

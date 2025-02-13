@@ -1,0 +1,24 @@
+// Images on scroll
+@use '../@config/index';
+
+.images-on-scroll {
+    background-color: index.$soft-gray;
+   
+    // Inner
+    &__inner {
+        position: relative;
+        height: 350vh; /* So that there is enough scroll */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    // Wrapper image
+    &__wrapper-image {
+        position: absolute;
+        font-size: 0;
+        line-height: 1;
+    }
+
+}
