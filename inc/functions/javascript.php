@@ -18,7 +18,6 @@
         wp_register_script( 'gsap', TDU . '/assets/third/gsap/gsap.min.js', array( 'jquery' ), '3.12.7', true );
         wp_register_script( 'gsap.scrollTrigger', TDU . '/assets/third/gsap/ScrollTrigger.min.js', array( 'jquery' ), '3.12.7', true );
 
-        
         // App
         wp_register_script( 'deemamurad.menu', TDU . '/assets/javascript/production/menu.js', array( 'jquery' ), filemtime( TD . '/assets/javascript/production/menu.js' ), true );
         wp_register_script( 'deemamurad.header', TDU . '/assets/javascript/production/header.js', array( 'jquery' ), filemtime( TD . '/assets/javascript/production/header.js' ), true );
@@ -28,5 +27,6 @@
         wp_register_script( 'deemamurad.aos-init', TDU . '/assets/javascript/production/aos.js', array( 'jquery' ), filemtime( TD . '/assets/javascript/production/aos.js' ), true );
         wp_register_script( 'deemamurad.full-image-linked', TDU . '/assets/javascript/production/full-image-linked.js', array( 'jquery' ), filemtime( TD . '/assets/javascript/production/full-image-linked.js' ), true );
         wp_register_script( 'deemamurad.images-on-scroll', TDU . '/assets/javascript/production/images-on-scroll.js', array( 'jquery' ), filemtime( TD . '/assets/javascript/production/images-on-scroll.js' ), true );
+        wp_register_script( 'deemamurad.category-with-image', TDU . '/assets/javascript/production/category-with-image.js', array( 'jquery' ), filemtime( TD . '/assets/javascript/production/category-with-image.js' ), true );
 
     }

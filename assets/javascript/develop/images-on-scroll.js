@@ -3,10 +3,6 @@ const animateImagesOnScroll = () => {
 
     gsap.registerPlugin(ScrollTrigger);
 
-    console.log(gsap);
-    console.log(ScrollTrigger);
-
-
     const images = document.querySelectorAll( '.images-on-scroll__wrapper-image' );
 
     images.forEach( ( image, index ) => {
