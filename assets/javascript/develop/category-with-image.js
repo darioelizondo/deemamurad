@@ -2,14 +2,14 @@
 
 const categoryWithImage = () => {
 
-    const links = document.querySelectorAll( '.category-with-image__link' );
-    const images= document.querySelectorAll( '.category-with-image__image' );
+    const texts = document.querySelectorAll( '.category-with-image__text' );
+    const images= document.querySelectorAll( '.category-with-image__image-link' );
     let lastImage = null;
 
     // First one active
     images[0].classList.add( 'active' );
 
-    links.forEach( link => {
+    texts.forEach( link => {
         const id = link.dataset.id;
 
         link.addEventListener( 'mouseenter', () => {

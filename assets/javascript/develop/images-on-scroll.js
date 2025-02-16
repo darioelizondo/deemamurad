@@ -42,6 +42,10 @@ const animateImagesOnScroll = () => {
 
     });
 
+    setTimeout(() => {
+        ScrollTrigger.refresh();
+    }, 500 );
+
 };
 
-window.addEventListener( 'DOMContentLoaded', animateImagesOnScroll );
+window.addEventListener( 'load', animateImagesOnScroll );

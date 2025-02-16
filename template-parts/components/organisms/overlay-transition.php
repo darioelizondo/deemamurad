@@ -13,5 +13,5 @@
 ?>
 
 <!-- Overlay transition -->
- <div class="overlay-transition"></div>
+<div class="overlay-transition"></div>
 <!-- End overlay transition -->

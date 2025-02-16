@@ -7,16 +7,19 @@
 
 // Atoms
 @use 'atoms/logo';
+@use 'atoms/logo-footer';
 @use 'atoms/hamburger-icon';
 @use 'atoms/scroll-indicator';
 
 // Molecules
 @use 'molecules/menu';
+@use 'molecules/menu-footer';
 @use 'molecules/header-cart';
 @use 'molecules/our-collections-slide';
 
 // Organisms
 @use 'organisms/header';
+@use 'organisms/footer';
 @use 'organisms/overlay-transition';
 @use 'organisms/hero';
 @use 'organisms/our-collections-slider';

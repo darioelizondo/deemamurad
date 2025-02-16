@@ -1,0 +1,143 @@
+// Menu footer
+@use '../@config/index';
+
+.menu-footer {
+
+    // Nav
+    &__nav {
+        display: flex;
+        flex-direction: column;
+        
+        @include index.l {
+            flex-direction: row;
+            gap: index.$lh;
+            justify-content: space-between;
+        }
+
+        @include index.xl {
+            gap: calc( index.$lh * 1.5 );
+        }
+
+        @include index.xxl {
+            gap: calc( index.$lh * 2 );
+        }
+
+    }
+
+    // Menu item
+    .menu-item {
+        position: relative;
+        width: 100%;
+        padding: calc( index.$lh / 3 ) 0;
+        position: relative;
+
+        @include index.l {
+            width: auto;
+            border-bottom: none;
+        }
+
+    }
+
+    // First level
+    &__has-child--first-level {
+        width: 100%;
+        display: inline-flex !important;
+        gap: calc( index.$lh / 3 );
+        justify-content: space-between;
+        border-bottom: solid 1px #A4A49C;
+        padding-bottom: calc( index.$lh / 3 );
+
+        @include index.l {
+            width: auto;
+            border-bottom: none;
+            padding-bottom: calc( index.$lh / 2 );
+        }
+
+    }
+
+    // Link
+    &__link {
+        display: block;
+        color: index.$black;
+        text-decoration: none;
+        position: relative;
+        overflow: hidden;
+        transition: color .3s ease;
+
+        &:after {
+			content: attr( data-title );
+			display: block;
+			position: absolute;
+			top: 110%;
+			transition: top .5s cubic-bezier(.86,0,.07,1) , color .5s cubic-bezier(.86,0,.07,1);
+		}
+
+        &:hover:after {
+			top: 8px;
+			color: index.$gray;
+
+            @include index.l {
+                top: 0;
+            }
+
+		}
+
+		&:hover .menu-footer__link-title {
+			transform: translateY(-30px);
+		}
+    }
+
+    // Link title
+    &__link-title {
+        display: inline-block;
+        transition: transform .5s cubic-bezier(.86,0,.07,1);
+    }
+
+    // Plus minus icon
+    &__plus-minus-toggle {
+        cursor: pointer;
+        width: 15px;
+        height: 15px;
+        position: relative;
+
+        @include index.l {
+            display: none;
+        }
+
+        &:before,
+        &:after {
+            background: #3F3F46;
+            content: '';
+            height: 1px;
+            left: 0;
+            position: absolute;
+            top: 7px;
+            width: 15px;
+            transition: transform 500ms ease;
+        }
+
+        &:after {
+            transform-origin: center;
+        }
+
+        &.collapsed {
+            &:after {
+                transform: rotate(90deg);
+            }
+
+            &:before {
+                transform: rotate(180deg);
+            }
+        }
+    }
+
+    // Ul
+    ul {
+        margin: 0;
+    }
+    // Li
+    li {
+        list-style: none;
+    }
+
+}
