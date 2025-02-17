@@ -1,0 +1,41 @@
+// Social footer
+@use '../@config/index';
+
+.social-footer {
+    padding-top: calc( index.$lh * 2 );
+
+    @include index.l {
+        padding-top: 0;
+    }
+
+    // Inner
+    &__inner {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    // Wrapper links
+    &__wrapper-links {
+        display: flex;
+        align-items: center;
+        gap: calc( index.$lh / 2 );
+
+        @include index.l {
+            gap: index.$lh;
+        }
+
+    }
+
+    // Links & Get in touch
+    &__link,
+    &__get-in-touch {
+        display: inline-block;
+        transition: transform .3s ease;
+
+        &:hover {
+            transform: translateY( 5px );
+        }
+
+    }
+
+}

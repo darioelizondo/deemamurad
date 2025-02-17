@@ -75,6 +75,13 @@
 			transform: translateY(-30px);
 		}
 
+        &:focus,
+        &:focus-within,
+        &:active {
+            background-color: transparent;
+        }
+
+
     }
 
     // Menu link title

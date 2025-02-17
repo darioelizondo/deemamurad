@@ -7,7 +7,7 @@
      * 
      */
 
-    //  wp_enqueue_script( 'deemamurad.menu-footer' );
+     wp_enqueue_script( 'deemamurad.menu-footer' );
 
 ?>
 

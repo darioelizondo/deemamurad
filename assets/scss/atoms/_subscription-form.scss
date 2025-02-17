@@ -1,0 +1,85 @@
+// Subscription form
+@use '../@config/index';
+
+.subscription-form {
+
+    // Inner
+    &__inner {
+        display: flex;
+        flex-direction: column;
+        gap: index.$lh;
+    }
+
+    // Email
+    &__email {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: calc( index.$lh / 3 );
+        border-bottom: solid 1px index.$black;
+    }
+
+    // Title
+    &__title {
+        font-family: index.$font-primary-light;
+    }
+
+    // Input
+    &__email {
+        input {
+            padding: calc( index.$lh / 3 ) 0;
+            border: none;
+        }
+    }
+
+    // Submit
+    &__wrapper-submit {
+
+        min-width: 45px;
+
+        p {
+            position: relative;
+        }
+
+        svg {
+            display: inline-block;
+            position: absolute;
+            top: 8px;
+            left: 5px;
+            pointer-events: none;
+            transition: transform .3s ease;
+        }
+
+    }
+    
+    &__submit {
+        color: transparent;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0 !important;
+
+        &:hover ~ svg {
+            transform: translateX( 5px );
+        }
+
+    }
+
+    // Spinner
+    .wpcf7-spinner {
+        display: none;
+    }
+
+    // CF7 Response
+    .wpcf7-response-output {
+        font-size: 14px;
+        margin: calc( index.$lh / 2 ) 0;
+        border-width: 1px;
+    }
+
+    // CF7 error
+    .wpcf7-not-valid-tip {
+        font-size: 14px;
+    }
+
+}

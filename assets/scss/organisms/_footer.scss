@@ -38,4 +38,29 @@
 
     }
 
+    // Subscribe form & social
+    &__wrapper-form-and-social {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    // Footer bottom
+    &__footer-bottom {
+        border-top: solid 1px #969696;
+        padding: calc( index.$lh / 3 ) 0;
+    }
+
+    // Footer bottom text
+    &__copyright {
+        color: #969696;
+        font-size: 12px;
+        line-height: 1;
+
+        @include index.l {
+            font-size: 15px;
+        }
+
+    }
+
 }
