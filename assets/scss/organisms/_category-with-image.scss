@@ -54,6 +54,7 @@
     // List
     &__wrapper-list {
         display: flex;
+        justify-content: center;
         flex-wrap: wrap;
         gap: calc( index.$lh / 2 );
 
