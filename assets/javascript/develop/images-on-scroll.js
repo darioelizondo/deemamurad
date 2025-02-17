@@ -61,7 +61,7 @@ const animateImagesOnScroll = () => {
             let style = positionStyles[index % 3];
             
             // Define a different speed for each image
-            let speed = ( index % 3 ) + 1; // 1x, 2x, 3x of speed
+            let speed = ( index % 3 ); // 0x, 1x, 2x of speed
 
             // Apply position to element
             Object.assign(image.style, style);
