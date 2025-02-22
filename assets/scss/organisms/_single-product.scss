@@ -1,0 +1,38 @@
+// Single product
+@use '../@config/index';
+
+.woocommerce-single {
+    margin-top: 50px;
+    background-color: index.$soft-gray;
+    position: relative;
+
+    @include index.l {
+        margin-top: 67px;
+    }
+
+     // Product
+     .product {
+        display: grid;
+
+        @include index.l {
+            align-items: center;
+            grid-template-columns: repeat( 3, minmax( 100px, 1fr ) );
+            column-gap: index.$lh;
+        }
+
+    }
+
+    // Product gallery
+    .woocommerce-product-gallery {
+        @include index.l {
+            grid-column: span 2;
+        }
+    }
+
+    // Summary
+    .summary {
+        width: 100% !important;
+        float: none !important;
+    }
+
+}

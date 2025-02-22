@@ -18,3 +18,4 @@
     // Woocommerce
     require_once 'inc/functions/add-woocommerce.php';
     require_once 'inc/functions/woocommerce/header-cart.php';
+    require_once 'inc/functions/woocommerce/single-product.php';
