@@ -1,0 +1,119 @@
+// Size guide modal
+@use '../@config/index';
+
+.size-guide-modal {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    justify-content: flex-end;
+    background-color: rgba( $color: #D9D9D9, $alpha: 0.4 );
+    z-index: 99;
+
+    &.active {
+        display: flex;
+    }
+
+    // Inner
+    &__inner {
+        left: 110%;
+        position: relative;
+        padding: calc( index.$lh * 2 ) calc( index.$lh / 2 );
+        display: flex;
+        flex-direction: column;
+        gap: index.$lh;
+        background-color: index.$white;
+        overflow-y: scroll;
+        transition: left .5s ease;
+
+        &.active {
+            left: 0;
+        }
+
+        @include index.l {
+            max-width: 40dvw;
+            padding: calc( index.$lh * 1.5 );
+        }
+
+        @include index.xl {
+            max-width: 35dvw;
+            padding: calc( index.$lh * 2 );
+        }
+
+        @include index.xxl {
+            max-width: 31dvw;
+        }
+
+    }
+
+    // Close
+    &__wrapper-close {
+        position: absolute;
+        top: index.$lh;
+        right: index.$lh;
+        cursor: pointer;
+        z-index: 2;
+
+        @include index.l {
+            top: calc( index.$lh * 1.5 )
+        }
+
+        @include index.xl {
+            top: calc( index.$lh * 2 )
+        }
+
+    }
+
+    &__close {
+
+        svg {
+            width: 16px;
+            height: 16px;
+            transition: transform .5s ease;
+
+            @include index.l {
+                width: 19px;
+                height: 19px;
+            }
+
+        }
+
+        &:hover svg {
+            transform: rotate( 180deg );
+        }
+    }
+
+    // Title
+    &__title {
+        font-family: index.$font-primary-light;
+        font-size: 17px;
+        line-height: 1;
+
+        @include index.l {
+            font-size: 20px;
+        }
+
+        @include index.xl {
+            font-size: 24px;
+        }
+    }
+
+    // Content
+    &__wrapper-content {
+        display: flex;
+        flex-direction: column;
+        gap: index.$lh;
+    }
+
+    // Table image
+    &__wrapper-table-image {
+        img {
+            @include index.l {
+                max-width: 450px;
+            }
+        }
+    }
+
+}

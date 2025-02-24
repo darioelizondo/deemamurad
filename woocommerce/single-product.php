@@ -19,6 +19,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
+$size_guide = get_field( 'size_guide', 'option' );
+
 get_header(); ?>
 
 <div class="woocommerce-single container">
@@ -58,8 +60,15 @@ get_header(); ?>
 		do_action( 'woocommerce_sidebar' );
 	?>
 
+
 </div>
 
+	<?php
+		// Size guide table
+		if( isset( $size_guide ) && !empty( $size_guide ) ) {
+			include TD . '/template-parts/components/molecules/size-guide-modal.php';
+		}
+	?>
 <?php
 get_footer();
 

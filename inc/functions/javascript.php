@@ -17,6 +17,7 @@
         wp_register_script( 'aos', TDU . '/assets/third/aos/aos.js', array( 'jquery' ), '3.0.0', true );
         wp_register_script( 'gsap', TDU . '/assets/third/gsap/gsap.min.js', array( 'jquery' ), '3.12.7', true );
         wp_register_script( 'gsap.scrollTrigger', TDU . '/assets/third/gsap/ScrollTrigger.min.js', array( 'jquery' ), '3.12.7', true );
+        wp_register_script( 'zoom', TDU . '/assets/third/zoom/jquery.zoom.min.js', array( 'jquery' ), '1.7.21', true );
 
         // App
         wp_enqueue_script( 'deemamurad.onload-page', TDU . '/assets/javascript/production/onload-page.js', array( 'jquery' ), filemtime( TD . '/assets/javascript/production/onload-page.js' ), true );
@@ -30,5 +31,6 @@
         wp_register_script( 'deemamurad.full-image-linked', TDU . '/assets/javascript/production/full-image-linked.js', array( 'jquery' ), filemtime( TD . '/assets/javascript/production/full-image-linked.js' ), true );
         wp_register_script( 'deemamurad.images-on-scroll', TDU . '/assets/javascript/production/images-on-scroll.js', array( 'jquery' ), filemtime( TD . '/assets/javascript/production/images-on-scroll.js' ), true );
         wp_register_script( 'deemamurad.category-with-image', TDU . '/assets/javascript/production/category-with-image.js', array( 'jquery' ), filemtime( TD . '/assets/javascript/production/category-with-image.js' ), true );
+        wp_register_script( 'deemamurad.size-guide-modal', TDU . '/assets/javascript/production/size-guide-modal.js', array( 'jquery' ), filemtime( TD . '/assets/javascript/production/size-guide-modal.js' ), true );
 
     }
