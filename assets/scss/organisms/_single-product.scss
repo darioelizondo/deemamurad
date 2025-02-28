@@ -37,7 +37,7 @@
 
     // Summary
     .summary {
-        position: sticky;
+        position: static;
         top: calc( index.$lh * 2.5 );
         display: flex;
         flex-direction: column;
@@ -47,6 +47,7 @@
         padding-top: calc( index.$lh * 1.2 );
 
         @include index.l {
+            position: sticky;
             padding: 0 index.$lh;
             padding-top: calc( index.$lh * 2 );
         }
@@ -212,6 +213,11 @@
         }
     }
 
+    // Variation price
+    .woocommerce-variation-price {
+        padding-bottom: calc( index.$lh / 2 );
+    }
+
     // Reset variations
     .reset_variations {
         display: none !important;
@@ -259,7 +265,8 @@
 
     // Quantity
     .quantity {
-        display: flex;
+        // display: flex;
+        display: none !important;
         background-color: index.$white;
         padding: 5px 5px;
         float: none !important;

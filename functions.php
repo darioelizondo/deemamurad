@@ -14,6 +14,8 @@
     require_once 'inc/functions/menu-walker.php';
     require_once 'inc/functions/menus.php';
     require_once 'inc/functions/option-page.php';
+    require_once 'inc/functions/collections-taxonomy.php';
+    require_once 'inc/functions/filters-taxonomy.php';
 
     // Woocommerce
     require_once 'inc/functions/add-woocommerce.php';
