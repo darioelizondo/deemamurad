@@ -12,7 +12,7 @@
 ?>
 
 <!-- Product item -->
-<div class="product-item swiper-slide <?php echo 'item-' . $nitem; ?>">
+<div class="product-item swiper-slide <?php if( $nitem ) echo 'item-' . $nitem; ?>">
     <?php if( isset( $item_id ) && !empty( $item_id ) ) : ?>
 
         <a href="<?php the_permalink( $item_id ); ?>">

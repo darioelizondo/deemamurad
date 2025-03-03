@@ -37,6 +37,12 @@
                             
                             <?php include TD . '/template-parts/components/molecules/product-item.php'; ?>
 
+                            <?php
+                                unset( $item_id );
+                                unset( $main_image );
+                                unset( $second_image );
+                            ?>
+
                         <?php endforeach; ?>
                         <?php wp_reset_postdata(); ?>
                     </div>

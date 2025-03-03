@@ -1,0 +1,17 @@
+// Archive products
+@use '../@config/index';
+
+.products {
+    display: grid;
+    gap: calc( index.$lh / 2 );
+
+    @include index.l {
+        grid-template-columns: repeat( 4, minmax( 0, 1fr ) ); 
+    }
+
+    &:before {
+        content: '';
+        display: none !important;
+    }
+
+}
