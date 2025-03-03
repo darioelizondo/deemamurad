@@ -1,0 +1,1 @@
+let relatedProducts=()=>{var e=document.querySelector(".related-products__swiper");window.innerWidth<768&&void 0!==e&&new Swiper(e,{slidesPerView:1.5,spaceBetween:13,navigation:!1,speed:1e3,autoplay:{delay:3500,disableOnInteraction:!1},pagination:{el:".swiper-pagination",clickable:!0}})};document.addEventListener("DOMContentLoaded",relatedProducts);

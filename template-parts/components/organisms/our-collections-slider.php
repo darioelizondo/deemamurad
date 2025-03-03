@@ -7,7 +7,10 @@
      * 
      */
 
-    $group = get_sub_field( 'our_collections_slider' );
+    $terms = get_terms( array(
+        'taxonomy'   => 'collections',
+        'hide_empty' => false
+    ));
 
     wp_enqueue_script( 'swiper' );
     wp_enqueue_script( 'deemamurad.our-collections-slider' );
@@ -17,20 +20,18 @@
 ?>
 
 <!-- Our collections slider -->
-<section class="our-collections-slider module-<?php echo $module_count; ?>" style="padding-top: <?php echo $group[ 'padding_top' ]; ?>; padding-bottom: <?php echo $group[ 'padding_bottom' ]; ?>;">
-    <div class="our-collections-slider__inner container" data-aos="fade-up" data-aos-easing="ease-in-out"  data-aos-delay="100">
+<section class="our-collections-slider module-<?php echo $module_count; ?>" >
+    <div class="our-collections-slider__inner <?php if( !is_product() ) echo 'container'; ?>" data-aos="fade-up" data-aos-easing="ease-in-out"  data-aos-delay="100">
         <!-- Swiper -->
-        <?php if( count( $group[ 'items' ] ) > 0 ) : ?>
+        <?php if( $terms ) : ?>
             <div class="our-collections-slider__wrapper-slider">
                 <div class="our-collections-slider__content-slider">
                     <!-- Title -->
-                    <?php if( $group[ 'title' ] ) : ?>
-                        <div class="our-collections-slider__wrapper-title">
-                            <h2 class="our-collections-slider__title">
-                                <?php echo esc_html( $group[ 'title' ] ); ?>
-                            </h2>
-                        </div>
-                    <?php endif; ?>
+                    <div class="our-collections-slider__wrapper-title">
+                        <h2 class="our-collections-slider__title">
+                            Discover our collections
+                        </h2>
+                    </div>
                     <div class="our-collections-slider__wrapper-buttons">
                         <!-- Prev button -->
                         <button class="our-collections-slider__nav-button our-collections-slider__prev-button">
@@ -49,7 +50,7 @@
                 <div class="our-collections-slider__swiper swiper">
                     <div class="our-collections-slider__swiper-wrapper swiper-wrapper">
 
-                        <?php foreach( $group[ 'items' ] as $nitem => $item ) {
+                        <?php foreach( $terms as $nitem => $item ) {
                             include TD . '/template-parts/components/molecules/our-collections-slide.php';
                         } ?>
                         

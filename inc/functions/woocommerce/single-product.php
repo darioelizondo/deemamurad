@@ -426,4 +426,42 @@
         <?php
     }
 
+    /**
+     * Wrap product gallery and summary
+     */
+    add_action( 'woocommerce_before_single_product_summary', 'deemamurad_wrap_product_content_start', 5 );
+    add_action( 'woocommerce_after_single_product_summary', 'deemamurad_wrap_product_content_end', 5 );
     
+    function deemamurad_wrap_product_content_start() {
+        echo '<div class="woocommerce-single__product-main-content">';
+    }
+    
+    function deemamurad_wrap_product_content_end() {
+        echo '</div>'; // Cierra el .product-main-content
+    }
+
+    
+    /**
+     * Related products
+     */
+
+    add_action( 'wp', 'remove_woocommerce_related_products' );
+    add_action( 'woocommerce_after_single_product_summary', 'deemamurad_related_products_section', 20 );
+
+    function remove_woocommerce_related_products() {
+        remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
+    }
+
+    function deemamurad_related_products_section() {
+        include TD . '/template-parts/components/organisms/related-products.php';
+    }
+
+    /**
+     * Collections
+     */
+
+    add_action('woocommerce_after_single_product', 'deemamurad_collections_single_product', 20);
+
+    function deemamurad_collections_single_product() {
+        include TD . '/template-parts/components/organisms/our-collections-slider.php';
+    }    

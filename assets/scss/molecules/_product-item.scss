@@ -1,0 +1,69 @@
+ // Product item
+@use '../@config/index';
+
+ .product-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+    &:hover .product-item__main-image {
+        opacity: 0;
+    }
+
+    &:hover .product-item__hover-image {
+        opacity: 1;
+    }
+
+    
+    // Images
+    &__product-image {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            transition: opacity 0.5s ease;
+        }
+
+    }
+
+    &__hover-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+    }
+
+
+    // Title
+    &__title {
+        font-family: index.$font-primary-light;
+        font-weight: 300;
+    }
+
+    // Small title
+    &__wrapper-small-title {
+        position: absolute;
+        bottom: calc( index.$lh / 1.5 );
+        left: calc( index.$lh / 1.5 );
+
+        @include index.l {
+            bottom: index.$lh;
+            left: index.$lh;
+        }
+
+    }
+
+    &__small-title {
+        font-family: index.$font-primary-light;
+    }
+
+    // Price
+    &__price {
+        font-family: index.$font-primary-light;
+    }
+
+ }

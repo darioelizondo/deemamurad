@@ -4,6 +4,7 @@
 	box-sizing: border-box;
 	font-family: index.$font-primary-light;
 	font-size: 14px;
+	font-weight: 300;
 	line-height: 19px;
 	@include index.l {
 		font-size: 15px;
@@ -39,6 +40,7 @@ p,
 ul {
 	font-size: 14px;
 	line-height: 19px;
+	font-weight: 300;
 	@include index.l {
 		font-size: 15px;
 		line-height: 23px;
