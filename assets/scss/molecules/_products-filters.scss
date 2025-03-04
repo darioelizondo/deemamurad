@@ -1,0 +1,290 @@
+// Products filters
+@use '../@config/index';
+
+.products-filters {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    justify-content: flex-end;
+    background-color: rgba( $color: #D9D9D9, $alpha: 0.4 );
+    z-index: 99;
+
+    &.active {
+        display: flex;
+    }
+
+    // Inner
+    &__inner {
+        height: 100%;
+        left: 110%;
+        position: relative;
+        padding: calc( index.$lh * 2 ) calc( index.$lh / 2 );
+        display: flex;
+        flex-direction: column;
+        gap: index.$lh;
+        background-color: index.$white;
+        overflow-y: scroll;
+        transition: left .5s ease;
+
+        &.active {
+            left: 0;
+        }
+
+        @include index.l {
+            max-width: 40dvw;
+            padding: calc( index.$lh * 1.5 );
+        }
+
+        @include index.xl {
+            max-width: 35dvw;
+            padding: calc( index.$lh * 2 );
+        }
+
+        @include index.xxl {
+            max-width: 31dvw;
+        }
+
+    }
+
+    // Close
+    &__wrapper-close {
+        position: absolute;
+        top: index.$lh;
+        right: index.$lh;
+        cursor: pointer;
+        z-index: 2;
+
+        @include index.l {
+            top: calc( index.$lh * 1.5 )
+        }
+
+        @include index.xl {
+            top: calc( index.$lh * 2 )
+        }
+
+    }
+
+    &__close {
+
+        svg {
+            width: 16px;
+            height: 16px;
+            transition: transform .5s ease;
+
+            @include index.l {
+                width: 19px;
+                height: 19px;
+            }
+
+        }
+
+        &:hover svg {
+            transform: rotate( 180deg );
+        }
+    }
+
+    // Main title
+    &__main-title {
+        width: 100%;
+        padding-bottom: index.$lh;
+        font-family: index.$font-primary-light;
+        font-size: 17px;
+        line-height: 1;
+
+        @include index.l {
+            font-size: 20px;
+            padding-bottom: calc( index.$lh * 1.5 );
+        }
+
+        @include index.xl {
+            font-size: 24px;
+        }
+
+    }
+
+    // Title
+    &__title {
+        display: flex !important;
+        gap: calc( index.$lh / 3 );
+        justify-content: space-between;
+        padding-bottom: calc( index.$lh / 1.5 );
+        cursor: pointer;
+    }
+    
+    &__span-title {
+        font-family: index.$font-primary-light;
+        font-size: 14px;
+        line-height: 1;
+
+        @include index.l {
+            font-size: 15px;
+        }
+
+        @include index.xl {
+            font-size: 16px;
+        }
+    }
+
+    // Wrapper right
+    &__title-right {
+        display: flex;
+        align-items: center;
+        gap: calc( index.$lh * 1.2 );
+    }
+
+    // Filter count
+    &__filter-count {
+        font-family: index.$font-primary-light;
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 1;
+
+        @include index.l {
+            font-size: 15px;
+        }
+
+        @include index.xl {
+            font-size: 16px;
+        }
+    }
+
+    // Plus minus icon
+    &__plus-minus-toggle {
+        display: inline-block;
+        cursor: pointer;
+        width: 15px;
+        height: 15px;
+        position: relative;
+
+        &:before,
+        &:after {
+            background: #3F3F46;
+            content: '';
+            height: 1px;
+            left: 0;
+            position: absolute;
+            top: 7px;
+            width: 15px;
+            transition: transform 500ms ease;
+        }
+
+        &:after {
+            transform-origin: center;
+        }
+
+        &.collapsed {
+            &:after {
+                transform: rotate(90deg);
+            }
+
+            &:before {
+                transform: rotate(180deg);
+            }
+        }
+    }
+
+    // Filter count
+    &__filter-count {
+        display: inline-block;
+    }
+
+    // Checkbox
+    &__custom-checkbox input[type="checkbox"] {
+        display: none;
+    }
+
+    &__custom-checkbox {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        font-size: 14px;
+        line-height: 1;
+
+        @include index.l {
+            font-size: 15px;
+        }
+
+        @include index.xl {
+            font-size: 16px;
+        }
+    }
+
+    &__custom-checkbox .checkmark {
+        width: 17px;
+        height: 17px;
+        background-color: white;
+        border: 1px solid index.$black;
+        display: inline-block;
+        position: relative;
+        margin-right: 8px;
+        transition: all 0.3s ease;
+    }
+
+    &__custom-checkbox input[type="checkbox"]:checked + .checkmark {
+        background-color: index.$black;
+        border-color: index.$black;
+    }
+
+    &__custom-checkbox input[type="checkbox"]:checked + .checkmark::after {
+        content: url(../images/icons/icon-check.svg);
+        color: white;
+        font-size: 16px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    // Wrapper accordion
+    &__wrapper-accordions {
+        display: flex;
+        flex-direction: column;
+        gap: calc( index.$lh / 2 );
+    }
+
+    // Accordion
+    &__accordion {
+        border-bottom: solid 1px #A4A49C;
+    }
+
+    &__accordion-content {
+        display: grid;
+        grid-template-columns: repeat( 2, minmax( 0, 1fr ) );
+        column-gap: index.$lh;
+        row-gap: calc( index.$lh / 2 );
+        padding-bottom: calc( index.$lh / 2 );
+
+        @include index.l {
+            grid-template-columns: repeat( 3, minmax( 0, 1fr ) );
+        }
+        
+    }
+
+    // Clean
+    &__wrapper-clean {
+        margin-top: index.$lh;
+    }
+
+    &__clean {
+        color: #3F3F46;
+        display: inline-block;
+        font-family: index.$font-primary-light;
+        font-size: 14px;
+        line-height: 1;
+        cursor: pointer;
+        text-decoration: underline;
+        padding: 0;
+
+        @include index.l {
+            font-size: 15px;
+        }
+
+        @include index.xl {
+            font-size: 16px;
+        }
+    }
+
+}

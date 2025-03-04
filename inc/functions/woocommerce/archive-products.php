@@ -18,39 +18,97 @@
         if (!is_shop() && !is_product_category()) return;
     
     ?>
-        <form id="productsFilters">
-            <h4 class="products-filters__title">
-                Products
-            </h4>
-            <?php
-            $categories = get_terms(['taxonomy' => 'product_cat', 'hide_empty' => true]);
-            foreach ($categories as $category) {
-                echo '<label><input type="checkbox" name="category[]" value="' . esc_attr($category->slug) . '"> ' . esc_html($category->name) . '</label><br>';
-            }
-            ?>
-    
-            <h4 class="products-filters__title">
-                Collections
-            </h4>
-            <?php
-            $collections = get_terms(['taxonomy' => 'collections', 'hide_empty' => true]);
-            foreach ($collections as $collection) {
-                echo '<label><input type="checkbox" name="collections[]" value="' . esc_attr($collection->slug) . '"> ' . esc_html($collection->name) . '</label><br>';
-            }
-            ?>
-    
-            <h4 class="products-filters__title">
-                Colours
-            </h4>
-            <?php
-            $colours = get_terms(['taxonomy' => 'filters', 'hide_empty' => true]);
-            foreach ( $colours as $colour ) {
-                echo '<label><input type="checkbox" name="colours[]" value="' . esc_attr($colour->slug) . '"> ' . esc_html($colour->name) . '</label><br>';
-            }
-            ?>
-    
-            <button type="reset" id="clear-filters">Limpiar Filtros</button>
-        </form>
+        <!-- Filters -->
+        <div class="products-filters">
+            <div class="products-filters__inner">
+                <form id="productsFilters" class="products-filters__form">
+                    <div class="products-filters__wrapper-title">
+                        <!-- Title -->
+                        <h4 class="products-filters__main-title">
+                            Filters
+                        </h4>
+                        <!-- Close -->
+                        <div id="filtersClose" class="products-filters__wrapper-close">
+                            <a class="products-filters__close" href="#">
+                                <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 1L18 18M1 18L18 1L1 18Z" stroke="#3F3F46" stroke-width="0.971429" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Wrapper accordions -->
+                    <div class="products-filters__wrapper-accordions">
+                        <!-- Accordion -->
+                        <div class="products-filters__accordion" data-filter-type="products">
+                            <h4 class="products-filters__title">
+                                <span class="products-filters__span-title">
+                                    Products
+                                </span>
+                                <div class="products-filters__title-right">
+                                    <span class="products-filters__filter-count"></span>
+                                    <span class="products-filters__plus-minus-toggle collapsed"></span>
+                                </div>
+                            </h4>
+                            <div class="products-filters__accordion-content">
+                                <?php
+                                    $categories = get_terms(['taxonomy' => 'product_cat', 'hide_empty' => true]);
+                                    foreach ($categories as $category) {
+                                        echo '<label class="products-filters__custom-checkbox"><input class="products-filters__checkbox" type="checkbox" name="category[]" value="' . esc_attr($category->slug) . '"><span class="checkmark"></span>' . esc_html($category->name) . '</label>';
+                                    }
+                                ?>
+                            </div>
+                        </div>
+                        <!-- Accordion -->
+                        <div class="products-filters__accordion" data-filter-type="collections">
+                            <h4 class="products-filters__title">
+                                <span class="products-filters__span-title">
+                                    Collections
+                                </span>
+                                <div class="products-filters__title-right">
+                                    <span class="products-filters__filter-count"></span>
+                                    <span class="products-filters__plus-minus-toggle collapsed"></span>
+                                </div>
+                            </h4>
+                            <div class="products-filters__accordion-content">
+                                <?php
+                                    $collections = get_terms(['taxonomy' => 'collections', 'hide_empty' => true]);
+                                    foreach ($collections as $collection) {
+                                        echo '<label class="products-filters__custom-checkbox"><input class="products-filters__checkbox" type="checkbox" name="collections[]" value="' . esc_attr($collection->slug) . '"><span class="checkmark"></span>' . esc_html($collection->name) . '</label>';
+                                    }
+                                ?>
+                            </div>
+                        </div>
+                        <!-- Accordion -->
+                        <div class="products-filters__accordion" data-filter-type="colours">
+                            <h4 class="products-filters__title">
+                                <span class="products-filters__span-title">
+                                    Colours
+                                </span>
+                                <div class="products-filters__title-right">
+                                    <span class="products-filters__filter-count"></span>
+                                    <span class="products-filters__plus-minus-toggle collapsed"></span>
+                                </div>
+                            </h4>
+                            <div class="products-filters__accordion-content">
+                                <?php
+                                    $colours = get_terms(['taxonomy' => 'filters', 'hide_empty' => true]);
+                                    foreach ( $colours as $colour ) {
+                                        echo '<label class="products-filters__custom-checkbox"><input class="products-filters__checkbox" type="checkbox" name="colours[]" value="' . esc_attr($colour->slug) . '"><span class="checkmark"></span>' . esc_html($colour->name) . '</label>';
+                                    }
+                                ?>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- Clean filters -->
+                    <div class="products-filters__wrapper-clean">
+                        <button class="products-filters__clean" type="reset" id="clear-filters">Clear all</button>
+                    </div>    
+            
+                </form>
+            </div>
+        </div>
+        <!-- End filters -->
     
         <script>
             jQuery(document).ready(function ($) {
@@ -100,6 +158,8 @@
 
                 // Botón para limpiar filtros
                 $("#clear-filters").on("click", function () {
+                    const allCounters = document.querySelectorAll('.products-filters__filter-count');
+                    allCounters.forEach( counter => counter.textContent = '' );
                     $("#productsFilters input").prop("checked", false);
                     history.pushState(null, null, window.location.pathname);
                     updateFilters();
@@ -110,6 +170,40 @@
                 params.forEach((value, key) => {
                     $(`input[name='${key}[]'][value='${value}']`).prop("checked", true);
                 });
+
+                // Count filters
+                function updateFilterCount(filterType) {
+                    console.log(filterType);
+                    let count = $(`.products-filters__accordion[data-filter-type="${filterType}"] .products-filters__checkbox:checked`).length;
+                    if( count > 0 ) {
+                        $(`.products-filters__accordion[data-filter-type="${filterType}"] .products-filters__filter-count`).text(count);
+                    }
+                    else {
+                        $(`.products-filters__accordion[data-filter-type="${filterType}"] .products-filters__filter-count`).text('');
+                    }
+                }
+
+                $(".products-filters__checkbox").on("change", function () {
+                    let filterGroup = $(this).closest(".products-filters__accordion");
+                    let filterType = filterGroup.data("filter-type");
+                    updateFilterCount(filterType);
+                });
+
+                // Accordion
+                const accordions = document.querySelectorAll('.products-filters__accordion');
+                const handleToggleAccordion = ( event, link ) => {
+                    event.preventDefault();
+                    jQuery( link ).next().slideToggle();
+                    jQuery( link ).find( '.products-filters__plus-minus-toggle' ).toggleClass( 'collapsed' );
+                }
+
+                accordions.forEach( ( accordion ) => {
+                    const link = accordion.querySelector( '.products-filters__title' );
+                    jQuery( link ).next().slideUp();
+                    link.addEventListener( 'click', ( event ) => handleToggleAccordion( event, link ) ); // Comportamiento solo en mobile
+
+                });
+
             });
         </script>
         <?php
