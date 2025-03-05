@@ -18,93 +18,117 @@
 defined( 'ABSPATH' ) || exit;
 
 get_header( 'shop' );
+wp_enqueue_script( 'jquery.espy' );
 
-/**
- * Hook: woocommerce_before_main_content.
- *
- * @hooked woocommerce_output_content_wrapper - 10 (outputs opening divs for the content)
- * @hooked woocommerce_breadcrumb - 20
- * @hooked WC_Structured_Data::generate_website_data() - 30
- */
-do_action( 'woocommerce_before_main_content' );
+?>
 
-/**
- * Hook: woocommerce_shop_loop_header.
- *
- * @since 8.6.0
- *
- * @hooked woocommerce_product_taxonomy_archive_header - 10
- */
-do_action( 'woocommerce_shop_loop_header' );
+<div class="woocommerce-shop container">
 
-if ( woocommerce_product_loop() ) {
+	<?php
 
 	/**
-	 * Hook: woocommerce_before_shop_loop.
+	 * Hook: woocommerce_before_main_content.
 	 *
-	 * @hooked woocommerce_output_all_notices - 10
-	 * @hooked woocommerce_result_count - 20
-	 * @hooked woocommerce_catalog_ordering - 30
+	 * @hooked woocommerce_output_content_wrapper - 10 (outputs opening divs for the content)
+	 * @hooked woocommerce_breadcrumb - 20
+	 * @hooked WC_Structured_Data::generate_website_data() - 30
 	 */
-	do_action( 'woocommerce_before_shop_loop' );
+	do_action( 'woocommerce_before_main_content' );
 
-	woocommerce_product_loop_start();
+	/**
+	 * Hook: woocommerce_shop_loop_header.
+	 *
+	 * @since 8.6.0
+	 *
+	 * @hooked woocommerce_product_taxonomy_archive_header - 10
+	 */
+	do_action( 'woocommerce_shop_loop_header' );
 
-	if ( wc_get_loop_prop( 'total' ) ) {
-		while ( have_posts() ) {
-			the_post();
+	if ( woocommerce_product_loop() ) {
 
-			/**
-			 * Hook: woocommerce_shop_loop.
-			 */
-			do_action( 'woocommerce_shop_loop' );
+		/**
+		 * Hook: woocommerce_before_shop_loop.
+		 *
+		 * @hooked woocommerce_output_all_notices - 10
+		 * @hooked woocommerce_result_count - 20
+		 * @hooked woocommerce_catalog_ordering - 30
+		 */
+		do_action( 'woocommerce_before_shop_loop' );
 
-			$item_id = get_the_ID();
-			$main_image = get_the_post_thumbnail_url($item_id, 'large');
+		woocommerce_product_loop_start();
 
-			// Obtener la primera imagen de la galería
-			$gallery_images = get_post_meta($item_id, '_product_image_gallery', true);
-			$gallery_images = explode(',', $gallery_images);
-			$second_image = !empty($gallery_images[0]) ? wp_get_attachment_url($gallery_images[0]) : $main_image;
-			$filters_terms = get_the_terms( $item_id, 'filters' );
-			$filters_text = !empty( $filters_terms ) ? implode(', ', wp_list_pluck( $filters_terms, 'name' ) ) : 'Without filters';
+		if ( wc_get_loop_prop( 'total' ) ) {
+			while ( have_posts() ) {
+				the_post();
 
-			// Incluir la plantilla personalizada
-			include TD . '/template-parts/components/molecules/product-item.php';
+				/**
+				 * Hook: woocommerce_shop_loop.
+				 */
+				do_action( 'woocommerce_shop_loop' );
 
-			unset($item_id, $main_image, $second_image, $filters_text);
+				$item_id = get_the_ID();
+				$main_image = get_the_post_thumbnail_url($item_id, 'large');
+
+				// Obtener la primera imagen de la galería
+				$gallery_images = get_post_meta($item_id, '_product_image_gallery', true);
+				$gallery_images = explode(',', $gallery_images);
+				$second_image = !empty($gallery_images[0]) ? wp_get_attachment_url($gallery_images[0]) : $main_image;
+				$filters_terms = get_the_terms( $item_id, 'filters' );
+				$filters_text = !empty( $filters_terms ) ? implode(', ', wp_list_pluck( $filters_terms, 'name' ) ) : 'Without filters';
+
+				// Incluir la plantilla personalizada
+				include TD . '/template-parts/components/molecules/product-item.php';
+
+				unset($item_id, $main_image, $second_image, $filters_text);
+			}
 		}
+
+		woocommerce_product_loop_end();
+
+		?>
+
+		<!-- Loading -->
+		<div class="products__loading container" style="display: none">
+			<img class="products__image-loading" src="<?php echo TDU . '/assets/images/loading/loading-deemamurad.gif' ?>" alt="Loading">
+		</div>
+		<!-- Trigger -->
+		<div class="products__trigger container" id="products-trigger"></div>
+
+		<?php
+
+		/**
+		 * Hook: woocommerce_after_shop_loop.
+		 *
+		 * @hooked woocommerce_pagination - 10
+		 */
+		do_action( 'woocommerce_after_shop_loop' );
+	} else {
+		/**
+		 * Hook: woocommerce_no_products_found.
+		 *
+		 * @hooked wc_no_products_found - 10
+		 */
+		do_action( 'woocommerce_no_products_found' );
 	}
 
-	woocommerce_product_loop_end();
+	/**
+	 * Hook: woocommerce_after_main_content.
+	 *
+	 * @hooked woocommerce_output_content_wrapper_end - 10 (outputs closing divs for the content)
+	 */
+	do_action( 'woocommerce_after_main_content' );
 
 	/**
-	 * Hook: woocommerce_after_shop_loop.
+	 * Hook: woocommerce_sidebar.
 	 *
-	 * @hooked woocommerce_pagination - 10
+	 * @hooked woocommerce_get_sidebar - 10
 	 */
-	do_action( 'woocommerce_after_shop_loop' );
-} else {
-	/**
-	 * Hook: woocommerce_no_products_found.
-	 *
-	 * @hooked wc_no_products_found - 10
-	 */
-	do_action( 'woocommerce_no_products_found' );
-}
+	do_action( 'woocommerce_sidebar' );
 
-/**
- * Hook: woocommerce_after_main_content.
- *
- * @hooked woocommerce_output_content_wrapper_end - 10 (outputs closing divs for the content)
- */
-do_action( 'woocommerce_after_main_content' );
+	?>
 
-/**
- * Hook: woocommerce_sidebar.
- *
- * @hooked woocommerce_get_sidebar - 10
- */
-do_action( 'woocommerce_sidebar' );
+</div>
+
+<?php
 
 get_footer( 'shop' );

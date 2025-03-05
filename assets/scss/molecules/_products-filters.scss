@@ -18,6 +18,7 @@
 
     // Inner
     &__inner {
+        width: 100%;
         height: 100%;
         left: 110%;
         position: relative;
@@ -34,17 +35,17 @@
         }
 
         @include index.l {
-            max-width: 40dvw;
+            width: 40dvw;
             padding: calc( index.$lh * 1.5 );
         }
 
         @include index.xl {
-            max-width: 35dvw;
+            width: 35dvw;
             padding: calc( index.$lh * 2 );
         }
 
         @include index.xxl {
-            max-width: 31dvw;
+            width: 31dvw;
         }
 
     }

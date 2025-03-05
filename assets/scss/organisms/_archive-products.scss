@@ -1,17 +1,142 @@
 // Archive products
 @use '../@config/index';
 
-.products {
-    display: grid;
-    gap: calc( index.$lh / 2 );
+.woocommerce-shop {
+    margin-top: 50px;
+    background-color: index.$soft-gray;
+    position: relative;
 
     @include index.l {
-        grid-template-columns: repeat( 4, minmax( 0, 1fr ) ); 
+        margin-top: 67px;
     }
 
-    &:before {
-        content: '';
-        display: none !important;
+    // Products
+    .products {
+
+        display: grid;
+        gap: index.$lh calc( index.$lh / 2 );
+        grid-template-columns: repeat( 2, minmax( 0, 1fr ) ); 
+    
+        @include index.l {
+            grid-template-columns: repeat( 4, minmax( 0, 1fr ) ); 
+        }
+    
+        &:before {
+            content: '';
+            display: none !important;
+        }
+    
+    }
+
+    // Before main content
+    &__before-main-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: calc( index.$lh / 2 );
+        padding: calc( index.$lh / 2 ) 0;
+    }
+
+    // Filters button
+    &__filters-button {
+        display: flex;
+        gap: calc( index.$lh / 3 );
+        align-items: center;
+    }
+
+    // Products count
+    &__products-count {
+        color: #969696;
+    }
+
+    // Loading
+    .products__loading {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .products__image-loading {
+        max-width: 60px;
+        margin-bottom: index.$lh;
+    }
+
+    // Lists
+    &__wrapper-lists {
+        display: grid;
+        gap: calc( index.$lh / 2 );
+
+
+        @include index.l {
+            grid-template-columns: repeat( 2, minmax( 0, 1fr ) );
+            padding-bottom: index.$lh;
+            border-bottom: solid 1px #969696;
+        }
+
+    }
+
+    // List title
+    &__wrapper-list-title {
+        padding-bottom: calc( index.$lh / 3 );
+
+        @include index.l {
+            padding-bottom: index.$lh;
+        }
+    }
+
+    &__title {
+        font-family: index.$font-primary-light;
+        font-size: 17px;
+        line-height: 1;
+
+        @include index.l {
+            font-size: 20px;
+        }
+
+        @include index.xl {
+            font-size: 24px;
+        }
+    }
+
+    // List
+    &__wrapper-categories,
+    &__wrapper-collections {
+        overflow-x: auto;
+    }
+
+    &__categories-list,
+    &__collections-list {
+        margin: 0;
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        gap: index.$lh;
+        overflow-x: auto; /* Permite el scroll sin desbordar visualmente */
+        padding: calc( index.$lh / 3 ) 0;
+        border-top: solid 1px #AEAEAE;
+        border-bottom: solid 1px #AEAEAE;
+        white-space: nowrap;
+        
+        @include index.l {
+            border-top: none;
+            border-bottom: none;
+        }
+
+        &::-webkit-scrollbar {
+            display: none; /* Oculta la barra de scroll en navegadores WebKit (opcional) */
+        }
+    }
+
+    // List item
+    &__list-item {
+        flex: 0 0 auto;
+        display: inline-block;
+        list-style: none;
+
+        &.active {
+            text-decoration: underline;
+        }
+
     }
 
 }

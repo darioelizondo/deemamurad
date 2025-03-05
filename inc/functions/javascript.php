@@ -18,6 +18,7 @@
         wp_register_script( 'gsap', TDU . '/assets/third/gsap/gsap.min.js', array( 'jquery' ), '3.12.7', true );
         wp_register_script( 'gsap.scrollTrigger', TDU . '/assets/third/gsap/ScrollTrigger.min.js', array( 'jquery' ), '3.12.7', true );
         wp_register_script( 'zoom', TDU . '/assets/third/zoom/jquery.zoom.min.js', array( 'jquery' ), '1.7.21', true );
+        wp_register_script( 'jquery.espy', TDU . '/assets/third/jquery.espy/jquery.espy.min.js', array( 'jquery' ), '0.1.0', true );
 
         // App
         wp_enqueue_script( 'deemamurad.onload-page', TDU . '/assets/javascript/production/onload-page.js', array( 'jquery' ), filemtime( TD . '/assets/javascript/production/onload-page.js' ), true );

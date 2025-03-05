@@ -47,6 +47,7 @@ function filter_products_ajax() {
     $query = new WP_Query($args);
 
     if ( $query->have_posts() ) {
+        ob_start();
         while ( $query->have_posts() ) {
             $query->the_post();
             $item_id = get_the_ID();
@@ -64,10 +65,19 @@ function filter_products_ajax() {
             unset( $main_image );
             unset( $second_image );
         }
-        wp_reset_postdata();
-    } else {
-        echo '<p>No products found.</p>';
-    }
 
+        wp_send_json([
+            'count'    => $query->found_posts, 
+            'products' => ob_get_clean(),
+            'canLoadMore' => true,
+        ]);
+
+    } else {
+        wp_send_json([
+            'canLoadMore' => false,
+        ]);
+    }
+    
+    wp_reset_postdata();
     wp_die();
 }

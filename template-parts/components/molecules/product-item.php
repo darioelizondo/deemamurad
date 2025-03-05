@@ -28,11 +28,11 @@
                 <?php endif; ?>
             </div>
                 <?php if( !is_product() ) : ?>
-                    <h3><?php echo get_the_title( $item_id ); ?></h3>
-                    <span><?php echo wc_price( get_post_meta( $item_id, '_price', true ) ); ?></span>
+                    <h3 class="product-item__title"><?php echo get_the_title( $item_id ); ?></h3>
                     <?php if( isset( $filters_text ) && !empty( $filters_text ) ) : ?>
                         <p class="product-filters"><?php echo esc_html( $filters_text ); ?></p>
                     <?php endif; ?>
+                    <span><?php echo wc_price( get_post_meta( $item_id, '_price', true ) ); ?></span>
                 <?php endif; ?>
         </a>
 
