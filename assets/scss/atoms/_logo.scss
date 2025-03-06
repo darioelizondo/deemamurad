@@ -18,18 +18,18 @@
 
     // Image
     &__image {
-        width: 120px;
-        height: 11px;
+        width: 130px;
+        height: 12px;
 
         @include index.m {
             width: 152px;
             height: 14px;
         }
 
-        @include index.l {
-            width: 191px;
-            height: 18px;
-        }
+        // @include index.l {
+        //     width: 172px;
+        //     height: 16px;
+        // }
 
     }
 

@@ -2,27 +2,27 @@
 @use '../@config/index';
 
 .images-on-scroll {
-    background-color: index.$soft-gray;
+    background-color: index.$white;
    
     // Inner
     &__inner {
         position: relative;
-        height: 125vh; /* So that there is enough scroll */
+        height: 265vh; /* So that there is enough scroll */
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: space-around;
 
         @include index.l {
-            height: 230vh;
+            height: 330vh;
         }
 
         @include index.xl {
-            height: 220vh;
+            height: 310vh;
         }
 
         @include index.xxl {
-            height: 210vh;
+            height: 375vh;
         }
 
     }

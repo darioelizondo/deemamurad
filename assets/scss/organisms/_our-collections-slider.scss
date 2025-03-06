@@ -2,13 +2,18 @@
 @use '../@config/index';
 
 .our-collections-slider {
-    background-color: index.$soft-gray;
+    background-color: index.$white;
     padding-bottom: calc( index.$lh * 1.5 );
+    padding-bottom: 0;
 
     @include index.l {
         padding-bottom: calc( index.$lh * 2 );        
     }
 
+    // Swiper
+    &__swiper {
+        margin-right: -31px;
+    }
 
     // Content
     &__content-slider {
@@ -22,16 +27,6 @@
     // Title
     &__title {
         font-family: index.$font-primary-light;
-        // font-size: 14px;
-        // line-height: 20px;
-        // @include index.l {
-        //     font-size: 18px;
-        //     line-height: 22px;
-        // }
-        // @include index.xl {
-        //     font-size: 20px;
-        //     line-height: 24px;
-        // }
     }
 
     // Wrapper buttons
@@ -43,6 +38,7 @@
 
     // Prev button
     &__prev-button {
+        display: none;
         transition: transform .3s ease;
 
         &:hover {

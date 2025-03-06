@@ -57,4 +57,4 @@ const animeHeader = () => {
 };
 
 
-document.addEventListener( 'DOMContentLoaded', animeHeader );
+// document.addEventListener( 'DOMContentLoaded', animeHeader );

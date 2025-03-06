@@ -18,4 +18,4 @@ const animeHero = () => {
 
 };
 
-document.addEventListener( 'DOMContentLoaded', animeHero );
+// document.addEventListener( 'DOMContentLoaded', animeHero );

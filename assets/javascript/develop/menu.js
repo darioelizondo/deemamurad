@@ -38,15 +38,24 @@ const toggleOpenCloseMenu = () => {
 const toggleOpenCloseMegaMenu = () => {
 
     const linkFirstChild = document.querySelectorAll( '.menu__has-child--first-level' );
+    const megaMenu = document.querySelector( '.wrapper-submenu' );
 
     linkFirstChild.forEach( ( link ) => {
-        link.addEventListener( 'click', ( event ) => {
+        link.addEventListener( 'mouseenter', ( event ) => {
             event.preventDefault();
             // Link active
             jQuery( link ).parent().addClass( 'active' );
             // Megamenu active
             jQuery( link ).next().addClass( 'active' );
         });
+    });
+
+    megaMenu.addEventListener( 'mouseleave', ( event ) => {
+        event.preventDefault();
+        // Link active
+        jQuery( megaMenu ).parent().removeClass( 'active' );
+        // Megamenu active
+        jQuery( megaMenu ).removeClass( 'active' );
     });
 
 }
@@ -67,6 +76,7 @@ const toggleOpenCloseSubmenu = () => {
 
     const handleToggleSubmenu = ( event, link ) => {
         event.preventDefault();
+        allLinkWithChild_secondLevel.forEach( item => { jQuery( item ).next().slideUp() } )
         jQuery( link ).next().slideToggle();
         jQuery( link ).find( '.menu__plus-minus-toggle' ).toggleClass( 'collapsed' );
     }
@@ -181,6 +191,9 @@ const changeImagePlaceholderMenu = () => {
     
     const menuItems = document.querySelectorAll( '.menu-item' );
     const imagePlaceholder = document.getElementById( 'imagePlaceholder' );
+    const defaultImage = document.getElementById( 'imagePlaceholder' );
+    const srcDefaultImage = defaultImage.dataset.image;
+    const allCollectionsItem = document.querySelector( '.all-collections-item' );
 
     menuItems.forEach( ( item ) => {
 
@@ -194,12 +207,16 @@ const changeImagePlaceholderMenu = () => {
 
     });
 
+    allCollectionsItem.addEventListener( 'mouseover', () => {
+        imagePlaceholder.src = srcDefaultImage;
+    });
+
 }
 
 // Ejecutar funciones al cargar el DOM
 document.addEventListener( 'DOMContentLoaded', toggleOpenCloseMenu, false );
 document.addEventListener( 'DOMContentLoaded', toggleOpenCloseMegaMenu, false );
 document.addEventListener( 'DOMContentLoaded', toggleOpenCloseSubmenu, false );
-document.addEventListener( 'DOMContentLoaded', clickAwayListenerForSubmenu, false );
+// document.addEventListener( 'DOMContentLoaded', clickAwayListenerForSubmenu, false );
 document.addEventListener( 'DOMContentLoaded', addItemInSubmenuCollection, false );
 document.addEventListener( 'DOMContentLoaded', changeImagePlaceholderMenu, false );

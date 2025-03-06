@@ -27,12 +27,13 @@
         font-family: index.$font-primary-light;
         font-size: 14px;
         line-height: 20px;
+        letter-spacing: 1px;
         @include index.l {
-            font-size: 16px;
+            font-size: 15px;
             line-height: 20px;
         }
         @include index.xl {
-            font-size: 18px;
+            font-size: 16px;
             line-height: 22px;
         }
     }

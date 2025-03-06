@@ -13,4 +13,4 @@ const animeOverlayTransition = () => {
 
 };
 
-document.addEventListener('DOMContentLoaded', animeOverlayTransition);
+// document.addEventListener('DOMContentLoaded', animeOverlayTransition);

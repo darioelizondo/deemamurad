@@ -2,7 +2,7 @@
 @use '../@config/index';
 
 .full-image-linked {
-    background-color: index.$soft-gray;
+    background-color: index.$white;
 
     // Inner
     &__inner {
@@ -11,12 +11,12 @@
 
     // Wrapper image
     &__wrapper-image {
-        height: calc( 100dvh - 50px );
+        height: calc( 90dvh - 50px );
         position: relative;
         overflow: hidden;
 
         @include index.l {
-            height: calc( 100dvh - 67px );
+            height: calc( 90dvh - 67px );
         }
 
     }
@@ -79,17 +79,17 @@
     &__title {
         color: index.$white;
         font-family: index.$font-primary-light;
-        font-size: 18px;
-        line-height: 24px;
+        font-size: 16px;
+        line-height: 22px;
 
         @include index.l {
-            font-size: 26px;
-            line-height: 30px;
+            font-size: 19px;
+            line-height: 23px;
         }
 
         @include index.xl {
-            font-size: 30px;
-            line-height: 34px;
+            font-size: 22px;
+            line-height: 26px;
         }
 
     }
@@ -102,20 +102,20 @@
         font-size: 14px;
         line-height: 20px;
         text-decoration: underline;
-        transition: transform .3s ease;
+        transition: color .3s ease;
 
         @include index.l {
-            font-size: 17px;
+            font-size: 15px;
             line-height: 21px;
         }
 
         @include index.xl {
-            font-size: 20px;
-            line-height: 24px;
+            font-size: 16px;
+            line-height: 22px;
         }
 
         &:hover {
-            transform: translateY( 7px );
+            color: #ACACB1;
         }
 
     }

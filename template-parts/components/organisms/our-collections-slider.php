@@ -14,14 +14,14 @@
 
     wp_enqueue_script( 'swiper' );
     wp_enqueue_script( 'deemamurad.our-collections-slider' );
-    wp_enqueue_script( 'aos' );
-    wp_enqueue_script( 'deemamurad.aos-init' );
+    // wp_enqueue_script( 'aos' );
+    // wp_enqueue_script( 'deemamurad.aos-init' );
 
 ?>
 
 <!-- Our collections slider -->
 <section class="our-collections-slider module-<?php echo $module_count; ?>" >
-    <div class="our-collections-slider__inner <?php if( !is_product() ) echo 'container'; ?>" data-aos="fade-up" data-aos-easing="ease-in-out"  data-aos-delay="100">
+    <div class="our-collections-slider__inner <?php if( !is_product() ) echo 'container'; ?>">
         <!-- Swiper -->
         <?php if( $terms ) : ?>
             <div class="our-collections-slider__wrapper-slider">

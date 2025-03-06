@@ -26,15 +26,15 @@ const ourCollectionsSwiper = () => {
                 breakpoints: {
                     '640': {
                         slidesPerView: 2,
-                        spaceBetween: 20
+                        spaceBetween: 13
                     },
                     '1024': {
                         slidesPerView: 3,
-                        spaceBetween: 26
+                        spaceBetween: 13
                     },
                     '1280': {
                         slidesPerView: 4,
-                        spaceBetween: 26
+                        spaceBetween: 13
                     }
                 },
                 on: {
@@ -48,10 +48,10 @@ const ourCollectionsSwiper = () => {
             });
 
 
-            function checkNavButtons( swiper ) {
-                prev.style.display = swiper.isBeginning ? "none" : "block";
-                next.style.display = swiper.isEnd ? "none" : "block";
-            }
+            // function checkNavButtons( swiper ) {
+            //     prev.style.display = swiper.isBeginning ? "none" : "block";
+            //     next.style.display = swiper.isEnd ? "none" : "block";
+            // }
 
         }
     });

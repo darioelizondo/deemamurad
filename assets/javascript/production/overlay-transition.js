@@ -1,1 +1,1 @@
-let animeOverlayTransition=()=>{var e=document.querySelector(".overlay-transition");anime({targets:e,easing:"easeInOutSine",scaleY:[1,0],delay:200})};document.addEventListener("DOMContentLoaded",animeOverlayTransition);
+let animeOverlayTransition=()=>{var e=document.querySelector(".overlay-transition");anime({targets:e,easing:"easeInOutSine",scaleY:[1,0],delay:200})};

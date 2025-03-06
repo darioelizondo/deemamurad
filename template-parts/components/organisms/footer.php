@@ -32,11 +32,13 @@
         </div>
     </div>
     <!-- Footer bottom -->
-    <div class="footer__footer-bottom container">
-        <!-- Copyright -->
-        <p class="footer__copyright">
-            <?php echo esc_html( $footer[ 'copyright' ] ); ?>
-        </p>
+    <div class="footer__footer-bottom">
+        <div class="footer__footer-bottom-inner container">
+            <!-- Copyright -->
+            <p class="footer__copyright">
+                <?php echo esc_html( $footer[ 'copyright' ] ); ?>
+            </p>
+        </div>
     </div>
 </footer>
 <!-- End footer -->

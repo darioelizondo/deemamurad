@@ -13,40 +13,30 @@
         gap: index.$lh;
 
         @include index.l {
-            gap: calc( index.$lh * 2 );
-        }
-
-        @include index.xxl {
             gap: calc( index.$lh * 3 );
         }
-
 
     }
 
     // Wrapper images
     &__wrapper-images {
         position: relative;
-        width: 360px;
+        width: 300px;
         height:  480px;
 
         @include index.m {
             width: 400px;
-            height:  535px;
+            height: 535px;
         }
 
         @include index.l {
-            width: 450px;
-            height:  600px;
-        }
-
-        @include index.xl {
-            width: 500px;
-            height:  665;
+            width: 400px;
+            height: 535px;
         }
 
         @include index.xxl {
-            width: 550px;
-            height:  735px;
+            width: 450px;
+            height: 600px;
         }
 
     }
@@ -69,21 +59,21 @@
         display: inline-block;
         font-size: 14px;
         line-height: 18px;
-        transition: transform .3s ease;
+        transition: color .3s ease;
         cursor: default;
 
         @include index.l {
-            font-size: 16px;
+            font-size: 15px;
             line-height: 20px;
         }
 
         @include index.xxl {
-            font-size: 18px;
+            font-size: 16px;
             line-height: 22px;
         }
 
         &:hover {
-            transform: translateY( 5px );
+            color: #ACACB1;
         }
 
     }

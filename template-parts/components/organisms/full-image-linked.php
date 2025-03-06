@@ -13,7 +13,7 @@
 ?>
 
 <!-- Full image linked -->
-<section class="full-image-linked module-<?php echo $module_count; ?>" style="padding-top: <?php echo $group[ 'padding_top' ]; ?>; padding-bottom: <?php echo $group[ 'padding_bottom' ]; ?>;" data-aos="fade-left" data-aos-easing="ease-in-out"  data-aos-delay="100" >
+<section class="full-image-linked module-<?php echo $module_count; ?>" style="padding-top: <?php echo $group[ 'padding_top' ]; ?>; padding-bottom: <?php echo $group[ 'padding_bottom' ]; ?>;">
     <?php if( $group[ 'image_s' ] && $group[ 'link' ] ) : ?>
         <div class="full-image-linked__inner container">
             <!-- Image -->
