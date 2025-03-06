@@ -156,8 +156,8 @@
     &__plus-minus-toggle {
         display: inline-block;
         cursor: pointer;
-        width: 15px;
-        height: 15px;
+        width: 10px;
+        height: 10px;
         position: relative;
 
         &:before,
@@ -168,7 +168,7 @@
             left: 0;
             position: absolute;
             top: 7px;
-            width: 15px;
+            width: 10px;
             transition: transform 500ms ease;
         }
 

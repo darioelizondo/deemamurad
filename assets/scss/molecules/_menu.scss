@@ -237,6 +237,7 @@
         left: 0;
         transition: top .001s cubic-bezier(.86,0,.07,1);
         z-index: 9;
+        overflow-y: auto;
         
         @include index.l {
             height: auto;
@@ -296,7 +297,7 @@
                 padding: 8px 0;
 
                 @include index.l {
-                    padding: 13px 0;
+                    padding: 2px 0;
                 }
 
             }

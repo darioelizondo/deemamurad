@@ -25,6 +25,87 @@
     }
 
     /** 
+     * Product category & Collections list
+     */
+
+     add_action( 'woocommerce_before_main_content', 'deemamurad_category_and_collections_list', 5 );
+
+     function deemamurad_category_and_collections_list() {
+ 
+         if( is_product() ) return;
+ 
+         ?>
+             <div class="woocommerce-shop__wrapper-lists">
+                 <!-- Categories list -->
+                 <div class="woocommerce-shop__wrapper-categories">
+                     <div class="woocommerce-shop__wrapper-list-title">
+                         <h3 class="woocommerce-shop__title">
+                             Products
+                         </h3>
+                     </div>
+                     <?php
+                         // Categories
+                         $product_categories = get_terms( array(
+                             'taxonomy' => 'product_cat',
+                             'orderby' => 'name',
+                             'hide_empty' => false,
+                         ) );
+                     
+                         // Get URL params
+                         $current_categories = isset( $_GET['category'] ) ? $_GET['category'] : [];
+                     
+                         if ( ! empty( $product_categories ) && ! is_wp_error( $product_categories ) ) {
+                             echo '<ul class="woocommerce-shop__categories-list">';
+                             foreach ( $product_categories as $category ) {
+                                 // Verificar si la categoría actual está en los parámetros de la URL
+                                 $is_active = in_array( $category->slug, $current_categories ) ? ' active' : '';
+                     
+                                 // Crear el link con el parámetro 'category[]' y el slug de la categoría
+                                 // $category_link = add_query_arg( 'category[]', $category->slug, get_permalink( woocommerce_get_page_id( 'shop' ) ) );
+                                 echo '<li class="woocommerce-shop__list-item ' . esc_attr( $is_active ) . '"><a class="woocommerce-shop__list-link" href="#" data-filter="products" data-slug="' . esc_attr( $category->slug ) . '">' . esc_html( $category->name ) . '</a></li>';
+                             }
+                             echo '</ul>';
+                         }
+                     ?>
+                 </div>
+                 <!-- Collections list -->
+                 <div class="woocommerce-shop__wrapper-collections">
+                     <div class="woocommerce-shop__wrapper-list-title">
+                         <h3 class="woocommerce-shop__title">
+                             Collections
+                         </h3>
+                     </div>
+                     <?php
+                         // Collections
+                         $collections = get_terms( array(
+                             'taxonomy' => 'collections',
+                             'orderby' => 'name',
+                             'hide_empty' => false,
+                         ) );
+                     
+                         // Get URL params
+                         $current_collections = isset( $_GET['collections'] ) ? $_GET['collections'] : [];
+                     
+                         if ( ! empty( $collections ) && ! is_wp_error( $collections ) ) {
+                             echo '<ul class="woocommerce-shop__collections-list">';
+                             foreach ( $collections as $collection ) {
+                                 // Verificar si la colección actual está en los parámetros de la URL
+                                 $is_active = in_array( $collection->slug, $current_collections ) ? ' active' : '';
+                     
+                                 // Crear el link con el parámetro 'collections[]' y el slug de la colección
+                                 // $collection_link = add_query_arg( 'collections[]', $collection->slug, get_permalink( woocommerce_get_page_id( 'shop' ) ) );
+                                 echo '<li class="woocommerce-shop__list-item ' . esc_attr( $is_active ) . '"><a class="woocommerce-shop__list-link" href="#" data-filter="collections" data-slug="' . esc_attr( $collection->slug ) . '">' . esc_html( $collection->name ) . '</a></li>';
+                             }
+                             echo '</ul>';
+                         }
+                     ?>
+                 </div>
+             </div>
+         <?php
+ 
+     }
+
+    /** 
      * Shop filters
      */
 
@@ -70,7 +151,7 @@
                                 <?php
                                     $categories = get_terms(['taxonomy' => 'product_cat', 'hide_empty' => true]);
                                     foreach ($categories as $category) {
-                                        echo '<label class="products-filters__custom-checkbox"><input class="products-filters__checkbox" type="checkbox" name="category[]" value="' . esc_attr($category->slug) . '"><span class="checkmark"></span>' . esc_html($category->name) . '</label>';
+                                        echo '<label class="products-filters__custom-checkbox"><input class="products-filters__checkbox" type="checkbox" name="category[]" data-filter="products" value="' . esc_attr($category->slug) . '"><span class="checkmark"></span>' . esc_html($category->name) . '</label>';
                                     }
                                 ?>
                             </div>
@@ -90,7 +171,7 @@
                                 <?php
                                     $collections = get_terms(['taxonomy' => 'collections', 'hide_empty' => true]);
                                     foreach ($collections as $collection) {
-                                        echo '<label class="products-filters__custom-checkbox"><input class="products-filters__checkbox" type="checkbox" name="collections[]" value="' . esc_attr($collection->slug) . '"><span class="checkmark"></span>' . esc_html($collection->name) . '</label>';
+                                        echo '<label class="products-filters__custom-checkbox"><input class="products-filters__checkbox" type="checkbox" name="collections[]" data-filter="collections" value="' . esc_attr($collection->slug) . '"><span class="checkmark"></span>' . esc_html($collection->name) . '</label>';
                                     }
                                 ?>
                             </div>
@@ -129,7 +210,7 @@
     
         <script>
             jQuery(document).ready(function ($) {
-
+                
                 function updateFilters() {
                     let filters = {};
                     let activeFilters = 0;
@@ -195,9 +276,15 @@
                 });
 
                 // Aplicar filtros al cargar la página desde la URL
-                let params = new URLSearchParams(window.location.search);
+                const params = new URLSearchParams(window.location.search);
                 params.forEach((value, key) => {
+
+                    const urlFilterType = key === 'category[]' ? 'products[]' : key;
+                    const cleanUrlFilterType = urlFilterType.replace("[]", "");
+
                     $(`input[name='${key}'][value='${value}']`).prop("checked", true);
+                    updateFilterCount( cleanUrlFilterType );
+
                 });
 
                 let activeFiltersOnLoad = 0;
@@ -207,7 +294,7 @@
                     activeFiltersOnLoad++;
                 });
 
-                    // Mostrar la cantidad de filtros aplicados en el botón
+                // Mostrar la cantidad de filtros aplicados en el botón
                 if ( activeFiltersOnLoad > 0 ) {
                     $("#activeFiltersCount").text(`(${activeFiltersOnLoad})`);
                 } else {
@@ -260,6 +347,25 @@
                     setTimeout( () => {
                         $(".products-filters").removeClass("active");
                     }, 300 )
+                });
+
+                $(".woocommerce-shop__list-link").on("click", function (e) {
+                    e.preventDefault();
+
+                    // Active
+                    $(this).parent().toggleClass( 'active' );
+
+                    let filterType = $(this).data("filter"); // 'products' o 'collections'
+                    let slug = $(this).data("slug");
+
+                    // Buscar el checkbox correspondiente al filtro y marcarlo/desmarcarlo
+                    let checkbox = $(`.products-filters__checkbox[data-filter="${filterType}"][value="${slug}"]`);
+                    checkbox.prop("checked", !checkbox.prop("checked"));
+
+                    // Disparar la función de filtrado AJAX
+                    updateFilters();
+                    // Contar los filtros aplicados
+                    updateFilterCount(filterType);
                 });
 
             });
@@ -551,86 +657,3 @@
         </script>
         <?php
     }
-
-    /** 
-     * Product category & Collections list
-     */
-
-    add_action( 'woocommerce_before_main_content', 'deemamurad_category_and_collections_list', 5 );
-
-    function deemamurad_category_and_collections_list() {
-
-        if( is_product() ) return;
-
-        ?>
-            <div class="woocommerce-shop__wrapper-lists">
-                <!-- Categories list -->
-                <div class="woocommerce-shop__wrapper-categories">
-                    <div class="woocommerce-shop__wrapper-list-title">
-                        <h3 class="woocommerce-shop__title">
-                            Products
-                        </h3>
-                    </div>
-                    <?php
-                        // Categories
-                        $product_categories = get_terms( array(
-                            'taxonomy' => 'product_cat',
-                            'orderby' => 'name',
-                            'hide_empty' => false,
-                        ) );
-                    
-                        // Get URL params
-                        $current_categories = isset( $_GET['category'] ) ? $_GET['category'] : [];
-                    
-                        if ( ! empty( $product_categories ) && ! is_wp_error( $product_categories ) ) {
-                            echo '<ul class="woocommerce-shop__categories-list">';
-                            foreach ( $product_categories as $category ) {
-                                // Verificar si la categoría actual está en los parámetros de la URL
-                                $is_active = in_array( $category->slug, $current_categories ) ? ' active' : '';
-                    
-                                // Crear el link con el parámetro 'category[]' y el slug de la categoría
-                                $category_link = add_query_arg( 'category[]', $category->slug, get_permalink( woocommerce_get_page_id( 'shop' ) ) );
-                                echo '<li class="woocommerce-shop__list-item ' . esc_attr( $is_active ) . '"><a href="' . esc_url( $category_link ) . '">' . esc_html( $category->name ) . '</a></li>';
-                            }
-                            echo '</ul>';
-                        }
-                    ?>
-                </div>
-                <!-- Collections list -->
-                <div class="woocommerce-shop__wrapper-collections">
-                    <div class="woocommerce-shop__wrapper-list-title">
-                        <h3 class="woocommerce-shop__title">
-                            Collections
-                        </h3>
-                    </div>
-                    <?php
-                        // Collections
-                        $collections = get_terms( array(
-                            'taxonomy' => 'collections',
-                            'orderby' => 'name',
-                            'hide_empty' => false,
-                        ) );
-                    
-                        // Get URL params
-                        $current_collections = isset( $_GET['collections'] ) ? $_GET['collections'] : [];
-                    
-                        if ( ! empty( $collections ) && ! is_wp_error( $collections ) ) {
-                            echo '<ul class="woocommerce-shop__collections-list">';
-                            foreach ( $collections as $collection ) {
-                                // Verificar si la colección actual está en los parámetros de la URL
-                                $is_active = in_array( $collection->slug, $current_collections ) ? ' active' : '';
-                    
-                                // Crear el link con el parámetro 'collections[]' y el slug de la colección
-                                $collection_link = add_query_arg( 'collections[]', $collection->slug, get_permalink( woocommerce_get_page_id( 'shop' ) ) );
-                                echo '<li class="woocommerce-shop__list-item ' . esc_attr( $is_active ) . '"><a href="' . esc_url( $collection_link ) . '">' . esc_html( $collection->name ) . '</a></li>';
-                            }
-                            echo '</ul>';
-                        }
-                    ?>
-                </div>
-            </div>
-        <?php
-
-    }
-
-?>

@@ -65,6 +65,7 @@ const toggleOpenCloseSubmenu = () => {
     let flagIsMobile = false;
 
     const allLinkWithChild_secondLevel = document.querySelectorAll( '.submenu--first-level .menu__has-child' );
+    const allPlusMinusIcons = document.querySelectorAll( '.menu__plus-minus-toggle' );
 
     // Configurar la media query y manejar el cambio inicial
     const mediaQuery = window.matchMedia('(max-width: 1024px)');
@@ -76,9 +77,23 @@ const toggleOpenCloseSubmenu = () => {
 
     const handleToggleSubmenu = ( event, link ) => {
         event.preventDefault();
-        allLinkWithChild_secondLevel.forEach( item => { jQuery( item ).next().slideUp() } )
+
+        allLinkWithChild_secondLevel.forEach( item => {
+            if( item != link ) {
+                jQuery( item ).next().slideUp()
+            }
+        });
+
+        allPlusMinusIcons.forEach( icon => {
+            const currentIcon = link.querySelector( '.menu__plus-minus-toggle' );
+            if( icon != currentIcon ) {
+                jQuery( icon ).addClass( 'collapsed' );
+            }
+        });
+
         jQuery( link ).next().slideToggle();
         jQuery( link ).find( '.menu__plus-minus-toggle' ).toggleClass( 'collapsed' );
+        
     }
 
     // Verificar el estado inicial de la media query

@@ -37,14 +37,14 @@ const ourCollectionsSwiper = () => {
                         spaceBetween: 13
                     }
                 },
-                on: {
-                    init: function () {
-                        checkNavButtons( this );
-                    },
-                    slideChange: function () {
-                        checkNavButtons( this );
-                    },
-                },
+                // on: {
+                //     init: function () {
+                //         checkNavButtons( this );
+                //     },
+                //     slideChange: function () {
+                //         checkNavButtons( this );
+                //     },
+                // },
             });
 
 

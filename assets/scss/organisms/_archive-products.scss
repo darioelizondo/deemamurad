@@ -10,6 +10,11 @@
     .header__center-inner {
         background-color: index.$soft-gray;
     }
+
+    .footer {
+        border-top: solid 1px #969696;
+    }
+
 }
 
 .woocommerce-shop {
@@ -143,6 +148,10 @@
         flex: 0 0 auto;
         display: inline-block;
         list-style: none;
+
+        &:hover {
+            color: #ACACB1;
+        }
 
         &.active {
             text-decoration: underline;
