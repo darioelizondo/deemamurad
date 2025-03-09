@@ -35,17 +35,17 @@
         }
 
         @include index.l {
-            width: 40dvw;
+            width: 45dvw;
             padding: calc( index.$lh * 1.5 );
         }
 
         @include index.xl {
-            width: 35dvw;
+            width: 40dvw;
             padding: calc( index.$lh * 2 );
         }
 
         @include index.xxl {
-            width: 31dvw;
+            width: 35dvw;
         }
 
     }

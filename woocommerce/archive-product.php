@@ -58,29 +58,53 @@ wp_enqueue_script( 'jquery.espy' );
 		woocommerce_product_loop_start();
 
 		if ( wc_get_loop_prop( 'total' ) ) {
-			while ( have_posts() ) {
-				the_post();
 
-				/**
-				 * Hook: woocommerce_shop_loop.
-				 */
-				do_action( 'woocommerce_shop_loop' );
+			$args = [
+				'post_type'      => 'product_variation',  // Solo variaciones
+				'orderby'        => 'meta_value_num',
+				'posts_per_page' => 12,
+				'post_status'    => 'publish',
+			];
 
-				$item_id = get_the_ID();
-				$main_image = get_the_post_thumbnail_url($item_id, 'large');
+			$query = new WP_Query($args);
+			$processed_variations = [];
 
-				// Obtener la primera imagen de la galería
-				$gallery_images = get_post_meta($item_id, '_product_image_gallery', true);
-				$gallery_images = explode(',', $gallery_images);
-				$second_image = !empty($gallery_images[0]) ? wp_get_attachment_url($gallery_images[0]) : $main_image;
-				$filters_terms = get_the_terms( $item_id, 'filters' );
-				$filters_text = !empty( $filters_terms ) ? implode(', ', wp_list_pluck( $filters_terms, 'name' ) ) : 'Without filters';
-
-				// Incluir la plantilla personalizada
-				include TD . '/template-parts/components/molecules/product-item.php';
-
-				unset($item_id, $main_image, $second_image, $filters_text);
+			// echo $query->found_posts;
+		
+			if ( $query->have_posts() ) {
+				ob_start();
+				$counter = 0;
+		
+				while ($query->have_posts()) {
+					$query->the_post();
+		
+					// Obtener la variación
+					global $product;
+					if ( $product ) {
+						$variation_id = $product->get_id();
+						$parent_product = wc_get_product($product->get_parent_id());  // Obtener el producto padre
+			
+						// Si la variación ya fue procesada, continuar con la siguiente
+						if (in_array($variation_id, $processed_variations)) {
+							continue;
+						}
+			
+						// Mostrar la variación
+						$colour = $product->get_attribute('pa_colour'); // Atributo de color de la variación
+						mostrar_imagenes_variacion($parent_product, $variation_id, $colour);
+						$counter++;
+			
+						// Marcar esta variación como procesada
+						$processed_variations[] = $variation_id;
+					}
+				}
+		
+		
+			} else {
+				echo 'No products were found matching your selection';
 			}
+		
+			wp_reset_postdata();
 		}
 
 		woocommerce_product_loop_end();

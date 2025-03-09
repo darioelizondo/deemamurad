@@ -106,60 +106,74 @@
         ' );
     });
 
-     add_action('woocommerce_before_variations_form', function() {
+    add_action('woocommerce_before_variations_form', function() {
         ?>
-            <script>
-                document.addEventListener("DOMContentLoaded", function() {
-                    document.querySelectorAll('.variations select').forEach(select => {
-                        let options = select.querySelectorAll("option:not([value=''])"); // Exclude empty option
-                        if (options.length === 0) return; // If there are no options, leave
-
-                        let wrapper = document.createElement("div");
-                        wrapper.classList.add("woocommerce-single__custom-variation-buttons");
-
-                        options.forEach((option, index) => {
-                            let button = document.createElement("button");
-                            button.innerText = option.innerText;
-                            button.setAttribute("data-value", option.value);
-                            button.setAttribute("data-variation-id", option.value);
-                            button.classList.add("woocommerce-single__variation-button");
-
-                            // If it is the first option, mark it as active and select its value
-                            if (index === 0) {
-                                button.classList.add("active");
-                                select.value = option.value;
-                                select.dispatchEvent(new Event("change"));
-                            }
-
-                            button.addEventListener("click", function(e) {
-                                e.preventDefault();
-                                
-                                // Remove the active class from the other buttons
-                                wrapper.querySelectorAll(".woocommerce-single__variation-button").forEach(btn => btn.classList.remove("active"));
-                                
-                                // Activa el botón seleccionado
-                                button.classList.add("active");
-
-                                // Activate the selected button
-                                select.value = option.value;
-                                select.dispatchEvent(new Event("change"));
-
-                                // Dispara el evento de WooCommerce para que actualice variation_id
-                                jQuery('select[name^="attribute_"]').trigger('change');
-
-                            });
-
-                            wrapper.appendChild(button);
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                document.querySelectorAll('.variations select').forEach(select => {
+                    let options = select.querySelectorAll("option:not([value=''])"); // Excluye la opción vacía
+                    if (options.length === 0) return; // Si no hay opciones, salir
+    
+                    let wrapper = document.createElement("div");
+                    wrapper.classList.add("woocommerce-single__custom-variation-buttons");
+    
+                    // Obtener parámetros de la URL
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const attributeName = select.getAttribute("name"); // Ej: "attribute_pa_colour"
+                    const selectedAttribute = urlParams.get(attributeName); // Ej: "yellow-gold" o null si no está en la URL
+    
+                    let selectedOption = null;
+    
+                    options.forEach((option, index) => {
+                        let button = document.createElement("button");
+                        button.innerText = option.innerText;
+                        button.setAttribute("data-value", option.value);
+                        button.classList.add("woocommerce-single__variation-button");
+    
+                        // Si el valor en la URL coincide con la opción, seleccionarlo
+                        if (option.value === selectedAttribute) {
+                            button.classList.add("active");
+                            select.value = option.value;
+                            selectedOption = option.value;
+                        }
+    
+                        button.addEventListener("click", function(e) {
+                            e.preventDefault();
+    
+                            // Eliminar la clase "active" de todos los botones de este grupo
+                            wrapper.querySelectorAll(".woocommerce-single__variation-button").forEach(btn => btn.classList.remove("active"));
+    
+                            // Activar el botón seleccionado
+                            button.classList.add("active");
+    
+                            // Actualizar el valor en el select y disparar el evento de cambio
+                            select.value = option.value;
+                            select.dispatchEvent(new Event("change"));
+    
+                            // Dispara el evento de WooCommerce para que actualice variation_id
+                            jQuery('select[name^="attribute_"]').trigger('change');
                         });
-
-                        select.style.display = "none"; // Hide select
-                        select.parentNode.appendChild(wrapper);
+    
+                        wrapper.appendChild(button);
+                        
                     });
+    
+                    // Si no había atributo en la URL, seleccionar la primera opción por defecto
+                    if (!selectedOption) {
+                        options[0].selected = true;
+                        select.value = options[0].value;
+                        options[0].parentNode.dispatchEvent(new Event("change"));
+                        wrapper.querySelectorAll(".woocommerce-single__variation-button")[0].classList.add("active");
+                    }
+    
+                    select.style.display = "none"; // Ocultar select
+                    select.parentNode.appendChild(wrapper);
                 });
-            </script>
+            });
+        </script>
         <?php
     });
-
+    
     /** 
      * Add Size guide, in the end of summary
      */

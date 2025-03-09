@@ -85,7 +85,7 @@
 
         @include index.l {
             grid-template-columns: repeat( 2, minmax( 0, 1fr ) );
-            padding-bottom: index.$lh;
+            padding-bottom: calc( index.$lh * 0.8 );
             border-bottom: solid 1px #969696;
         }
 
@@ -96,7 +96,7 @@
         padding-bottom: calc( index.$lh / 3 );
 
         @include index.l {
-            padding-bottom: index.$lh;
+            padding-bottom: calc( index.$lh * 0.5 );
         }
     }
 
@@ -157,6 +157,22 @@
             text-decoration: underline;
         }
 
+    }
+
+    // Message
+    .woocommerce-no-products-found {
+        .woocommerce-info {
+            color: index.$black !important;
+            border-top: none !important;
+            padding: 35px 0 !important;
+            text-align: center !important;
+            background-color: transparent !important;
+
+            &:before {
+                content: '' !important;
+            }
+
+        }
     }
 
 }
