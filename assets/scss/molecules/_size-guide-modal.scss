@@ -4,6 +4,7 @@
 .size-guide-modal {
     display: none;
     width: 100%;
+    max-width: 100%;
     height: 100%;
     position: fixed;
     top: 0;
@@ -23,7 +24,7 @@
         padding: calc( index.$lh * 2 ) calc( index.$lh / 2 );
         display: flex;
         flex-direction: column;
-        gap: index.$lh;
+        gap: calc( index.$lh / 1.6 );
         background-color: index.$white;
         overflow-y: scroll;
         transition: left .5s ease;
@@ -38,12 +39,12 @@
         }
 
         @include index.xl {
-            max-width: 35dvw;
+            max-width: 38dvw;
             padding: calc( index.$lh * 2 );
         }
 
         @include index.xxl {
-            max-width: 31dvw;
+            max-width: 32dvw;
         }
 
     }
@@ -51,17 +52,19 @@
     // Close
     &__wrapper-close {
         position: absolute;
-        top: index.$lh;
-        right: index.$lh;
+        top: calc( index.$lh / 1.2 );
+        right: calc( index.$lh / 1.7 );
         cursor: pointer;
         z-index: 2;
 
         @include index.l {
-            top: calc( index.$lh * 1.5 )
+            top: calc( index.$lh * 1.5 );
+            right: index.$lh;
         }
 
         @include index.xl {
-            top: calc( index.$lh * 2 )
+            top: calc( index.$lh * 1.2 );
+            right: index.$lh;
         }
 
     }
@@ -92,7 +95,7 @@
         line-height: 1;
 
         @include index.l {
-            font-size: 20px;
+            font-size: 22px;
         }
 
         @include index.xl {
@@ -104,16 +107,29 @@
     &__wrapper-content {
         display: flex;
         flex-direction: column;
-        gap: index.$lh;
+        gap: calc( index.$lh / 1.5 );
+    }
+
+    // Image
+    &__image {
+        width: 100px;
     }
 
     // Table image
     &__wrapper-table-image {
         img {
+            width: 100%;
+            max-width: 100%;
             @include index.l {
                 max-width: 450px;
             }
         }
+    }
+
+    strong {
+        font-family: index.$font-primary-medium;
+        font-weight: normal;
+        letter-spacing: 0;
     }
 
 }

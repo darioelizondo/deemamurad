@@ -13,7 +13,12 @@
 
     // Swiper
     &__swiper {
-        margin-right: -39px;
+        margin-right: -13px;
+
+        @include index.l {
+            margin-right: -31px;
+        }
+
     }
 
     // Content

@@ -103,7 +103,9 @@
 		// }
 
 		&:hover .menu-footer__link-title {
-            color: #ACACB1;
+            @include index.l {
+                color: #ACACB1;
+            }
 		}
     }
 

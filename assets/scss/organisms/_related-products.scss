@@ -2,7 +2,7 @@
 @use '../@config/index';
 
 .related-products {
-    padding-bottom: calc( index.$lh * 1.5 );
+    padding-bottom: calc( index.$lh * 2 );
 
     @include index.l {
         padding-bottom: calc( index.$lh * 2 );        
@@ -12,7 +12,12 @@
     &__title {
         font-family: index.$font-primary-light;
         font-weight: 300;
-        margin-bottom: calc( index.$lh / 1.5 );
+        margin-bottom: calc( index.$lh / 2 );
+
+        @include index.l {
+            margin-bottom: calc( index.$lh / 1.5 );
+        }
+
     }
 
     // Swiper

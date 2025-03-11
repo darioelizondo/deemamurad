@@ -54,7 +54,9 @@
         transition: color .3s ease;
 
         &:hover {
-            color: #ACACB1;
+            @include index.l {
+                color: #ACACB1;
+            }
         }
 
         &:focus,

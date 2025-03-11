@@ -14,9 +14,9 @@
         background-color: index.$soft-gray;
     }
 
-    .footer {
-        border-top: solid 1px #969696;
-    }
+    // .footer {
+    //     border-top: solid 1px #969696;
+    // }
 
     .our-collections-slider {
         background-color: index.$soft-gray;
@@ -63,10 +63,10 @@
         top: calc( index.$lh * 2.5 );
         display: flex;
         flex-direction: column;
-        gap: index.$lh;
+        gap: calc( index.$lh / 1.5 );
         width: 100% !important;
         float: none !important;
-        padding-top: calc( index.$lh * 1.2 );
+        padding-top: calc( index.$lh / 1.5 );
 
         @include index.l {
             position: sticky;
@@ -98,15 +98,15 @@
     // Title
     .product_title {
         font-family: index.$font-primary-light;
-        font-size: 17px;
+        font-size: 18px;
         line-height: 1;
 
         @include index.l {
-            font-size: 24px;
+            font-size: 22px;
         }
 
         @include index.xl {
-            font-size: 30px;
+            font-size: 24px;
         }
 
     }
@@ -116,16 +116,16 @@
 
         .amount bdi {
             color: index.$text;
-            font-size: 16px;
+            font-size: 18px;
             line-height: 1;
             font-weight: 500;
 
             @include index.l {
-                font-size: 18px;
+                font-size: 17px;
             }
 
             @include index.xl {
-                font-size: 20px;
+                font-size: 18px;
             }
         }
 
@@ -134,15 +134,15 @@
             
             .amount bdi {
                 color: #B3B3B3 !important;
-                font-size: 17px;
+                font-size: 16px;
                 line-height: 1;
 
                 @include index.l {
-                    font-size: 20px
+                    font-size: 18px
                 }
 
                 @include index.xl {
-                    font-size: 22px;
+                    font-size: 19px;
                 }
 
             }
@@ -197,8 +197,8 @@
             line-height: 21px !important;
         }
         @include index.xl {
-            font-size: 17px !important;
-            line-height: 23px !important;
+            font-size: 15px !important;
+            line-height: 21px !important;
         }
     }
 
@@ -212,11 +212,11 @@
     &__custom-variation-buttons {
         display: flex;
         flex-wrap: wrap;
-        gap: 10px;
+        gap: 5px;
     }
 
     &__variation-button {
-        padding: 4px 12px;
+        padding: 2px 8px;
         border: 1px solid index.$black;
         background: index.$soft-gray;
         cursor: pointer;
@@ -266,6 +266,13 @@
     }
 
     // Features
+
+    &__wrapper-features {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+    }
+
     &__feature {
         display: flex;
         flex-wrap: wrap;
@@ -274,7 +281,21 @@
     }
 
     &__feature-title {
-        text-decoration: underline;
+        position: relative;
+    }
+
+    &__feature-title:before {
+        content: '';
+        position: absolute;
+        top: 16px;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background-color: #838383;
+
+        @include index.l {
+            top: 18px;
+        }
     }
 
     // Wrapper quantity and add to cart
@@ -346,7 +367,7 @@
         height: 34px;
         color: index.$white !important;
         font-weight: 400 !important;
-        padding: calc( index.$lh / 2 ) index.$lh !important;
+        padding: 6px index.$lh !important;
         background-color: index.$black !important;
         border-radius: 0 !important;
     
@@ -373,7 +394,7 @@
         }
 
         &__swiper {
-            margin-right: -20px;
+            margin-right: -10px;
 
             @include index.l {
                 margin-right: 0px;
@@ -406,6 +427,14 @@
         max-width: 100%;
         height: auto;
         object-fit: cover;
+    }
+
+    .woocommerce-single__swiper .swiper-pagination-progressbar {
+        width: 94% !important;
+        height: 2px !important;
+        bottom: 16px !important;
+        left: 50% !important;
+        transform: translateX( -50% ) !important;
     }
     
     @media (min-width: 1024px) {
@@ -441,4 +470,18 @@
     &__swiper .swiper-pagination-progressbar-fill {
         background-color: index.$black;
     }
+
+    // Our collection slider
+    .our-collections-slider {
+
+        &__swiper {
+            margin-right: -13px;
+
+            @include index.l {
+                margin-right: -31px;
+            }
+
+        }
+    }
+
 }
