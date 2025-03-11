@@ -13,16 +13,18 @@ const ourCollectionsSwiper = () => {
         if( currentSwiper !== undefined ) {
             swiper = new Swiper( currentSwiper, {
                 speed: 1000,
-                autoplay: {
-                    delay: 3500,
-                    disableOnInteraction: false
-                },
+                // autoplay: {
+                //     delay: 3500,
+                //     disableOnInteraction: false
+                // },
+                autoplay: false,
                 navigation: {
                     nextEl: next,
                     prevEl: prev,
                 },
+                loop: true,
                 slidesPerView: 1.5,
-                spaceBetween: 13,
+                spaceBetween: 10,
                 breakpoints: {
                     '640': {
                         slidesPerView: 2,

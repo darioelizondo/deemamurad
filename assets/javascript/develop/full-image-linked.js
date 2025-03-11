@@ -13,4 +13,4 @@ const parallaxFullImageLinked = () => {
 
 };
 
-document.addEventListener( 'DOMContentLoaded', parallaxFullImageLinked );
+// document.addEventListener( 'DOMContentLoaded', parallaxFullImageLinked );

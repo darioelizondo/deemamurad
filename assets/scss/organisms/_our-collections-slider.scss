@@ -7,12 +7,13 @@
     padding-bottom: 0;
 
     @include index.l {
-        padding-bottom: calc( index.$lh * 2 );        
+        padding-top: 25px;
+        padding-bottom: 0;        
     }
 
     // Swiper
     &__swiper {
-        margin-right: -20px;
+        margin-right: -39px;
     }
 
     // Content

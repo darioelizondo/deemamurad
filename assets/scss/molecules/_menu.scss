@@ -53,28 +53,6 @@
         overflow: hidden;
         transition: color .3s ease;
 
-        // &:after {
-		// 	content: attr( data-title );
-		// 	display: block;
-		// 	position: absolute;
-		// 	top: 110%;
-		// 	transition: top .5s cubic-bezier(.86,0,.07,1) , color .5s cubic-bezier(.86,0,.07,1);
-		// }
-
-        // &:hover:after {
-		// 	top: 8px;
-		// 	color: index.$gray;
-
-        //     @include index.l {
-        //         top: 0;
-        //     }
-
-		// }
-
-		// &:hover .menu__link-title {
-		// 	transform: translateY(-30px);
-		// }
-
         &:hover {
             color: #ACACB1;
         }
@@ -126,8 +104,8 @@
         // Menu item
         .menu-item {
             width: 100%;
-            padding: calc( index.$lh / 2 ) 0;
-            border-bottom: solid 1px #A4A49C;
+            padding: calc( index.$lh / 1.75 ) 0;
+            border-bottom: solid 1px #d6d6d5;
             // position: relative;
 
             @include index.l {
@@ -136,25 +114,6 @@
                 padding: calc( index.$lh / 3 ) 0;
             }
 
-            // &::before {
-            //     content: '';
-            //     display: none;
-            //     position: absolute;
-            //     top: 8px;
-            //     right: -7px;
-            //     width: 5px;
-            //     height: 5px;
-            //     background-color: index.$black;
-            //     border-radius: 100%;
-            //     opacity: 0;
-            //     transition: opacity .3s ease;
-    
-            //     @include index.l {
-            //         display: block;
-            //     }
-    
-            // }
-    
             &.active::before {
                 opacity: 1;
             }
@@ -173,7 +132,7 @@
                 width: auto;
                 border-bottom: none;
                 padding: 0;
-                padding-bottom: 22px;
+                padding-bottom: 16px;
             }
         }
 
@@ -235,7 +194,7 @@
         position: absolute;
         top: -250%;
         left: 0;
-        transition: top .001s cubic-bezier(.86,0,.07,1);
+        transition: top .4s cubic-bezier(.86,0,.07,1);
         z-index: 9;
         overflow-y: auto;
         
@@ -243,15 +202,15 @@
             height: auto;
             left: 50%;
             transform: translateX( -50% );
-            border-top: solid 1px #A4A49C;
+            border-top: solid 1px #d6d6d5;
             padding: index.$lh;
         }
 
         &.active {
-            top: 30px;
+            top: 26px;
 
             @include index.l {
-                top: 57px;
+                top: 50px;
             }
 
         }
@@ -297,7 +256,7 @@
                 padding: 8px 0;
 
                 @include index.l {
-                    padding: 2px 0;
+                    padding: 0;
                 }
 
             }
@@ -373,7 +332,7 @@
             top: 30px;
 
             @include index.l {
-                top: 89px;
+                top: 80px;
             }
 
         }

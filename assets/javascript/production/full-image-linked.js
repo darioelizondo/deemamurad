@@ -1,1 +1,1 @@
-let parallaxFullImageLinked=()=>{document.addEventListener("scroll",()=>{var e=document.querySelectorAll(".full-image-linked__picture");let a=window.scrollY;e.forEach(e=>{var l=e.dataset.speed||.3;e.style.transform=`translate(-50%, ${a*l}px)`})})};document.addEventListener("DOMContentLoaded",parallaxFullImageLinked);
+let parallaxFullImageLinked=()=>{document.addEventListener("scroll",()=>{var e=document.querySelectorAll(".full-image-linked__picture");let a=window.scrollY;e.forEach(e=>{var l=e.dataset.speed||.3;e.style.transform=`translate(-50%, ${a*l}px)`})})};

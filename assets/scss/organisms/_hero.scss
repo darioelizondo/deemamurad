@@ -13,11 +13,11 @@
     // Inner
     &__inner {
         display: grid;
-        max-height: calc( 100dvh - 50px );
+        max-height: calc( 100dvh - 34px );
         overflow: hidden;
 
         @include index.l {
-            max-height: calc( 100dvh - 67px );
+            max-height: calc( 100dvh - 50px );
             grid-template-columns: repeat( 12, minmax( 0, 1fr ) );
             column-gap: calc( index.$lh / 2.5 );
         }
@@ -46,11 +46,19 @@
         position: relative;
         overflow: hidden;
         height: 100dvh;
+        font-size: 0;
+        line-height: 1;
 
         @include index.l {
             height: auto;
         }
 
+    }
+
+    // Picture
+    &__picture {
+        font-size: 0;
+        line-height: 1;
     }
 
     // Image

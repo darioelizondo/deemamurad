@@ -6,13 +6,13 @@
 	font-size: 14px;
 	font-weight: 300;
 	line-height: 19px;
-	letter-spacing: 1px;
+	letter-spacing: 3%;
 	@include index.l {
 		font-size: 15px;
 		line-height: 21px;
 	}
 	@include index.xl {
-		font-size: 16px;
+		font-size: 15px;
 		line-height: 22px;
 	}
 }
@@ -48,7 +48,7 @@ ul {
 		line-height: 23px;
 	}	
 	@include index.xl {
-		font-size: 16px;
+		font-size: 15px;
 		line-height: 22px;
 	}
 }
@@ -113,6 +113,7 @@ q p:after {
 }
 
 button {
+	color: index.$black;
 	background-color: transparent;
 	border: none;
 	cursor: pointer;
@@ -144,16 +145,16 @@ button:focus {
 }
 
 ::-webkit-scrollbar-thumb:active {
-    background: rgba(0, 0, 0, .4);
+    background: rgba(0, 0, 0, .5);
 }
 
 ::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, .4);
+    background: rgba(0, 0, 0, 0);
 }
 
 ::-webkit-scrollbar-track:hover,
 ::-webkit-scrollbar-track:active {
-  background: rgba(0, 0, 0, .6);
+  background: rgba(0, 0, 0, .1);
 }
 
 
@@ -163,7 +164,7 @@ button:focus {
 
 .container {
 	margin: 0 auto;
-	width: calc(100% - 40px);
+	width: calc(100% - 24px);
 
 	@include index.m {
 		width: calc(100% - 52px);

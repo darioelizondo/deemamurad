@@ -28,12 +28,13 @@
     .menu-item {
         position: relative;
         width: 100%;
-        padding: calc( index.$lh / 5 ) 0;
+        padding: calc( index.$lh / 2 ) 0;
         position: relative;
 
         @include index.l {
             width: auto;
             border-bottom: none;
+            padding: calc( index.$lh / 7 ) 0;
         }
 
     }
@@ -44,11 +45,10 @@
         display: inline-flex !important;
         gap: calc( index.$lh / 3 );
         justify-content: space-between;
-        border-bottom: solid 1px #A4A49C;
-        padding-bottom: calc( index.$lh / 3 );
+        // padding-bottom: calc( index.$lh / 2.2 );
 
         &[data-title="Collections"] {
-            padding-top: calc( index.$lh / 2 );
+            padding-top: calc( index.$lh / 1.7 );
             border-top: solid 1px #A4A49C;
 
             @include index.l {
@@ -62,6 +62,15 @@
             width: auto;
             border-bottom: none;
             padding-bottom: calc( index.$lh / 2 );
+        }
+
+    }
+
+    .menu-item-has-children {
+        border-bottom: solid 1px #A4A49C;
+
+        @include index.l {
+            border-bottom: none;
         }
 
     }
@@ -151,4 +160,27 @@
         list-style: none;
     }
 
+}
+
+.footer {
+    &__submenu--first-level {
+        .menu-item {
+            
+            padding: calc( index.$lh / 5 ) 0;
+    
+            @include index.l {
+                padding: calc( index.$lh / 7 ) 0;
+            }
+
+            &:first-child {
+                margin-top: 10px;
+
+                @include index.l {
+                    margin-top: 0;
+                }
+
+            }
+    
+        }
+    }
 }
