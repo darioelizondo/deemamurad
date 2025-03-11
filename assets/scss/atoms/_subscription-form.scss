@@ -89,4 +89,20 @@
         font-size: 14px;
     }
 
+    .wpcf7 form .wpcf7-response-output {
+        padding: 0;
+        margin-left: 0;
+    }
+
+    .wpcf7 form.failed .wpcf7-response-output,
+    .wpcf7 form.aborted .wpcf7-response-output {
+        border-color: transparent;
+        color: red;
+    }
+
+    .wpcf7 form.sent .wpcf7-response-output {
+        border-color: transparent;
+        color: index.$black;
+    }
+
 }

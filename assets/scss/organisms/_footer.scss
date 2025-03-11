@@ -47,7 +47,7 @@
     // Footer bottom
     &__footer-bottom {
         border-top: solid 1px #969696;
-        padding: calc( index.$lh / 2.5 ) 0;
+        padding: calc( index.$lh / 1.5 ) 0;
     }
 
     // Footer bottom text
@@ -57,7 +57,7 @@
         line-height: 1;
 
         @include index.l {
-            font-size: 13px;
+            font-size: 12px;
         }
 
     }

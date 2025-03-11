@@ -11,12 +11,12 @@
 
     // Wrapper image
     &__wrapper-image {
-        height: calc( 90dvh - 50px );
+        height: calc( 95dvh - 37px );
         position: relative;
         overflow: hidden;
 
         @include index.l {
-            height: calc( 90dvh - 67px );
+            height: calc( 95dvh - 52px );
         }
 
     }
@@ -25,23 +25,23 @@
     &__picture {
         width: 100%;
         height: 100%;
-        position: absolute;
-        top: -300px;
-        left: 50%;
-        transform: translateX(-50%);
-        will-change: transform;
+        // position: absolute;
+        // top: -300px;
+        // left: 50%;
+        // transform: translateX(-50%);
+        // will-change: transform;
 
-        @include index.l {
-            top: -400px;
-        }
+        // @include index.l {
+        //     top: -400px;
+        // }
 
-        @include index.xl {
-            top: -450px;    
-        }
+        // @include index.xl {
+        //     top: -450px;    
+        // }
 
-        @include index.xxl {
-            top: -500px;
-        }
+        // @include index.xxl {
+        //     top: -500px;
+        // }
 
       }
       
@@ -60,17 +60,17 @@
     // Wrapper content
     &__wrapper-content {
         position: absolute;
-        bottom: 60px;
+        bottom: 52px;
         left: 50%;
         transform: translateX( -50% );
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: calc( index.$lh / 3 );
+        gap: 7px;
 
         @include index.l {
-            bottom: 110px;
-            gap: calc( index.$lh / 2 );
+            bottom: 62px;
+            gap: 12px;
         }
 
     }
@@ -79,7 +79,7 @@
     &__title {
         color: index.$white;
         font-family: index.$font-primary-light;
-        font-size: 16px;
+        font-size: 18px;
         line-height: 22px;
 
         @include index.l {
@@ -101,8 +101,8 @@
         font-family: index.$font-primary-light;
         font-size: 14px;
         line-height: 20px;
-        text-decoration: underline;
         transition: color .3s ease;
+        position: relative;
 
         @include index.l {
             font-size: 15px;
@@ -113,6 +113,22 @@
             font-size: 16px;
             line-height: 22px;
         }
+
+        &:before {
+            content: '';
+            position: absolute;
+            top: 18px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background-color: #b6b6b6;
+
+            @include index.l {
+                top: 20px;
+            }
+
+        }
+
 
         &:hover {
             color: #ACACB1;

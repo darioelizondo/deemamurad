@@ -14,8 +14,8 @@ const animateImagesOnScroll = () => {
             // Assign different positions every 3 images
             let positionStyles = [
                 { top: "0", left: "7%" },
-                { top: "34%", right: "14%" },
-                { top: "62%", left: "20%" }
+                { top: "30%", right: "14%" },
+                { top: "54%", left: "20%" }
             ];
 
             // Get style based on index (every 3 images reset)
@@ -29,9 +29,13 @@ const animateImagesOnScroll = () => {
 
             // Animation with GSAP
             gsap.fromTo(image,
-                { y: 100 * speed, },
+                { 
+                    y: 100 * speed,
+                    opacity: 0
+                },
                 {
                     y: -100 * ( speed / 5 ), // Movimiento hacia arriba a diferente velocidad
+                    opacity: 1,
                     duration: 1.5,
                     ease: "power3.out",
                     scrollTrigger: {
@@ -53,8 +57,8 @@ const animateImagesOnScroll = () => {
             // Assign different positions every 3 images
             let positionStyles = [
                 { top: "0", left: "7%" },
-                { top: "34%", right: "14%" },
-                { top: "58%", left: "20%" }
+                { top: "30%", right: "14%" },
+                { top: "52%", left: "20%" }
             ];
 
             // Get style based on index (every 3 images reset)
@@ -68,9 +72,13 @@ const animateImagesOnScroll = () => {
 
             // Animation with GSAP
             gsap.fromTo(image,
-                { y: 100 * speed, },
+                { 
+                    y: 100 * speed,
+                    opacity: 0
+                },
                 {
                     y: -100 * ( speed / 5 ), // Movimiento hacia arriba a diferente velocidad
+                    opacity: 1,
                     duration: 1.5,
                     ease: "power3.out",
                     scrollTrigger: {
@@ -94,7 +102,7 @@ const animateImagesOnScroll = () => {
             let positionStyles = [
                 { top: "0", left: "7%" },
                 { top: "38%", right: "14%" },
-                { top: "72%", left: "20%" }
+                { top: "65%", left: "12%" }
             ];
 
             // Get style based on index (every 3 images reset)
@@ -108,9 +116,13 @@ const animateImagesOnScroll = () => {
 
             // Animation with GSAP
             gsap.fromTo(image,
-                { y: 100 * speed, },
+                { 
+                    y: 100 * speed,
+                    opacity: 0
+                },
                 {
                     y: -100 * ( speed / 5 ) , // Movimiento hacia arriba a diferente velocidad
+                    opacity: 1,
                     duration: 1.5,
                     ease: "power3.out",
                     scrollTrigger: {

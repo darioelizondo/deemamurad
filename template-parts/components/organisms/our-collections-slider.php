@@ -9,6 +9,7 @@
 
     $terms = get_terms( array(
         'taxonomy'   => 'collections',
+        'orderby' => 'ID',
         'hide_empty' => false
     ));
 

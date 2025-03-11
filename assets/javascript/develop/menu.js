@@ -38,9 +38,13 @@ const toggleOpenCloseMenu = () => {
 const toggleOpenCloseMegaMenu = () => {
 
     const linkFirstChild = document.querySelectorAll( '.menu__has-child--first-level' );
+    const liFirstLevel = document.querySelectorAll( '.menu__nav > li' );
     const megaMenu = document.querySelector( '.wrapper-submenu' );
 
     linkFirstChild.forEach( ( link ) => {
+
+        link.addEventListener( 'click', ( e ) => e.preventDefault() );
+
         link.addEventListener( 'mouseenter', ( event ) => {
             event.preventDefault();
             // Link active
@@ -57,6 +61,18 @@ const toggleOpenCloseMegaMenu = () => {
         // Megamenu active
         jQuery( megaMenu ).removeClass( 'active' );
     });
+
+   liFirstLevel.forEach( ( li, index ) => {
+        if( index !== 0 ) {
+            li.addEventListener( 'mouseenter', ( event ) => {
+                event.preventDefault();
+                // Link active
+                jQuery( megaMenu ).parent().removeClass( 'active' );
+                // Megamenu active
+                jQuery( megaMenu ).removeClass( 'active' );
+            });
+        }
+   } )
 
 }
 

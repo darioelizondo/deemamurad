@@ -7,7 +7,7 @@
      * 
      */
 
-    wp_enqueue_script( 'deemamurad.full-image-linked' );
+    // wp_enqueue_script( 'deemamurad.full-image-linked' );
     $group= get_sub_field( 'full_image_linked' );
 
 ?>
