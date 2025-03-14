@@ -121,6 +121,14 @@
                     const urlParams = new URLSearchParams(window.location.search);
                     const attributeName = select.getAttribute("name"); // Ej: "attribute_pa_colour"
                     const selectedAttribute = urlParams.get(attributeName); // Ej: "yellow-gold" o null si no está en la URL
+
+                    // Obtener data del localStorage si existiese
+                    const productId = document.querySelector('input[name="product_id"]').value;
+                    const storageKey = `product_variation_${productId}`;
+                    
+                    // 🔹 Recuperar la selección previa desde localStorage
+                    let savedVariations = JSON.parse(localStorage.getItem(storageKey)) || {};
+                    let localStorageSelectedAttribute = savedVariations[attributeName] || null;
     
                     let selectedOption = null;
     
@@ -132,6 +140,19 @@
     
                         // Si el valor en la URL coincide con la opción, seleccionarlo
                         if (option.value === selectedAttribute) {
+                                // 🔹 Si hay un valor en la URL, eliminar el guardado previo en localStorage
+                                if (savedVariations[attributeName]) {
+                                    delete savedVariations[attributeName];
+                                    localStorage.setItem(storageKey, JSON.stringify(savedVariations));
+                                }
+
+                            button.classList.add("active");
+                            select.value = option.value;
+                            selectedOption = option.value;
+                        }
+
+                        if( selectedAttribute == null && option.value === localStorageSelectedAttribute ) {
+                            console.log( selectedAttribute );
                             button.classList.add("active");
                             select.value = option.value;
                             selectedOption = option.value;
@@ -478,4 +499,60 @@
 
     function deemamurad_collections_single_product() {
         include TD . '/template-parts/components/organisms/our-collections-slider.php';
-    }    
+    }
+
+    /**
+     * Keep selected the variation onload
+     */
+
+    add_action('wp_footer', 'keep_selected_the_variation');
+
+    function keep_selected_the_variation() {
+        ?>
+            <script>
+
+                document.addEventListener("DOMContentLoaded", function () {
+                    const form = document.querySelector("form.variations_form"); // Formulario de variaciones
+                    if (!form) return;
+                
+                    const selects = form.querySelectorAll("select"); // Todos los select de variaciones
+                    const productId = form.dataset.product_id || form.querySelector('input[name="product_id"]').value;
+                    const storageKey = `product_variation_${productId}`; // Clave única para este producto
+                
+                    // 🔹 Recuperar la selección previa desde localStorage
+                    const savedVariations = JSON.parse(localStorage.getItem(storageKey));
+                    if (savedVariations) {
+                        selects.forEach(select => {
+                            if (savedVariations[select.name]) {
+                                select.value = savedVariations[select.name];
+                            }
+                        });
+                
+                        // 🔹 Disparar evento 'change' para actualizar la interfaz de WooCommerce
+                        setTimeout(() => {
+                            selects.forEach(select => {
+                                select.dispatchEvent(new Event("change"));
+                            });
+                        }, 200);
+                    }
+                
+                    // 🔹 Guardar la selección cuando el usuario cambie una variante
+                    selects.forEach(select => {
+                        select.addEventListener("change", function () {
+                            const variations = {};
+                            selects.forEach(s => variations[s.name] = s.value);
+                            localStorage.setItem(storageKey, JSON.stringify(variations));
+                        });
+                    });
+                
+                    // 🔹 Limpiar almacenamiento después de agregar al carrito
+                    form.addEventListener("submit", function () {
+                        setTimeout(() => {
+                            localStorage.removeItem(storageKey);
+                        }, 1000);
+                    });
+                });
+
+            </script>
+        <?php
+    }

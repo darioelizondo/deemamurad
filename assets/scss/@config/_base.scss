@@ -221,3 +221,38 @@ button:focus {
 	padding: 5px 10px;
 	z-index: 999999;
 }
+
+// Woocommerce message
+.woocommerce-notices-wrapper {
+
+	a {
+		display: none !important;
+	}
+	
+}
+
+.woocommerce-message {
+	color: index.$black;
+	font-family: index.$font-primary;
+	font-weight: normal;
+	display: inline-flex;
+	align-items: center;
+	margin: 0 !important;
+	padding: 4px 0;
+	border-top: none;
+	background-color: transparent;
+	letter-spacing: 0;
+
+	&::before {
+		content: '' !important;
+		background-color: #848484;
+		width: 100%;
+		height: 1px;
+		left: 0;
+		top: 23px;
+	}
+
+	&:focus-visible {
+		outline: none;
+	}
+}

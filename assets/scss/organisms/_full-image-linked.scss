@@ -81,10 +81,13 @@
         font-family: index.$font-primary-light;
         font-size: 18px;
         line-height: 22px;
+        white-space: nowrap;
+        text-align: center;
 
         @include index.l {
             font-size: 19px;
             line-height: 23px;
+            white-space: normal;
         }
 
         @include index.xl {

@@ -21,6 +21,7 @@
 @use 'molecules/size-guide-modal';
 @use 'molecules/product-item';
 @use 'molecules/products-filters';
+@use 'molecules/cart-popup';
 
 // Organisms
 @use 'organisms/header';
@@ -34,3 +35,4 @@
 @use 'organisms/single-product';
 @use 'organisms/related-products';
 @use 'organisms/archive-products';
+@use 'organisms/cart-page';

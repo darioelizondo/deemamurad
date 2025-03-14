@@ -11,6 +11,12 @@
 
 ?>
 
+<?php
+    // Cart popup
+    include TD . '/template-parts/components/molecules/cart-popup.php';
+?>
+
+
 <!-- Footer -->
 <footer class="footer">
     <!-- Footer top -->
