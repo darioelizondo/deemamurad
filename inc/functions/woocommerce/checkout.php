@@ -331,3 +331,15 @@
         }
         return $fields;
     }
+
+     /** 
+     * Add title "Payment method"
+     */
+
+     add_filter('woocommerce_before_order_notes', 'add_payment_method_title');
+
+     function add_payment_method_title() {
+         echo '<div class="payment-method__wrapper-title">';
+         echo   '<p class="payment-method__title">Payment method</p>';
+         echo '</div>';
+     }

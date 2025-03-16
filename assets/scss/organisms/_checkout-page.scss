@@ -379,15 +379,15 @@
 
     // Label
     label {
-        color: #969696;
-        font-size: 12px;
+        color: #969696 !important;
+        font-size: 12px !important;
 
         @include index.l {
-            font-size: 13px;
+            font-size: 13px !important;
         }
 
         @include index.xxl {
-            font-size: 13px;
+            font-size: 13px !important;
         }
 
         .required {
@@ -469,6 +469,24 @@
         }
 
 
+    }
+
+    // Payment methods title
+    .payment-method__wrapper-title {
+        margin-top: index.$lh;
+    }
+
+    .payment-method__title {
+        color: index.$black;
+        font-family: index.$font-primary-light;
+        font-weight: normal !important;
+        font-size: 15px;
+        line-height: 1;
+        padding-bottom: 12px;
+
+        @include index.l {
+            font-size: 16px;
+        }
     }
 
     // Billing fields
@@ -605,8 +623,64 @@
 
     // Payment
     .woocommerce-checkout #payment {
-        background-color: index.$soft-gray;
+        background-color: index.$white !important;
         border-radius: 0;
+
+        .wc_payment_methods.payment_methods {
+            background-color: index.$white !important;
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+
+        div.payment_box {
+            color: index.$black !important;
+            background-color: index.$white !important;
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+            font-family: index.$font-primary-light !important;
+            font-size: 14px !important;
+            font-weight: 300 !important;
+            line-height: 19px !important;
+            letter-spacing: 1px !important;
+
+            
+            
+            @include index.l {
+                font-size: 15px !important;
+                line-height: 21px !important;
+            }
+            @include index.xl {
+                font-size: 15px !important;
+                line-height: 22px !important;
+            }
+            
+            &::before {
+                content: '' !important;
+                border: none;
+            }
+
+        }
+
+        .eh-stripe-elements-field {
+            background: #F1F1F1 !important;
+            height: 34px !important;
+        }
+
+        .CardBrandIcon-wrapper {
+            .CardBrandIcon {
+                display: none !important;
+            }
+        }
+
+        .ElementsApp, .ElementsApp .InputElement {
+            color: index.$black !important;
+        }
+
+        .form-row {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+            margin-bottom: 0 !important;
+        }
 
         .woocommerce-info {
             color: index.$black;
