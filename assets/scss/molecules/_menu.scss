@@ -97,6 +97,7 @@
         @include index.l {
             flex-direction: row;
             align-items: center;
+            gap: calc( index.$lh / 2 );
         }
 
         @include index.e {

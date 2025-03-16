@@ -337,3 +337,14 @@
             </script>
         <?php
      }
+
+    /** 
+     * Update cart
+     */
+    add_action( 'template_redirect', 'update_cart_action', 10 );
+
+    function update_cart_action() {
+        if ( isset( $_POST['update_cart'] ) ) {
+            WC()->cart->calculate_totals();
+        }
+    }

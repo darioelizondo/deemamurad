@@ -24,3 +24,4 @@
     require_once 'inc/functions/woocommerce/ajax-filter-products.php';
     require_once 'inc/functions/woocommerce/archive-products.php';
     require_once 'inc/functions/woocommerce/cart-popup.php';
+    require_once 'inc/functions/woocommerce/checkout.php';

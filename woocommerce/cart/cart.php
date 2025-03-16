@@ -39,6 +39,26 @@
 					foreach (WC()->cart->get_cart() as $cart_item_key => $cart_item) {
 						$_product   = apply_filters('woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key);
 						$product_id = apply_filters('woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key);
+
+						$product = wc_get_product($cart_item['product_id']);
+						$variations = isset($cart_item['variation']) ? $cart_item['variation'] : [];
+						$variation_id = !empty($cart_item['variation_id']) ? $cart_item['variation_id'] : null;
+						$image_url = get_the_post_thumbnail_url($cart_item['product_id'], 'thumbnail'); // Imagen por defecto
+
+						if ($variation_id) {
+							$variation_galleries = get_field('variation_galleries', $product->get_id());
+							if (!empty($variation_galleries)) {
+								foreach ($variation_galleries as $gallery) {
+									if ($gallery['variation_id'] == $variation_id) {
+										$gallery_images = $gallery['gallery'];
+										if (!empty($gallery_images[0]['url'])) {
+											$image_url = $gallery_images[0]['url']; // Primera imagen de la galería
+										}
+										break;
+									}
+								}
+							}
+						}
 		
 						if ($_product && $_product->exists() && $cart_item['quantity'] > 0) {
 							$product_permalink = apply_filters('woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink($cart_item) : '', $cart_item, $cart_item_key);
@@ -46,10 +66,7 @@
 							<tr class="woocommerce-cart-form__cart-item <?php echo esc_attr(apply_filters('woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key)); ?>">
 								<!-- Imagen del producto -->
 								<td class="cart-image">
-									<?php
-									$thumbnail = apply_filters('woocommerce_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key);
-									echo wp_kses_post($thumbnail);
-									?>
+									<img class="cart-item__image image--fluid" src="<?php echo esc_url($image_url); ?> '" alt="<?php echo esc_attr($product->get_name()); ?>" />
 								</td>
 		
 								<!-- Nombre del producto -->
@@ -131,19 +148,23 @@
 			</table>
 		</div>
 
-		<?php do_action( 'woocommerce_cart_contents' ); ?>
-
-		<!-- Botón de actualizar carrito -->
-		<div class="cart-update-btn">
-			<button type="submit" name="update_cart" value="Actualizar carrito" class="button-update-cart" >Actualizar carrito</button>
-		</div>
+		<?php do_action( 'woocommerce_cart_contents' ); ?>		
 
 		<?php do_action( 'woocommerce_after_cart_contents' ); ?>
 		
 		<!-- Cart Totals Wrapper -->
 		<div class="cart-totals-wrapper">
+			<!-- Botón de actualizar carrito -->
+			<div class="cart-update-btn">
+				<button type="submit" name="update_cart" value="<?php esc_attr_e('Update cart', 'woocommerce'); ?>" class="button-update-cart" formaction="<?php echo esc_url( wc_get_cart_url() ); ?>">
+					<?php esc_html_e('Update cart', 'woocommerce'); ?>
+				</button>
+			</div>
 			<?php woocommerce_cart_totals(); ?>
 		</div>
+
+		<?php wp_nonce_field('woocommerce-cart', 'woocommerce-cart-nonce'); ?>
+
 </form>
  
  <?php do_action('woocommerce_after_cart'); ?>

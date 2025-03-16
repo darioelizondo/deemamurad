@@ -231,7 +231,8 @@ button:focus {
 	
 }
 
-.woocommerce-message {
+.woocommerce-message,
+.cart-empty.woocommerce-info {
 	color: index.$black;
 	font-family: index.$font-primary;
 	font-weight: normal;
