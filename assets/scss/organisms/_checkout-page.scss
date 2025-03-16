@@ -736,6 +736,14 @@
 
 }
 
+.CardNumberField-input-wrapper {
+    left: 0 !important;
+}
+.CardBrandIcon-container,
+#link-pay {
+    display: none !important;
+}
+
 .select2-container {
     width: 100% !important;
 }
