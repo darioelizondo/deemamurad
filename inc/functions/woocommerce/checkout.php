@@ -179,7 +179,7 @@
                         jQuery( '.CardNumberField-input-wrapper' ).style.left = '0px';
                         jQuery( '.CardBrandIcon-container' ).style.display = 'none';
                         jQuery( '#link-pay' ).style.display = 'none';
-                    }, 1500 );
+                    }, 3000 );
                 });
 
             </script>
