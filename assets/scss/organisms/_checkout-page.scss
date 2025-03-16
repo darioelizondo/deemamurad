@@ -377,6 +377,11 @@
 
     }
 
+    .form-row-first,
+    .form-row-last {
+        width: 49% !important;
+    }
+
     // Label
     label {
         color: #969696 !important;
@@ -666,10 +671,16 @@
             height: 34px !important;
         }
 
+        #eh-stripe-card-element {
+            padding: 5px 10px !important;
+        }
+
+        .is-cardNumber .OffsetContainer{
+            display: none !important;
+        }
+
         .CardBrandIcon-wrapper {
-            .CardBrandIcon {
-                display: none !important;
-            }
+            display: none !important;
         }
 
         .ElementsApp, .ElementsApp .InputElement {
