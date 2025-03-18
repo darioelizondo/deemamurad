@@ -1,0 +1,112 @@
+// My account
+@use '../@config/index';
+
+.my-account-page {
+    min-height: 65dvh;
+
+    &__inner {
+        height: 100%;
+    }
+
+    // Lost password
+    .woocommerce-ResetPassword.lost_reset_password {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: calc( index.$lh / 2 );
+
+        @include index.l {
+            width: 400px;
+        }
+
+        @include index.xl {
+            width: 420px;
+        }
+    
+        @include index.xxl {
+            width: 450px;
+        }
+
+        & > p {
+            text-align: center;
+        }
+
+        label {
+            display: none !important;
+        }
+
+        .form-row {
+            width: 100%;
+        }
+
+        input {
+            width: 100%;
+            font-family: index.$font-primary-light;
+            font-size: 14px;
+            font-weight: 300;
+            line-height: 19px;
+            letter-spacing: 1px;
+            color: index.$text;
+            background: transparent;
+            padding: calc( index.$lh / 8 ) 0;
+            border: none;
+            border-radius: 0;
+            border-bottom: solid 1px #5e5e5f;
+
+            @include index.l {
+                font-size: 15px;
+                line-height: 21px;
+            }
+            @include index.xl {
+                font-size: 15px;
+                line-height: 22px;
+            }
+        }
+
+        button[type="submit"] {
+            cursor: pointer;
+            width: 100%;
+            height: 34px;
+            color: index.$white;
+            font-weight: 400;
+            padding: 6px index.$lh;
+            background-color: index.$black;
+            border-radius: 0;
+        
+            &:hover {
+                background-color: #4B4B4B;
+            }
+        
+            @include index.m {
+                // width: auto;
+                padding: 4px index.$lh * .8;
+            }
+        
+            @include index.l {
+                // width: auto;
+                padding: 4px index.$lh * 1.4;
+            }
+        }
+
+    }
+
+}
+
+// Lost password body
+.woocommerce-lost-password {
+
+    .my-account-page {
+        display: flex;
+        align-items: center;
+    }
+
+    .woocommerce {
+        height: 100%;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+
+}
