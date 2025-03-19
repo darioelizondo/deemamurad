@@ -255,6 +255,10 @@
             content: '' !important;
         }
 
+        &:focus-visible {
+            outline: none;
+        }
+
     }
 
 }

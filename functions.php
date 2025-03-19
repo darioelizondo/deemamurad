@@ -26,3 +26,4 @@
     require_once 'inc/functions/woocommerce/cart-popup.php';
     require_once 'inc/functions/woocommerce/checkout.php';
     require_once 'inc/functions/woocommerce/login.php';
+    require_once 'inc/functions/woocommerce/my-account.php';

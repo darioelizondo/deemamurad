@@ -3,6 +3,7 @@
 
 .my-account-page {
     min-height: 65dvh;
+    padding-bottom: index.$lh;
 
     &__inner {
         height: 100%;
@@ -92,21 +93,515 @@
 
     }
 
+    // Errors 
+    .woocommerce-error{
+        font-size: 13px;
+        color: red !important;
+        background: transparent !important;
+        padding: 13px 0 !important;
+        border-top: none !important;
+        margin-bottom: 0 !important;
+
+        @include index.l {
+            font-size: 14px;
+        }
+
+        &:before {
+            content: '' !important;
+        }
+
+        &:focus-visible {
+            outline: none;
+        }
+
+    }
+
 }
 
-// Lost password body
-.woocommerce-lost-password {
-
-    .my-account-page {
-        display: flex;
-        align-items: center;
-    }
-
+// Dashboard
+.woocommerce-account {
+        
     .woocommerce {
-        height: 100%;
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
+        display: grid;
+        margin-top: calc( index.$lh * 0.8 ) ;
+
+        @include index.l {
+            grid-template-columns: repeat( 12, minmax( 0, 1fr ) );
+            gap: index.$lh;
+            margin-top: calc( index.$lh * 2 );
+        }
+
+        &::before,
+        &::after {
+            content: '' !important;
+            display: none !important;
+        }
+
     }
 
+    .woocommerce-MyAccount-navigation {
+        width: 100%;
+        float: none;
+
+        @include index.l {
+            grid-column: span 3;
+        }
+
+        .woocommerce-MyAccount-navigation-link {
+            list-style: none;
+            margin-bottom: calc( index.$lh / 3 );
+
+            &.is-active {
+                a {
+                    &::before {
+                        content: '';
+                        position: absolute;
+                        top: 16px;
+                        left: 0;
+                        width: 100%;
+                        height: 1px;
+                        background-color: #838383;
+            
+                        @include index.l {
+                            top: 18px;
+                        }
+                    }
+                }
+            }
+
+            a {
+                display: inline-block;
+                position: relative;
+
+                &:hover:before{
+                    content: '';
+                    position: absolute;
+                    top: 16px;
+                    left: 0;
+                    width: 100%;
+                    height: 1px;
+                    background-color: #838383;
+        
+                    @include index.l {
+                        top: 18px;
+                    }
+                }
+
+            }
+
+        }
+
+    }
+
+    .woocommerce-MyAccount-content {
+        width: 100%;
+        float: none;
+
+        @include index.l {
+            grid-column: span 9;
+        }
+
+    }
+
+}
+
+.woocommerce-account {
+    // Input
+    input {
+        font-family: index.$font-primary-light !important;
+        font-size: 14px !important;
+        font-weight: 300 !important;
+        line-height: 19px !important;
+        letter-spacing: 1px !important;
+        color: index.$text !important;
+        background: transparent !important;
+        padding: calc( index.$lh / 8 ) 0 !important;
+        border: none !important;
+        border-radius: 0 !important;
+        border-bottom: solid 1px #5e5e5f !important;
+
+        @include index.l {
+            font-size: 15px !important;
+            line-height: 21px !important;
+        }
+        @include index.xl {
+            font-size: 15px !important;
+            line-height: 22px !important;
+        }
+
+    }
+
+    .form-row-first,
+    .form-row-last {
+        width: 49% !important;
+    }
+
+    // Label
+    label,
+    #account_display_name_description,
+    .required {
+        color: #969696 !important;
+        font-size: 12px !important;
+
+        @include index.l {
+            font-size: 13px !important;
+        }
+
+        @include index.xxl {
+            font-size: 13px !important;
+        }
+
+        // .required {
+        //     color: index.$black !important;
+        // }
+
+    }
+    #account_display_name_description {
+        line-height: 1;
+    }
+
+    // Button submit
+    button[ type="submit" ] {
+        width: 100% !important;
+        height: 34px;
+        color: index.$white !important;
+        font-weight: 400 !important;
+        padding: 6px index.$lh !important;
+        background-color: index.$black !important;
+        border-radius: 0 !important;
+        margin-top: calc( index.$lh / 2 ) !important;
+
+        &:hover {
+            background-color: #4B4B4B !important;
+        }
+
+        @include index.m {
+            width: auto !important;
+            min-width: 300px;
+            padding: calc( index.$lh / 3 ) index.$lh * .8 !important;
+        }
+
+        @include index.l {
+            // width: auto;
+            padding: calc( index.$lh / 3 ) index.$lh * 1.4 !important;
+        }
+    }
+
+    // Lost password body
+    .woocommerce-lost-password {
+
+        .my-account-page {
+            display: flex;
+            align-items: center;
+        }
+
+        .woocommerce {
+            height: 100%;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+        }
+
+    }
+
+    // Account details
+    .woocommerce-edit-account {
+        .woocommerce-MyAccount-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        // Order positions of the elements
+
+        .woocommerce-notices-wrapper {
+            order: 1;
+        }
+
+        .woocommerce-EditAccountForm.edit-account{
+            order: 3;
+        }
+
+        .custom-account-title {
+            order: 2
+        }
+
+        // Title
+
+        .custom-account-title {
+            font-family: index.$font-primary-light;
+            font-size: 16px;
+            line-height: 1;
+            margin-bottom: index.$lh;
+
+            @include index.l {
+                font-size: 18px;
+            }
+
+            @include index.xl {
+                font-size: 21px;
+            }
+        }
+
+        // Fieldset
+        fieldset {
+            margin-top: index.$lh;
+
+            label {
+                display: none !important;
+            }
+
+            legend {
+                font-family: index.$font-primary-light;
+                font-size: 16px;
+                line-height: 1;
+                margin-bottom: index.$lh;
+        
+                @include index.l {
+                    font-size: 18px;
+                }
+        
+                @include index.xl {
+                    font-size: 21px;
+                }
+            }
+
+            .form-row-wide {
+                margin-bottom: calc( index.$lh / 3 );
+            }
+
+        }
+
+    }
+
+
+    // Addresses
+    .woocommerce-edit-address {
+
+        // Title
+        .woocommerce-MyAccount-content  {
+            form {
+                h2 {
+                    font-family: index.$font-primary-light !important;
+                    font-size: 16px !important;
+                    line-height: 1 !important;
+                    font-weight: normal !important;
+                    margin-bottom: index.$lh !important;
+        
+                    @include index.l {
+                        font-size: 18px !important;
+                    }
+        
+                    @include index.xl {
+                        font-size: 21px !important;
+                    }
+                }
+            }
+        
+        }
+
+        // Hide optional billing title
+        #billing_billing_info_title_field {
+            display: none !important;
+        }
+
+        .edit-address-title
+        {
+            font-family: index.$font-primary-light;
+            font-size: 16px;
+            line-height: 1;
+            margin-bottom: index.$lh;
+
+            @include index.l {
+                font-size: 18px;
+            }
+
+            @include index.xl {
+                font-size: 21px;
+            }
+        }
+
+        .woocommerce-Addresses {
+            display: flex;
+            flex-direction: column;
+            gap: index.$lh;
+
+        
+
+        }
+
+        .woocommerce-Address-title {
+            &::before,
+            &::after {
+                content: '' !important;
+                display: none !important;
+            }
+        }
+
+        .col-1,
+        .col-2 {
+            float: none;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: index.$lh;
+
+            .woocommerce-Address-title {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: calc( index.$lh / 2 );
+            }
+
+            a {
+                position: relative;
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    top: 16px;
+                    left: 0;
+                    width: 100%;
+                    height: 1px;
+                    background-color: #838383;
+        
+                    @include index.l {
+                        top: 18px;
+                    }
+                }
+
+            }
+
+        }
+
+        .col-1 {
+            padding-bottom: calc( index.$lh * 1.2 );
+            border-bottom: solid 1px #4B4B4B;
+
+            @include index.l {
+                padding-bottom: calc( index.$lh * 2 );
+            }
+
+            header {
+                h2 {
+                    font-family: index.$font-primary-light;
+                    font-size: 16px;
+                    line-height: 1;
+            
+                    @include index.l {
+                        font-size: 18px;
+                    }
+            
+                    @include index.xl {
+                        font-size: 21px;
+                    }
+                }
+            }
+        }
+
+        .col-2 {
+            header {
+                h2 {
+                    font-family: index.$font-primary-light;
+                    font-size: 16px;
+                    line-height: 1;
+            
+                    @include index.l {
+                        font-size: 18px;
+                    }
+            
+                    @include index.xl {
+                        font-size: 21px;
+                    }
+                }
+            }
+        }
+
+    }
+
+    // Orders
+    .woocommerce-orders {
+        .woocommerce-MyAccount-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        // Order positions of the elements
+
+        .woocommerce-notices-wrapper {
+            order: 1;
+        }
+
+        .woocommerce-info{
+            order: 3;
+        }
+
+        .custom-orders-title {
+            order: 2
+        }
+
+        .custom-orders-title {
+            font-family: index.$font-primary-light;
+            font-size: 16px;
+            line-height: 1;
+            margin-bottom: index.$lh;
+
+            @include index.l {
+                font-size: 18px;
+            }
+
+            @include index.xl {
+                font-size: 21px;
+            }
+        }
+
+        .woocommerce-info {
+            font-size: 13px;
+            color: index.$black !important;
+            background: transparent !important;
+            padding: 13px 0 !important;
+            border-top: none !important;
+            margin-bottom: 0 !important;
+
+            @include index.l {
+                font-size: 14px;
+            }
+
+            &:before {
+                content: '' !important;
+            }
+
+            &:focus-visible {
+                outline: none;
+            }
+
+            .button {
+                width: 100% !important;
+                height: 34px;
+                color: index.$white !important;
+                font-weight: 400 !important;
+                padding: 6px index.$lh !important;
+                background-color: index.$black !important;
+                border-radius: 0 !important;
+                margin-top: calc( index.$lh / 2 ) !important;
+                text-align: center;
+            
+                &:hover {
+                    background-color: #4B4B4B !important;
+                }
+            
+                @include index.m {
+                    width: auto !important;
+                    // min-width: 300px;
+                    padding: calc( index.$lh / 3 ) index.$lh * .8 !important;
+                }
+            
+                @include index.l {
+                    // width: auto;
+                    padding: calc( index.$lh / 3 ) index.$lh * 1.4 !important;
+                }
+            }
+
+        }
+
+    }
 }

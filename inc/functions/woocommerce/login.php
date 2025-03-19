@@ -23,17 +23,18 @@
      add_action('wp_footer', 'add_placeholder_to_inputs');
 
     function add_placeholder_to_inputs () {
-        is_page_template( 'templates/page-login.php' );
+        if( is_page_template( 'templates/page-login.php' ) ) {
+            ?>
+                <script>
+                    jQuery(document).ready(function(){
+                    jQuery('#user_login').attr('placeholder', 'User Name or Email*');
+                    // jQuery('#user_email').attr('placeholder', 'User Email');
+                    jQuery('#user_pass').attr('placeholder', 'Password*');
+                });
+                </script>
+            <?php
+        }
 
-    ?>
-        <script>
-            jQuery(document).ready(function(){
-            jQuery('#user_login').attr('placeholder', 'User Name or Email*');
-            // jQuery('#user_email').attr('placeholder', 'User Email');
-            jQuery('#user_pass').attr('placeholder', 'Password*');
-        });
-        </script>
-    <?php
     }
 
     /** 

@@ -266,4 +266,26 @@
         
     }
 
+    // Errors 
+    .woocommerce-error{
+        font-size: 13px;
+        color: red !important;
+        background: transparent !important;
+        padding: 13px 13px !important;
+        border-top: none !important;
+
+        @include index.l {
+            font-size: 14px;
+        }
+
+        &:before {
+            content: '' !important;
+        }
+
+        &:focus-visible {
+            outline: none;
+        }
+
+    }
+
 }
