@@ -98,9 +98,13 @@
         align-items: center;
         justify-content: center;
         gap: calc( index.$lh / 2 );
+        margin-top: calc( index.$lh * 2 );
 
         @include index.l {
             width: 400px;
+            margin-top: calc( index.$lh * 2 );
+            grid-column: 5 / 9;
+            justify-self: center;
         }
 
         @include index.xl {

@@ -58,7 +58,7 @@
                                         <span class="register-form__no-account-text">
                                             You already have an account?
                                         </span>
-                                        <a class="register-form__create-account" href="<?php echo get_site_url() . '/register/'; ?>">
+                                        <a class="register-form__create-account" href="<?php echo get_site_url() . '/login/'; ?>">
                                             Log in here
                                         </a>
                                     </div>

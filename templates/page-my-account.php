@@ -6,9 +6,12 @@
      * @package Darío Elizondo
      */
 
-    if ( !is_user_logged_in() ) {
+    $current_url = $_SERVER['REQUEST_URI']; // Obtiene la URL actual
+
+    // Verifica si el usuario no está logueado y la URL NO es "/my-account/lost-password"
+    if ( !is_user_logged_in() && strpos($current_url, '/my-account/lost-password') === false ) {
         wp_redirect( site_url('/login') ); // 🔥 Cambia "/login" por la URL real de tu página de login
-        exit; // Importante para detener la ejecución
+        exit;
     }
 
     get_header();
