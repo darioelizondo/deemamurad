@@ -145,10 +145,10 @@
 
                         if ($(window).width() < 768) {
 
-                            $('.shop_table').hide(); // Oculta por defecto en mobile
+                            $('.shop_table.woocommerce-checkout-review-order-table').hide(); // Oculta por defecto en mobile
 
                             $('#order-review-toggle').off('click').on('click', function() {
-                                $('.shop_table').slideToggle(300); // Efecto de slide
+                                $('.shop_table.woocommerce-checkout-review-order-table').slideToggle(300); // Efecto de slide
                                 $( '.order-review-header__plus-minus-toggle' ).toggleClass( 'collapsed' );
                                 $( '.order-review-header__total' ).toggleClass( 'active' );
                                 $( '#orderReviewHeaderEditTwo' ).toggleClass( 'active' );
