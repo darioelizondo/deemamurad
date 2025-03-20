@@ -176,6 +176,70 @@
                     ],
                     "min": "",
                     "max": ""
+                },
+                "layout_67dc78c1a0af7": {
+                    "key": "layout_67dc78c1a0af7",
+                    "name": "two_images_section",
+                    "label": "Two images section",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_67dc79eaa0afa",
+                            "label": "Two images section",
+                            "name": "two_images_section",
+                            "aria-label": "",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_67dc76b39a69c"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_67dc79fca0afb": {
+                    "key": "layout_67dc79fca0afb",
+                    "name": "text_with_form",
+                    "label": "Text with form",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_67dc7a03a0afe",
+                            "label": "Text with form",
+                            "name": "text_with_form",
+                            "aria-label": "",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_67dc7824b797a"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
                 }
             },
             "min": "",
@@ -205,5 +269,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1739582069
+    "modified": 1742502485
 }

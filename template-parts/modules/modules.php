@@ -16,6 +16,8 @@
         if ( get_row_layout() === 'full_image_linked' )         require TD . '/template-parts/components/organisms/full-image-linked.php';
         if ( get_row_layout() === 'images_on_scroll' )          require TD . '/template-parts/components/organisms/images-on-scroll.php';
         if ( get_row_layout() === 'category_with_image' )       require TD . '/template-parts/components/organisms/category-with-image.php';
+        if ( get_row_layout() === 'two_images_section' )        require TD . '/template-parts/components/organisms/two-images-section.php';
+        if ( get_row_layout() === 'text_with_form' )            require TD . '/template-parts/components/organisms/text-with-form.php';
      
         $module_count++;
      
