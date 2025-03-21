@@ -1,0 +1,134 @@
+// About Deema
+@use '../@config/index';
+
+.page-id-789{
+
+    @include index.l {
+        overflow: visible; // For sticky position on summary
+    }
+
+}
+
+.about-deema {
+    
+     // Inner
+     &__inner {
+        display: flex;
+        flex-direction: column;
+        gap: index.$lh;
+         
+         @include index.l {
+            display: grid;
+            grid-template-columns: repeat( 12, minmax( 0, 1fr ) );
+            gap: calc( index.$lh * 1.5 );
+
+        }
+
+        @include index.xl {
+            gap: calc( index.$lh * 2 );
+        }
+
+
+    }
+
+    // Title
+    &__wrapper-title {
+        order: 2;
+        @include index.l {
+            order: 1;
+            grid-column: span 2;
+        }
+    }
+    
+    &__title {
+        font-family: index.$font-primary-light;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 1;
+        // margin-bottom: calc( index.$lh / 1.4 );
+
+        @include index.l {
+            position: sticky;
+            top: 20px;
+            left: 0;
+            font-size: 18px;
+        }
+
+        @include index.xl {
+            font-size: 21px;
+        }
+    }
+
+    // Content
+    &__wrapper-content {
+        order: 3;
+        
+        @include index.l {
+            order: 2;
+            display: flex;
+            flex-direction: column;
+            gap: calc( index.$lh / 1.4 );
+            grid-column: span 6;
+        }
+        
+    }
+
+    // Swiper
+    &__swiper-wrapper {
+
+        @include index.l {
+            display: grid;
+            overflow: hidden;
+            max-height: calc( 100vh - 50px );
+            grid-template-columns: repeat( 2, minmax( 0, 1fr ) );
+            column-gap: calc( index.$lh / 2.5 );
+        }
+        
+    }
+
+    &__swiper-slide {
+        font-size: 0;
+        line-height: 1;
+    }
+
+    // Text
+    &__wrapper-text {
+        margin-bottom: index.$lh;
+
+        @include index.l {
+            margin-bottom: 0;
+        }
+
+        p {
+            margin-bottom: calc( index.$lh / 2 );
+        }
+    }
+
+    // Image
+    &__wrapper-main-image {
+        order: 1;
+        
+        @include index.l {
+            order: 3;
+            grid-column: span 4;
+            position: relative;
+            overflow: hidden;
+            font-size: 0;
+            line-height: 1;
+        }
+
+    }
+
+    &__main-image {
+      
+        @include index.l {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            object-position: center;
+        }
+    
+    }
+
+}

@@ -1,7 +1,7 @@
-// Two images section
-const twoImagesSection = () =>  {
+// About Deema
+const aboutDeema = () =>  {
 
-    const sliders = document.querySelectorAll( '.two-images-section__swiper' );
+    const sliders = document.querySelectorAll( '.about-deema__swiper' );
 
     if ( window.innerWidth < 768 ) {
 
@@ -20,4 +20,4 @@ const twoImagesSection = () =>  {
     }
 };
 
-document.addEventListener( 'DOMContentLoaded', twoImagesSection );
+document.addEventListener( 'DOMContentLoaded', aboutDeema );

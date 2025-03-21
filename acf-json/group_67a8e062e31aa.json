@@ -240,6 +240,38 @@
                     ],
                     "min": "",
                     "max": ""
+                },
+                "layout_67dcac238fa1f": {
+                    "key": "layout_67dcac238fa1f",
+                    "name": "about_deema",
+                    "label": "About Deema",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_67dcac278fa22",
+                            "label": "About Deema",
+                            "name": "about_deema",
+                            "aria-label": "",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_67dcab9cf05fc"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
                 }
             },
             "min": "",
@@ -269,5 +301,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1742502485
+    "modified": 1742515254
 }
