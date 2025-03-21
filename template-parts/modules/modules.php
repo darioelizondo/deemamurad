@@ -19,6 +19,7 @@
         if ( get_row_layout() === 'two_images_section' )        require TD . '/template-parts/components/organisms/two-images-section.php';
         if ( get_row_layout() === 'text_with_form' )            require TD . '/template-parts/components/organisms/text-with-form.php';
         if ( get_row_layout() === 'about_deema' )               require TD . '/template-parts/components/organisms/about-deema.php';
+        if ( get_row_layout() === 'contact' )                   require TD . '/template-parts/components/organisms/contact.php';
      
         $module_count++;
      

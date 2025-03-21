@@ -1,0 +1,148 @@
+// Contact
+@use '../@config/index';
+
+.contact {
+
+    // Inner
+    &__inner {
+        display: flex;
+        flex-direction: column;
+        gap: index.$lh;
+
+        @include index.l {
+            display: grid;
+            grid-template-columns: repeat( 2, minmax( 0, 1fr ) );
+            column-gap: calc( index.$lh * 1.5 );
+        }
+
+        @include index.xl {
+            column-gap: calc( index.$lh * 2 );
+        }
+
+    }
+
+    // Title
+    &__wrapper-title {
+        @include index.l {
+        grid-column: span 2;
+        }
+    }
+
+    &__title {
+        font-family: index.$font-primary-light;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 1;
+        margin-bottom: calc( index.$lh / 1.4 );
+
+        @include index.l {
+            position: sticky;
+            top: 20px;
+            left: 0;
+            font-size: 18px;
+        }
+
+        @include index.xl {
+            font-size: 21px;
+        }
+    }
+
+    // Text
+    //  &__wrapper-text {
+
+    //     p {
+    //         margin-bottom: calc( index.$lh / 2 );
+    //     }
+
+    // }
+
+    // Image
+    &__wrapper-image {
+        
+        @include index.l {
+            position: relative;
+            overflow: hidden;
+            font-size: 0;
+            line-height: 1;
+        }
+
+    }
+
+    &__image {
+      
+        @include index.l {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            object-position: center;
+        }
+    
+    }
+
+    // Form
+    &__wrapper-form {
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: calc( index.$lh / 3 );
+        }
+
+        // Input
+        input,
+        textarea {
+            width: 100%;
+            font-family: index.$font-primary-light !important;
+            font-size: 14px !important;
+            font-weight: 300 !important;
+            line-height: 19px !important;
+            letter-spacing: 1px !important;
+            color: index.$text !important;
+            background: transparent !important;
+            padding: calc( index.$lh / 8 ) calc( index.$lh / 3 ) !important;
+            border: none !important;
+            border-radius: 0 !important;
+            border: solid 1px #5e5e5f !important;
+
+            @include index.l {
+                font-size: 14px !important;
+                line-height: 20px !important;
+            }
+            @include index.xl {
+                font-size: 15px !important;
+                line-height: 22px !important;
+            }
+
+        }
+
+    }
+
+    &__wrapper-submit {
+        input {
+            width: 100% !important;
+            height: 34px;
+            color: index.$white !important;
+            font-weight: 400 !important;
+            padding: 6px index.$lh !important;
+            background-color: index.$black !important;
+            border-radius: 0 !important;
+    
+            &:hover {
+                background-color: #4B4B4B !important;
+            }
+    
+            @include index.m {
+                // width: auto !important;
+                min-width: 300px;
+                // padding: calc( index.$lh / 3 ) index.$lh * .8 !important;
+            }
+    
+            @include index.l {
+                // width: auto;
+                // padding: calc( index.$lh / 3 ) index.$lh * 1.4 !important;
+            }
+        }
+    }
+
+}
