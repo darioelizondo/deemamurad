@@ -21,6 +21,8 @@
         if ( get_row_layout() === 'about_deema' )               require TD . '/template-parts/components/organisms/about-deema.php';
         if ( get_row_layout() === 'contact' )                   require TD . '/template-parts/components/organisms/contact.php';
         if ( get_row_layout() === 'faq' )                       require TD . '/template-parts/components/organisms/faq.php';
+        if ( get_row_layout() === 'events' )                    require TD . '/template-parts/components/organisms/events.php';
+        if ( get_row_layout() === 'press' )                     require TD . '/template-parts/components/organisms/press.php';
      
         $module_count++;
      

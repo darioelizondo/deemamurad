@@ -72,14 +72,11 @@
         text-transform: uppercase;
 
         @include index.l {
-            position: sticky;
-            top: 20px;
-            left: 0;
-            font-size: 15px;
+            font-size: 14px;
         }
 
         @include index.xl {
-            font-size: 1px;
+            font-size: 15px;
         }
     }
 

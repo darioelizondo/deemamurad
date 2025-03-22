@@ -26,7 +26,7 @@
             <?php foreach( $group[ 'items' ] as $nitem => $item ) : ?>
                 <div class="faq__accordion-item">
                     <div id="faq-accordion-<?php echo $nitem ?>" class="faq__accordion-title">
-                        <span class="faq__accordioon-span-title">
+                        <span class="faq__accordion-span-title">
                             <?php echo esc_html( $item[ 'title' ] ); ?>
                         </span>
                         <div class="faq__accordion-title-right">

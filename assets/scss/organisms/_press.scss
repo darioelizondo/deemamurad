@@ -1,0 +1,119 @@
+// Press
+@use '../@config/index';
+
+.press {
+    background-color: index.$soft-gray;
+
+    // Inner
+    &__inner {
+        padding-top: calc( index.$lh / 1.4 );
+        padding-bottom: calc( index.$lh * 1.2 );
+
+        @include index.l {
+            padding-bottom: calc( index.$lh * 2 );
+        }
+
+    }
+
+    // Title
+    &__title {
+        font-family: index.$font-primary-light;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 1;
+        margin-bottom: calc( index.$lh * 1.4 );
+
+        @include index.l {
+            font-size: 18px;
+        }
+
+        @include index.xl {
+            font-size: 21px;
+        }
+    }
+
+    // Wrapper items
+    &__wrapper-items {
+        position: relative;
+
+    }
+
+    // Item
+    &__item {
+        display: inline-flex;
+        flex-direction: column;
+        gap: calc( index.$lh / 3 );
+        position: absolute;
+        max-width: 200px;
+
+        @include index.l {
+            max-width: none;
+        }
+
+    }
+
+    // Item title
+    &__item-title {
+        font-family: index.$font-primary-light;
+        font-weight: normal;
+        font-size: 13px;
+        line-height: 1;
+        text-align: right;
+        text-transform: uppercase;
+
+        @include index.l {
+            font-size: 13px;
+        }
+
+        @include index.xl {
+            font-size: 14px;
+        }
+    }
+
+    // Image
+    &__wrapper-image {
+        position: relative;
+        font-size: 0;
+        line-height: 1;
+        max-width: 200px;
+
+        @include index.l {
+            max-width: 300px;
+        }
+
+        @include index.xxl {
+            max-width: none;
+        }
+
+        img {
+            transition: opacity .3s ease;
+        }
+
+        &:hover .press__main-image {
+            opacity: 0;
+        }
+
+        &:hover .press__second-image {
+            opacity: 1;
+        }
+
+    }
+
+    // Main image
+    &__main-image {
+        // position: absolute;
+        // left: 0;
+        // top: 0;
+        z-index: 2;
+    }   
+
+    // Second image
+    &__second-image {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 1;
+        opacity: 0;
+    }
+
+}

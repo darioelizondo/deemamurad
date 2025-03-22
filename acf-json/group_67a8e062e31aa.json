@@ -336,6 +336,70 @@
                     ],
                     "min": "",
                     "max": ""
+                },
+                "layout_67df05ab4acdb": {
+                    "key": "layout_67df05ab4acdb",
+                    "name": "events",
+                    "label": "Events",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_67df05b24acde",
+                            "label": "Events",
+                            "name": "events",
+                            "aria-label": "",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_67df04c6c778e"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_67df05c7801b8": {
+                    "key": "layout_67df05c7801b8",
+                    "name": "press",
+                    "label": "Press",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_67df05cb801bb",
+                            "label": "Press",
+                            "name": "press",
+                            "aria-label": "",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_67df0541b6979"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
                 }
             },
             "min": "",
@@ -365,5 +429,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1742610366
+    "modified": 1742669275
 }
