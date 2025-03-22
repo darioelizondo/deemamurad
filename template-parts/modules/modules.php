@@ -20,6 +20,7 @@
         if ( get_row_layout() === 'text_with_form' )            require TD . '/template-parts/components/organisms/text-with-form.php';
         if ( get_row_layout() === 'about_deema' )               require TD . '/template-parts/components/organisms/about-deema.php';
         if ( get_row_layout() === 'contact' )                   require TD . '/template-parts/components/organisms/contact.php';
+        if ( get_row_layout() === 'faq' )                       require TD . '/template-parts/components/organisms/faq.php';
      
         $module_count++;
      
