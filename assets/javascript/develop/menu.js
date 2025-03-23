@@ -40,27 +40,55 @@ const toggleOpenCloseMegaMenu = () => {
     const linkFirstChild = document.querySelectorAll( '.menu__has-child--first-level' );
     const liFirstLevel = document.querySelectorAll( '.menu__nav > li' );
     const megaMenu = document.querySelector( '.wrapper-submenu' );
+    const isMobile = window.innerWidth <= 768;
+    const imagePlaceholder = document.getElementById( 'imagePlaceholder' );
+    const backCollections = document.querySelector( '.menu__back-collections' );
 
     linkFirstChild.forEach( ( link ) => {
 
         link.addEventListener( 'click', ( e ) => e.preventDefault() );
 
-        link.addEventListener( 'mouseenter', ( event ) => {
-            event.preventDefault();
-            // Link active
-            jQuery( link ).parent().addClass( 'active' );
-            // Megamenu active
-            jQuery( link ).next().addClass( 'active' );
-        });
+        if( !isMobile ) {
+            link.addEventListener( 'mouseenter', ( event ) => {
+                event.preventDefault();
+                // Link active
+                jQuery( link ).parent().addClass( 'active' );
+                // Megamenu active
+                jQuery( link ).next().addClass( 'active' );
+            });
+        }
+
+
+        if( isMobile ) {
+            link.addEventListener( 'click', ( event ) => {
+                event.preventDefault();
+                // Link active
+                jQuery( link ).parent().toggleClass( 'active' );
+                // Megamenu active
+                jQuery( link ).next().toggleClass( 'active' );
+            });
+            backCollections.addEventListener( 'click', ( event ) => {
+                event.preventDefault();
+                 // Link active
+                 jQuery( link ).parent().toggleClass( 'active' );
+                 // Megamenu active
+                 jQuery( link ).next().toggleClass( 'active' );
+            } )
+        }
+
+
     });
 
-    megaMenu.addEventListener( 'mouseleave', ( event ) => {
-        event.preventDefault();
-        // Link active
-        jQuery( megaMenu ).parent().removeClass( 'active' );
-        // Megamenu active
-        jQuery( megaMenu ).removeClass( 'active' );
-    });
+    if( !isMobile ) {
+        megaMenu.addEventListener( 'mouseleave', ( event ) => {
+            event.preventDefault();
+            // Link active
+            jQuery( megaMenu ).parent().removeClass( 'active' );
+            // Megamenu active
+            jQuery( megaMenu ).removeClass( 'active' );
+            imagePlaceholder.src = imagePlaceholder.dataset.image;
+        });
+    }
 
    liFirstLevel.forEach( ( li, index ) => {
         if( index !== 0 ) {
@@ -174,6 +202,8 @@ const clickAwayListenerForSubmenu = () => {
 
 const addItemInSubmenuCollection = () => {
 
+    const isMobile = window.innerWidth <= 768;
+
     // Mega menu
     const megaMenu = document.querySelector( '.wrapper-submenu' );
 
@@ -210,11 +240,13 @@ const addItemInSubmenuCollection = () => {
     // Add new link with SVG to collections item
     liCollections.appendChild( newItem );
 
-    liCollections.addEventListener( 'click', ( event ) => {
-        event.preventDefault();
-        megaMenu.classList.remove( 'active' );
-        megaMenu.previousSibling.classList.remove( 'active' );
-    });
+    if( isMobile ) {
+        liCollections.addEventListener( 'click', ( event ) => {
+            event.preventDefault();
+            megaMenu.classList.remove( 'active' );
+            megaMenu.previousSibling.classList.remove( 'active' );
+        });
+    }
 
 }
 

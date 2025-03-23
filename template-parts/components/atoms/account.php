@@ -11,7 +11,7 @@
 
 <!-- Account -->
 <div class="account">
-	<p>
-    Account
-    </p>
+    <a class="account__link" href="<?php echo wc_get_page_permalink( 'myaccount' ); ?>">
+        Account
+    </a>
 </div>

@@ -195,11 +195,14 @@
         height: 100vh;
         background-color: index.$white;
         position: absolute;
-        top: -250%;
+        top: 0;
+        // top: -250%;
         left: 0;
-        transition: top .4s cubic-bezier(.86,0,.07,1);
+        // transition: top .4s cubic-bezier(.86,0,.07,1);
         z-index: 9;
         overflow-y: auto;
+        pointer-events: none;
+        opacity: 0;
         
         @include index.l {
             height: auto;
@@ -211,6 +214,8 @@
 
         &.active {
             top: 26px;
+            pointer-events: auto;
+            opacity: 1;
 
             @include index.l {
                 top: 50px;
@@ -226,7 +231,7 @@
             display: flex;
             flex-direction: column;
             gap: calc( index.$lh / 3 );
-            width: calc(100% - 40px);
+            width: calc(100% - 24px);
             margin: 0 auto;
 
             @include index.m {
@@ -256,10 +261,14 @@
 
         &--second-level {
             .menu-item {
-                padding: 8px 0;
+                padding: 4px 0;
 
                 @include index.l {
                     padding: 0;
+                }
+
+                &:first-child {
+                    padding-top: calc( index.$lh / 1.7 );
                 }
 
             }
@@ -270,7 +279,7 @@
     // All collections
     &__all-collections {
         display: none;
-        pointer-events: none;
+        // pointer-events: none;
 
         @include index.l {
             display: flex;
@@ -318,6 +327,10 @@
         }
 
         @include index.xl {
+            max-width: 425px;
+        }
+
+        @include index.xxl {
             max-width: 500px;
         }
 

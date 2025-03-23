@@ -7,7 +7,7 @@
     // Inner
     &__inner {
         position: relative;
-        height: 200vh; /* So that there is enough scroll */
+        height: 160vh; /* So that there is enough scroll */
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -35,7 +35,7 @@
 
         &:nth-child( 1n ) {
             .images-on-scroll__image {
-                max-width: 250px;
+                max-width: 300px;
 
                 @include index.l {
                     max-width: 500px;
@@ -54,7 +54,7 @@
 
         &:nth-child( 2n ) {
             .images-on-scroll__image {
-                max-width: 175px;
+                max-width: 230px;
 
                 @include index.l {
                     max-width: 420px;
@@ -73,7 +73,7 @@
 
         &:nth-child( 3n ) {
             .images-on-scroll__image {
-                max-width: 300px;
+                max-width: 325px;
 
                 @include index.l {
                     max-width: 650px;

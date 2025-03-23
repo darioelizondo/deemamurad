@@ -11,12 +11,12 @@
 
     // Wrapper image
     &__wrapper-image {
-        height: calc( 95dvh - 37px );
+        height: calc( 80vh - 37px );
         position: relative;
         overflow: hidden;
 
         @include index.l {
-            height: calc( 95dvh - 52px );
+            height: calc( 80vh - 52px );
         }
 
     }
