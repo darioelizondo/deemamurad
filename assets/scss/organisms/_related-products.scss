@@ -2,7 +2,7 @@
 @use '../@config/index';
 
 .related-products {
-    padding-bottom: calc( index.$lh * 2 );
+    padding-bottom: calc( index.$lh * 3 );
 
     @include index.l {
         padding-bottom: calc( index.$lh * 2 );        

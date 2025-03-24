@@ -40,7 +40,7 @@
             <!-- Total -->
             <div id="cartTotal" class="cart-popup__wrapper-total">
                 <p class="cart-popup__total-text">
-                    Total products:
+                    Total products
                 </p>
                 <div id="cartTotalPrice" class="cart-popup__total-amount">
                     $0.00

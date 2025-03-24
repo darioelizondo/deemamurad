@@ -9,13 +9,15 @@
 
     // Obtener la colección del producto actual
     $product_id = get_the_ID();
-    $collections = wp_get_post_terms( $product_id, 'collections', array( 'fields' => 'ids' ) );
+    $collections = wp_get_post_terms($product_id, 'collections', array('fields' => 'ids'));
 
-    if ( !empty( $collections ) ) {
+    $related_products = array();
+
+    if (!empty($collections)) {
         $args = array(
             'post_type'      => 'product',
             'posts_per_page' => 4, // Número de productos a mostrar
-            'post__not_in'   => array( $product_id ), // Excluir el producto actual
+            'post__not_in'   => array($product_id), // Excluir el producto actual
             'tax_query'      => array(
                 array(
                     'taxonomy' => 'collections',
@@ -25,7 +27,22 @@
             ),
         );
 
-        $related_products = get_posts( $args );
+        $related_products = get_posts($args);
+    }
+
+    // Si la cantidad de productos encontrados es menor a 4, buscar más productos sin importar la taxonomía
+    $found_products = count($related_products);
+
+    if ($found_products < 4) {
+        $additional_args = array(
+            'post_type'      => 'product',
+            'posts_per_page' => 4 - $found_products, // Cantidad de productos adicionales necesarios
+            'post__not_in'   => array_merge(array($product_id), wp_list_pluck($related_products, 'ID')), // Excluir el producto actual y los ya encontrados
+        );
+
+        $additional_products = get_posts($additional_args);
+        $related_products = array_merge($related_products, $additional_products);
+    }
 
         wp_enqueue_script( 'swiper' );
         wp_enqueue_script( 'deemamurad.related-products' );
@@ -61,6 +78,5 @@
                     </div>
                 </div>
             </div>
-        <?php endif;
-    } ?>
+        <?php endif; ?>
     <!-- End related products -->

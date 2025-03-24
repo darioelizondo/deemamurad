@@ -23,7 +23,7 @@
                         <!-- Counter -->
                         <?php if( WC()->cart->get_cart_contents_count() > 0 ) : ?>
                             <span class="header-cart__count">
-                                <?php echo WC()->cart->get_cart_contents_count(); ?>
+                                (<?php echo WC()->cart->get_cart_contents_count(); ?>)
                             </span>
                         <?php endif; ?>
                     </button>

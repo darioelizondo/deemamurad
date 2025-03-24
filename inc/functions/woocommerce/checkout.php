@@ -296,7 +296,7 @@
         if (is_user_logged_in()) {
             // Usuario logueado
             $current_user = wp_get_current_user(); 
-            echo '<div class="checkout-account-info">';
+            echo '<div class="checkout-account-info checkout-account-info--logged-in">';
             echo    '<h4 class="checkout-account-info__title">Account</h4>';
             echo    '<div class="checkout-account-info__details">';
             echo        '<p class="checkout-account-info__email">' . esc_html($current_user->user_email) . '</p>';
@@ -306,12 +306,12 @@
         } else {
             // Usuario no logueado
             echo '<div class="checkout-account-info">';
+            echo    '<div class="checkout-account-info__wrapper-title">';
+            echo        '<p class="checkout-account-info__title">Contact</p>';
+            echo    '</div>';
             echo    '<div class="checkout-account-info__inner">';
             echo        '<p clas="checkout-account-info__label">Already have an account?</p>';
             echo        '<a class="checkout-account-info__login" href="' . esc_url(wp_login_url(wc_get_checkout_url())) . '" class="checkout-login-link">Login</a>';
-            echo    '</div>';
-            echo    '<div class="checkout-account-info__wrapper-title">';
-            echo        '<p class="checkout-account-info__title">Contact</p>';
             echo    '</div>';
             echo '</div>';
             
@@ -352,3 +352,80 @@
          echo   '<p class="payment-method__title">Payment method</p>';
          echo '</div>';
      }
+
+     /** 
+     * Change labels in checkout form
+     */
+
+    add_filter('woocommerce_checkout_fields', 'custom_override_checkout_fields');
+
+    function custom_override_checkout_fields( $fields ) {
+
+        // Cambiar labels en el formulario de facturación (Billing)
+        $fields['billing']['billing_country']['label'] = 'Country';
+        $fields['billing']['billing_city']['label'] = 'City';
+        $fields['billing']['billing_state']['label'] = 'State';
+        $fields['billing']['billing_address_1']['label'] = 'Address';
+        $fields['billing']['billing_postcode']['label'] = 'Postcode';
+        $fields['billing']['billing_phone']['label'] = 'Phone number';
+    
+        // Cambiar labels en el formulario de envío (Shipping)
+        $fields['shipping']['shipping_country']['label'] = 'Country';
+        $fields['shipping']['shipping_city']['label'] = 'City';
+        $fields['shipping']['shipping_state']['label'] = 'State';
+        $fields['shipping']['shipping_postcode']['label'] = 'Address';
+    
+        return $fields;
+    }
+
+    add_filter( 'woocommerce_default_address_fields' , 'override_default_address_fields' );
+    function override_default_address_fields( $address_fields ) {
+
+        $address_fields['address_1']['label'] = __('Address', 'woocommerce');
+        $address_fields['city']['label'] = __('City', 'woocommerce');
+        $address_fields['state']['label'] = __('State', 'woocommerce');
+        $address_fields['postcode']['label'] = __('Postcode', 'woocommerce');
+
+        return $address_fields;
+    }
+
+     /** 
+     * Adjust layout in billing form with state and city
+     */
+
+    add_action('wp_footer', 'fix_layout_checkout');
+
+     function fix_layout_checkout() {
+        ?>
+
+            <script>
+                jQuery(document).ready(function($) {
+
+                    // Billing and shipping form
+                    const stateInputBilling = document.getElementById( 'billing_state_field' );
+                    const stateInputShipping = document.getElementById( 'shipping_state_field' );
+
+                    if ( stateInputBilling.style.display === "none" ) {
+                        stateInputBilling.nextElementSibling.style.width = '49%';
+                        stateInputBilling.nextElementSibling.style.float = 'right';
+                        stateInputBilling.nextElementSibling.style.clear = 'none';
+                    }
+
+                    if ( stateInputShipping.style.display === "none" ) {
+                        stateInputShipping.nextElementSibling.style.width = '49%';
+                        stateInputShipping.nextElementSibling.style.float = 'right';
+                        stateInputShipping.nextElementSibling.style.clear = 'none';
+                    }
+
+                    // Ship to a different address
+                    const shipToDifferentAddress = document.getElementById( 'ship-to-different-address' );
+
+                    if( shipToDifferentAddress ) {
+                        shipToDifferentAddress.querySelector( 'label' ).nextElementSibling.innerHTML = 'Ship to a different address';
+                    }
+
+                });
+            </script>
+
+        <?php
+    }

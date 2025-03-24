@@ -178,7 +178,7 @@
                             </h4>
                             <div class="products-filters__accordion-content">
                                 <?php
-                                    $collections = get_terms(['taxonomy' => 'collections', 'hide_empty' => true]);
+                                    $collections = get_terms(['taxonomy' => 'collections', 'orderby'  => 'id', 'hide_empty' => true]);
                                     foreach ($collections as $collection) {
                                         echo '<label class="products-filters__custom-checkbox"><input class="products-filters__checkbox" type="checkbox" name="collections[]" data-filter="collections" value="' . esc_attr($collection->slug) . '"><span class="checkmark"></span>' . esc_html($collection->name) . '</label>';
                                     }

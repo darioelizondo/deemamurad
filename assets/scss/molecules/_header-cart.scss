@@ -32,28 +32,28 @@
     }
 
     // Count
-    &__count {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: absolute;
-        top: -5px;
-        right: -10px;
-        width: 14px;
-        height: 14px;
-        border-radius: 50%;
-        background-color: index.$black;
-        color: index.$white;
-        font-size: 10px;
-        font-weight: bold;
+    // &__count {
+    //     display: flex;
+    //     align-items: center;
+    //     justify-content: center;
+    //     position: absolute;
+    //     top: -5px;
+    //     right: -10px;
+    //     width: 14px;
+    //     height: 14px;
+    //     border-radius: 50%;
+    //     background-color: index.$black;
+    //     color: index.$white;
+    //     font-size: 10px;
+    //     font-weight: bold;
 
-        @include index.l {
-            width: 16px;
-            height: 16px;
-            top: -5px;
-            right: -10px;
-            font-size: 11px;
-        }
+    //     @include index.l {
+    //         width: 16px;
+    //         height: 16px;
+    //         top: -5px;
+    //         right: -10px;
+    //         font-size: 11px;
+    //     }
 
-    }
+    // }
 }

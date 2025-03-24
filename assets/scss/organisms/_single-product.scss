@@ -484,4 +484,14 @@
         }
     }
 
+    // Hide variation price next to add to cart button
+    .woocommerce-variation .woocommerce-variation-price {
+        display: none;
+    }
+
+    // Hide Woocommerce Notice 
+    .woocommerce-notices-wrapper {
+        display: none;
+    }
+
 }

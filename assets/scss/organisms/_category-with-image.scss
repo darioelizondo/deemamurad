@@ -49,12 +49,14 @@
 
     // List
     &__wrapper-list {
+        width: 250px;
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
-        gap: index.$lh;
+        gap: calc( index.$lh / 2 );
 
         @include index.xl {
+            width: auto;
             gap: index.$lh;
 
         }

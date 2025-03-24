@@ -257,3 +257,18 @@ button:focus {
 		outline: none;
 	}
 }
+
+.cart-empty.woocommerce-info {
+	margin-bottom: 13px !important;
+
+	&::before {
+		display: none;
+	}
+
+	.return-to-shop {
+		.button {
+			line-height: 1 !important;
+		}
+	}
+
+}

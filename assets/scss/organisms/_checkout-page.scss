@@ -2,7 +2,33 @@
 @use '../@config/index';
 
 .page-template-page-checkout.woocommerce-checkout {
-    // Header
+    // Header & Footer
+
+    .header {
+        display: grid;
+        align-items: center;
+        height: 37px;
+
+        @include index.l {
+            height: 52px;
+        }
+
+    }
+
+    .header__right,
+    .header__center {
+        display: none;
+
+        // @include index.l {
+        //     display: block;
+        // }
+
+    }
+
+    .footer {
+        display: none;
+    }
+
 }
 
 .checkout-page {
@@ -23,14 +49,17 @@
                 order: 1;
                 grid-column: span 2;
                 padding: calc( index.$lh * 2 ) 100px;
+                padding-top: 0 !important;
             }
 
             @include index.xl {
                 padding: calc( index.$lh * 3 ) 115px;
+                padding-top: 0 !important;
             }
 
             @include index.xxl {
                 padding: calc( index.$lh * 3 ) 125px;
+                padding-top: 0 !important;
             }
 
             .col-1 {
@@ -56,8 +85,9 @@
             @include index.l {
                 order: 2;
                 padding: calc( index.$lh * 3 ) calc( index.$lh * 1.5 );
+                margin-top: -52px;
                 margin-left: 0;
-                margin-right: 0;
+                margin-right: -30px;
             }
 
             // Shop table
@@ -65,6 +95,7 @@
                 display: block;
                 border: none;
                 border-top: solid 1px #aeaeae;
+                border-radius: 0 !important;
 
                 tbody {
                     display: block;
@@ -85,6 +116,17 @@
                     }
                 }
 
+                .cart-subtotal td,
+                .woocommerce-shipping-totals td,
+                .order-total td {
+                    padding-right: 0 !important;
+                }
+
+                .cart-subtotal th,
+                .woocommerce-shipping-totals th,
+                .order-total th {
+                    padding-left: 0 !important;
+                }
             }
 
             // Title - Accordion
@@ -196,7 +238,7 @@
                 display: grid;
                 grid-template-columns: repeat( 12, minmax( 0, 1fr ) );
                 column-gap: calc( index.$lh / 3 );
-                padding-bottom: calc( index.$lh / 3 );
+                // padding-bottom: calc( index.$lh / 3 );
                 border-bottom: solid 1px #AEAEAE;
         
                 &:not( :first-child ) {
@@ -207,11 +249,12 @@
                 &__image {
                     grid-column: span 3;
                     padding-left: 0 !important;
+                    padding-right: 0 !important;
                 }
         
                 // Details
                 &__details {
-                    grid-column: span 7;
+                    grid-column: span 6;
                     display: flex;
                     flex-direction: column;
                     justify-content: space-between;
@@ -219,7 +262,9 @@
 
                 // Price
                 &__price {
-                    grid-column: span 2;
+                    grid-column: span 3;
+                    text-align: right;
+                    padding-right: 0;
                 }
         
                 // Content
@@ -384,6 +429,13 @@
 
     }
 
+    input:-webkit-autofill {
+        background-color: transparent !important;
+        -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+        box-shadow: 0 0 0px 1000px white inset !important;
+        color: #000 !important;
+    }
+
     .form-row-first,
     .form-row-last {
         width: 49% !important;
@@ -403,7 +455,7 @@
         }
 
         .required {
-            color: index.$black !important;
+            color: #969696 !important;
         }
 
     }
@@ -415,19 +467,22 @@
         display: none !important;
     }
 
-    #billing_city_field,
     #shipping_city_field {
-        @include index.l {
-            width: 47%;
-            float: left;
-            clear: unset;
-        }
+        width: 49%;
+        float: left;
+        clear: unset;
+    }
+
+    #billing_city_field {
+        width: 49%;
+        float: left;
+        clear: unset;
     }
 
     #billing_state_field,
     #shipping_state_field {
         @include index.l {
-            width: 47%;
+            width: 49%;
             float: right;
             clear: unset;
         }
@@ -436,7 +491,7 @@
     // Newsletter checkbox
     #billing_newsletter_field {
         display: flex;
-        align-items: center;
+        // align-items: center;
 
         .woocommerce-form__billing-newsletter-span {
             color: #3F3F46;
@@ -574,7 +629,7 @@
             align-items: center;
             justify-content: flex-end;
             gap: calc( index.$lh / 2 );
-            padding-top: index.$lh;
+            // padding-top: index.$lh;
             padding-bottom: calc( index.$lh / 2 );
 
             @include index.l {
@@ -593,6 +648,17 @@
 
             @include index.l {
                 font-size: 16px;
+            }
+        }
+
+        &--logged-in {
+            display: block;
+
+            .checkout-account-info__inner {
+                order: 2
+            }
+            .checkout-account-info__details {
+                order: 1;
             }
         }
 
@@ -618,8 +684,23 @@
     }
 
     .checkout-account-info {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap:calc( index.$lh / 2 );
         margin-top: index.$lh;
         margin-bottom: index.$lh;
+
+        &--logged-in {
+            display: block;
+
+            .checkout-account-info__inner {
+                order: 2
+            }
+            .checkout-account-info__details {
+                order: 1;
+            }
+        }
 
         &__details {
             display: flex;

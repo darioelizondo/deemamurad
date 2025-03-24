@@ -37,5 +37,7 @@
         wp_register_script( 'deemamurad.two-images-section', TDU . '/assets/javascript/production/two-images-section.js', array( 'jquery' ), filemtime( TD . '/assets/javascript/production/two-images-section.js' ), true );
         wp_register_script( 'deemamurad.about-deema', TDU . '/assets/javascript/production/about-deema.js', array( 'jquery' ), filemtime( TD . '/assets/javascript/production/about-deema.js' ), true );
         wp_register_script( 'deemamurad.faq', TDU . '/assets/javascript/production/faq.js', array( 'jquery' ), filemtime( TD . '/assets/javascript/production/faq.js' ), true );
+        wp_register_script( 'deemamurad.cart-popup', TDU . '/assets/javascript/production/cart-popup.js', array( 'jquery' ), filemtime( TD . '/assets/javascript/production/cart-popup.js' ), true );
+        wp_register_script( 'deemamurad.shop-filters', TDU . '/assets/javascript/production/shop-filters.js', array( 'jquery' ), filemtime( TD . '/assets/javascript/production/shop-filters.js' ), true );
 
     }

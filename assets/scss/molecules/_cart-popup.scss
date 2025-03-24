@@ -134,6 +134,15 @@
         // Image
         &__image {
             grid-column: span 3;
+
+            @include index.l {
+                grid-column: span 4;
+            }
+
+            @include index.xxl {
+                grid-column: span 3;
+            }
+
         }
 
         // Details
@@ -142,6 +151,14 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+
+            @include index.l {
+                grid-column: span 8;
+            }
+
+            @include index.xxl {
+                grid-column: span 9;
+            }
         }
 
         // Content
@@ -275,7 +292,7 @@
         min-height: 50dvh;
         display: flex;
         flex-direction: column;
-        gap: index.$lh;
+        gap: 87px;
         justify-content: center;
         align-items: center;
     }

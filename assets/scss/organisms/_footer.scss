@@ -4,6 +4,12 @@
 .footer {
     background-color: index.$white;
 
+    &--with-line {
+        @include index.l {
+            border-top: solid 1px #969696;
+        }
+    }
+
     // Inner
     &__inner {
         display: flex;

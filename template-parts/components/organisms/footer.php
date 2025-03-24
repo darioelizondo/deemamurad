@@ -13,12 +13,13 @@
 
 <?php
     // Cart popup
+    wp_enqueue_script( 'deemamurad.cart-popup' );
     include TD . '/template-parts/components/molecules/cart-popup.php';
 ?>
 
 
 <!-- Footer -->
-<footer class="footer">
+<footer class="footer <?php if( !is_front_page() ) echo 'footer--with-line'; ?>">
     <!-- Footer top -->
     <div class="footer__inner container">
         <!-- Logo -->

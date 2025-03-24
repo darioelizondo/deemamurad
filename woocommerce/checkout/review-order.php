@@ -50,7 +50,7 @@ defined( 'ABSPATH' ) || exit;
                     <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($product->get_name()); ?>">
                 </td>
                 <td class="cart-item__details">
-                    <p class="cart-item__details-text"><?php echo $product->get_name(); ?></p>
+                    <p class="cart-item__details-text"><?php echo strstr( $product->get_name(), " -", true ); ?></p>
 					<div class="cart-item__details-content">
 						<?php
 						if (isset($cart_item['variation']) && is_array($cart_item['variation'])) {
@@ -64,7 +64,7 @@ defined( 'ABSPATH' ) || exit;
 						}
 						?>
 						<div class="cart-item__wrapper-cart-quantity">
-							<span class="cart-item__span-quantity">Cantidad:</span>
+							<span class="cart-item__span-quantity">Quantity:</span>
 							<span><?php echo esc_html($cart_item['quantity']); ?></span>
 						</div>
 					</div>

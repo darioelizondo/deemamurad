@@ -19,6 +19,7 @@ defined( 'ABSPATH' ) || exit;
 
 get_header( 'shop' );
 wp_enqueue_script( 'jquery.espy' );
+wp_enqueue_script( 'deemamurad.shop-filters' );
 
 ?>
 

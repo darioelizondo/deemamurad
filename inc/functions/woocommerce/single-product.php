@@ -152,7 +152,6 @@
                         }
 
                         if( selectedAttribute == null && option.value === localStorageSelectedAttribute ) {
-                            console.log( selectedAttribute );
                             button.classList.add("active");
                             select.value = option.value;
                             selectedOption = option.value;
@@ -556,3 +555,55 @@
             </script>
         <?php
     }
+
+    /**
+     * Change view of price (normal price and variations price)
+     */
+
+
+    add_filter('woocommerce_get_price_html', function($price, $product) {
+        if ( $product->is_type( 'variable' ) ) {
+            $variations = $product->get_available_variations();
+            
+            if (!empty($variations)) {
+                // Obtener todos los precios de las variaciones
+                $prices = array_unique(array_map(function($variation) {
+                    return floatval($variation['display_price']); // Precio de la variación
+                }, $variations));
+    
+                // Si todas las variaciones tienen el mismo precio, mostrar el precio normal
+                if (count($prices) === 1) {
+                    return wc_price($prices[0]); // Mostrar un solo precio en vez de un rango
+                }
+    
+                // Si hay variaciones con diferentes precios, ocultar el precio por defecto
+                return '';
+            }
+        }
+        return $price;
+    }, 10, 2);
+
+    add_action('woocommerce_single_product_summary', function() {
+        ?>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                function updatePrice() {
+                    let priceContainer = document.querySelector(".woocommerce-variation-price .price");
+                    let mainPriceContainer = document.querySelector(".summary .price"); // Contenedor principal del precio
+                    
+                    if (priceContainer && mainPriceContainer) {
+                        mainPriceContainer.innerHTML = priceContainer.innerHTML; // Reemplaza el precio original con el de la variación
+                    }
+                }
+    
+                // Actualizar cuando cambie la variación
+                jQuery(document).on("found_variation", function() {
+                    updatePrice();
+                });
+    
+                // Forzar actualización al cargar la página
+                updatePrice();
+            });
+        </script>
+        <?php
+    }, 25);
