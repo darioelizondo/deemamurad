@@ -2,6 +2,13 @@
 @use '../@config/index';
 
 .contact {
+    padding-top: 25px !important;
+    padding-bottom: 0 !important;
+
+    @include index.l {
+        padding-top: 50px !important;
+        padding-bottom: 50px !important;
+    }
 
     // Inner
     &__inner {
@@ -12,11 +19,11 @@
         @include index.l {
             display: grid;
             grid-template-columns: repeat( 2, minmax( 0, 1fr ) );
-            column-gap: calc( index.$lh * 1.5 );
+            column-gap: calc( index.$lh * 2 );
         }
 
         @include index.xl {
-            column-gap: calc( index.$lh * 2 );
+            column-gap: calc( index.$lh * 3 );
         }
 
     }
@@ -31,7 +38,7 @@
     &__title {
         font-family: index.$font-primary-light;
         font-weight: normal;
-        font-size: 16px;
+        font-size: 18px;
         line-height: 1;
         margin-bottom: calc( index.$lh / 1.4 );
 
@@ -39,7 +46,7 @@
             position: sticky;
             top: 20px;
             left: 0;
-            font-size: 18px;
+            font-size: 20px;
         }
 
         @include index.xl {
@@ -48,22 +55,27 @@
     }
 
     // Text
-    //  &__wrapper-text {
+     &__wrapper-text {
 
-    //     p {
-    //         margin-bottom: calc( index.$lh / 2 );
-    //     }
+        p {
+            margin-bottom: calc( index.$lh / 5 );
+        }
 
-    // }
+    }
 
     // Image
     &__wrapper-image {
         
         @include index.l {
+            height: calc( 100% - 29px );
             position: relative;
             overflow: hidden;
             font-size: 0;
             line-height: 1;
+        }
+
+        @include index.xxl {
+            height: calc( 100% - 64px );
         }
 
     }

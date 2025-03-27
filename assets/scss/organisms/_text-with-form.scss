@@ -3,6 +3,12 @@
 
 .text-with-form {
 
+    padding-bottom: 0 !important;
+
+    @include index.l {
+        padding-bottom: 25px !important;
+    }
+
     // Inner
     &__inner {
         display: grid;
@@ -10,8 +16,11 @@
 
         @include index.l {
             grid-template-columns: repeat( 2, minmax( 0, 1fr ) );
-            gap: calc( index.$lh / 2 );
-
+            gap: calc( index.$lh * 2 );
+        }
+        
+        @include index.xl {
+            gap: calc( index.$lh * 3 );
         }
 
     }
@@ -20,12 +29,12 @@
     &__title {
         font-family: index.$font-primary-light;
         font-weight: normal;
-        font-size: 16px;
+        font-size: 18px;
         line-height: 1;
         margin-bottom: calc( index.$lh / 1.4 );
 
         @include index.l {
-            font-size: 18px;
+            font-size: 20px;
         }
 
         @include index.xl {

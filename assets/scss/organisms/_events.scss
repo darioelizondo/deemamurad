@@ -3,6 +3,13 @@
 
 .events {
 
+    padding-top: 25px !important;
+
+    @include index.l {
+        padding-top: 50px !important;
+        padding-bottom: 50px !important;
+    }
+
     // Title
     &__wrapper-title {
         margin-bottom: index.$lh;
@@ -16,12 +23,12 @@
     &__title {
         font-family: index.$font-primary-light;
         font-weight: normal;
-        font-size: 16px;
+        font-size: 18px;
         line-height: 1;
         // margin-bottom: calc( index.$lh / 1.4 );
 
         @include index.l {
-            font-size: 18px;
+            font-size: 20px;
         }
 
         @include index.xl {
@@ -33,7 +40,11 @@
     &__wrapper-items {
         display: flex;
         flex-direction: column;
-        gap:calc( index.$lh / 4 );
+        gap: calc( index.$lh / 2 );
+
+        @include index.l {
+            gap:calc( index.$lh / 4 );
+        }
     }
 
     // Item
@@ -66,12 +77,12 @@
     &__item-title {
         font-family: index.$font-primary-light;
         font-weight: normal;
-        font-size: 14px;
+        font-size: 15px;
         line-height: 1;
         text-transform: uppercase;
 
         @include index.l {
-            font-size: 14px;
+            font-size: 15px;
         }
 
         @include index.xl {

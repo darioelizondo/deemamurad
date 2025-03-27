@@ -8,7 +8,7 @@ const twoImagesSection = () =>  {
         sliders.forEach( slider => {
             if( slider !== undefined ) {
                 new Swiper( slider, {
-                    slidesPerView: 1.3,
+                    slidesPerView: 1.2,
                     spaceBetween: 13,
                     navigation: false,
                     speed: 1000,

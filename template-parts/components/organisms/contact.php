@@ -20,9 +20,7 @@
             </h2>
             <!-- Text -->
             <div class="contact__wrapper-text">
-                <p class="contact__text">
-                    <?php echo $group[ 'text' ]; ?>
-                </p>
+                <?php echo $group[ 'text' ]; ?>
             </div>
         </div>
         <!-- Content -->
