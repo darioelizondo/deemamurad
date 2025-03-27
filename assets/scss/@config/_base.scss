@@ -233,7 +233,7 @@ button:focus {
 
 .woocommerce-message,
 .cart-empty.woocommerce-info {
-	color: index.$black;
+	color: #818181;
 	font-family: index.$font-primary;
 	font-weight: normal;
 	display: inline-flex;
@@ -246,11 +246,11 @@ button:focus {
 
 	&::before {
 		content: '' !important;
-		background-color: #848484;
-		width: 100%;
-		height: 1px;
-		left: 0;
-		top: 23px;
+		// background-color: #848484;
+		// width: 100%;
+		// height: 1px;
+		// left: 0;
+		// top: 23px;
 	}
 
 	&:focus-visible {

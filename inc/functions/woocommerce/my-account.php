@@ -96,19 +96,77 @@
 
     function adjust_in_edit_address () {
         if( is_page_template( 'templates/page-my-account.php' ) ) {
-            ?>
-                <script>
 
+            // Obtener los datos de billing y shipping
+            // $user_id = get_current_user_id();
+            // $billing_address = get_user_meta($user_id, 'billing_address_1', true);
+            // $shipping_address = get_user_meta($user_id, 'shipping_address_1', true);
+
+            // if ( !empty($billing_address ) || !empty( $shipping_address ) ) {
+            //     ?>
+            //         <script>
+
+            //             // Adjust content
+            //             jQuery(document).ready(function(){
+
+            //                 const element = document.querySelector( '.woocommerce-edit-address .woocommerce-notices-wrapper' );
+
+            //                 if( element && element.nextElementSibling && element.nextElementSibling.tagName.toLowerCase() === 'p' ) {
+            //                     element.nextElementSibling.classList.add( 'edit-address-title' );
+            //                     element.nextElementSibling.innerHTML = 'My address';
+            //                 }
+
+            //             });
+
+
+            //         </script>
+            //     <?php
+            // } else {
+            //     ?>
+            //         <script>
+            //             // Adjust content
+            //             jQuery(document).ready(function(){
+
+            //                 const element = document.querySelector( '.woocommerce-edit-address .woocommerce-notices-wrapper' );
+
+            //                 if( element && element.nextElementSibling && element.nextElementSibling.tagName.toLowerCase() === 'p' ) {
+            //                     element.nextElementSibling.remove();
+            //                 }
+            //             });
+
+
+            //         </script>
+            //     <?php
+            // }
+
+            ?>  
+                <script>
                     // Adjust content
                     jQuery(document).ready(function(){
 
                         const element = document.querySelector( '.woocommerce-edit-address .woocommerce-notices-wrapper' );
 
                         if( element && element.nextElementSibling && element.nextElementSibling.tagName.toLowerCase() === 'p' ) {
-                            element.nextElementSibling.classList.add( 'edit-address-title' );
-                            element.nextElementSibling.innerHTML = 'My address';
+                            element.nextElementSibling.remove();
                         }
+                    });
+                    </script>
+            <?php
+        }
+    }
 
+     /** 
+     * Hide "display name"
+     */
+    add_action('wp_footer', 'adjust_my_account_fields');
+
+    function adjust_my_account_fields () {
+        if( is_page_template( 'templates/page-my-account.php' ) ) {
+            ?>
+                <script>
+
+                    jQuery(document).ready(function(){
+                       jQuery( '#account_display_name' ).parent().hide();
                     });
 
 
@@ -116,3 +174,28 @@
             <?php
         }
     }
+
+     /** 
+     * Add 'Birthday' field
+     */
+
+    // Guardar el campo "Cumpleaños" al actualizar la cuenta
+    add_action('woocommerce_save_account_details', function($user_id) {
+        if (isset($_POST['billing_birthday'])) {
+            update_user_meta($user_id, 'billing_birthday', sanitize_text_field($_POST['billing_birthday']));
+        }
+    });
+
+    // Agregar columna "Cumpleaños" en la lista de usuarios en WooCommerce
+    add_filter('manage_users_columns', function($columns) {
+        $columns['billing_birthday'] = __('Birth date', 'woocommerce');
+        return $columns;
+    });
+
+    // Mostrar la fecha de cumpleaños en la lista de usuarios
+    add_filter('manage_users_custom_column', function($value, $column_name, $user_id) {
+        if ($column_name == 'billing_birthday') {
+            return get_user_meta($user_id, 'billing_birthday', true) ?: '-';
+        }
+        return $value;
+    }, 10, 3);

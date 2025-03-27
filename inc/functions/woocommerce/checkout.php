@@ -202,6 +202,12 @@
             echo '<div class="custom-payment-wrapper">';
             woocommerce_checkout_payment();
             echo '</div>';
+            echo '<div class="back-to-shop__wrapper">';
+            echo    '<svg width="32" height="9" viewBox="0 0 32 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4.52941 8L1 4.5M1 4.5L4.52941 1M1 4.5L31 4.5" stroke="#3F3F46" stroke-linecap="square" stroke-linejoin="round"/>
+                    </svg>';
+            echo    '<a class="back-to-shop__link" href="' . get_site_url() . '/shop">Back to shop</a>';
+            echo '</div>';
         }
     }
 
@@ -381,6 +387,7 @@
     add_filter( 'woocommerce_default_address_fields' , 'override_default_address_fields' );
     function override_default_address_fields( $address_fields ) {
 
+        $address_fields['country']['label'] = __('Country', 'woocommerce');
         $address_fields['address_1']['label'] = __('Address', 'woocommerce');
         $address_fields['city']['label'] = __('City', 'woocommerce');
         $address_fields['state']['label'] = __('State', 'woocommerce');
@@ -405,13 +412,13 @@
                     const stateInputBilling = document.getElementById( 'billing_state_field' );
                     const stateInputShipping = document.getElementById( 'shipping_state_field' );
 
-                    if ( stateInputBilling.style.display === "none" ) {
+                    if ( stateInputBilling && stateInputBilling.style.display === "none" ) {
                         stateInputBilling.nextElementSibling.style.width = '49%';
                         stateInputBilling.nextElementSibling.style.float = 'right';
                         stateInputBilling.nextElementSibling.style.clear = 'none';
                     }
 
-                    if ( stateInputShipping.style.display === "none" ) {
+                    if ( stateInputShipping && stateInputShipping.style.display === "none" ) {
                         stateInputShipping.nextElementSibling.style.width = '49%';
                         stateInputShipping.nextElementSibling.style.float = 'right';
                         stateInputShipping.nextElementSibling.style.clear = 'none';

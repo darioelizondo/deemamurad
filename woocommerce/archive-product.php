@@ -92,7 +92,8 @@ wp_enqueue_script( 'deemamurad.shop-filters' );
 			
 						// Mostrar la variación
 						$colour = $product->get_attribute('pa_colour'); // Atributo de color de la variación
-						mostrar_imagenes_variacion($parent_product, $variation_id, $colour);
+						$quantity = $product->get_attribute('pa_quantity') ? $product->get_attribute('pa_quantity') : null; // Atributo de cantidad
+						mostrar_imagenes_variacion($parent_product, $variation_id, $colour , $quantity);
 						$counter++;
 			
 						// Marcar esta variación como procesada

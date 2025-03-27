@@ -15,7 +15,7 @@ const animateImagesOnScroll = () => {
             let positionStyles = [
                 { top: "0", left: "7%" },
                 { top: "30%", right: "14%" },
-                { top: "54%", left: "20%" }
+                { top: "52%", left: "20%" }
             ];
 
             // Get style based on index (every 3 images reset)

@@ -14,14 +14,23 @@
 
 }
 
+.woocommerce-cart {
+    .footer {
+        background-color: index.$soft-gray;
+    }
+    .subscription-form__email input {
+        background-color: index.$soft-gray;
+    }
+}
+
 .cart-page {
     display: flex;
     align-items: center;
-    min-height: 75dvh;
-    padding: index.$lh * 1.5 0;
+    padding: index.$lh 0;
 
     @include index.l {
         padding: index.$lh * 2 0;
+        min-height: 75dvh;
     }
 
     .woocommerce form {
@@ -224,7 +233,11 @@
     .shop_table {
         border: none !important;
         border-collapse: separate;
-        // border-spacing: 0;
+        margin-bottom: 0 !important;
+
+        @include index.l {
+            margin-bottom: 24px !important;
+        }
 
         td, th, bdi {
             // border: none !important;
@@ -257,16 +270,24 @@
             white-space: nowrap !important;
     
             @include index.l {
-                font-size: 16px !important;
+                font-size: 15px !important;
                 // padding-bottom: calc( index.$lh * 1.5 ) !important;
             }
     
-            @include index.xl {
-                font-size: 18px !important;
-            }
+            // @include index.xl {
+            //     font-size: 18px !important;
+            // }
 
         }
 
+        td {
+            vertical-align: top !important;
+        }
+
+    }
+
+    .shop_table_responsive tr td::before {
+        font-weight: normal !important;
     }
 
     // Hide column "Price" in mobile"
@@ -275,8 +296,15 @@
 
         @include index.l {
             display: table-cell;
+            text-align: right;
         }
 
+    }
+
+    .cart-subtotal {
+        @include index.l {
+            text-align: right;
+        }
     }
     
     // Hide column "Details" in mobile"
@@ -294,15 +322,18 @@
             width: 100px;
         }
 
+        @media only screen and (min-width: 640px) {
+            width: 175px;
+        }
+
         img {
             width: 85px !important;
     
             @include index.l {
-                width: 125px !important;
+                width: 175px !important;
             }
         }
     }
-
 
     // Summary
     .cart_totals {
@@ -326,6 +357,18 @@
 
         tr  {
             border-bottom: solid 1px #e0e0e0!important;
+        }
+
+        &.calculated_shipping {
+
+            .cart-subtotal {
+                text-align: left;
+            }
+
+            bdi {
+                padding: 12px 0 !important;
+            }
+
         }
 
     }
@@ -354,6 +397,10 @@
             align-items: center;
             gap: calc( index.$lh / 4 );
             flex-direction: column;
+
+            @include index.l {
+                gap: calc( index.$lh / 2 );
+            }
 
             a.remove,
             input,
@@ -385,7 +432,7 @@
 
         .qty {
             width: 27px;
-            height: 25px;
+            height: 23px;
             display: flex;
             background-color: transparent;
             padding: 4px 5px;
@@ -404,7 +451,7 @@
             background-color: transparent;
             transition: background-color .2s ease;
             line-height: 1;
-            padding: 4px 7px;
+            padding: 2px 5px;
             
     
             &:hover {
@@ -417,7 +464,7 @@
             background-color: transparent;
             transition: background-color .2s ease;
             line-height: 1;
-            padding: 4px 7px;
+            padding: 2px 5px;
             
     
             &:hover {
@@ -640,5 +687,42 @@
         padding-bottom: index.$lh;
         text-align: right;
     }
+    
+    // Shipping totals
+    .woocommerce-shipping-totals {
+        td {
+            background-color: transparent !important;
+        }
+    }
 
+    // Shipping destination
+    .woocommerce-shipping-destination {
+        text-align: left;
+    
+        @include index.l {
+            text-align: right;
+        }
+    
+    }
+
+    // Totals
+    .order-total {
+        th, td, bdi {
+            font-family: index.$font-primary-medium;
+            font-weight: normal;
+            letter-spacing: 0;
+        }
+    }
+
+}
+
+
+// Hide calculate shipping
+.shipping-calculator-button {
+    display: none !important;
+}
+
+// Hide update cart button
+.cart-update-btn {
+    display: none !important;
 }

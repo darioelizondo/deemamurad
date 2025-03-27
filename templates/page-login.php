@@ -94,7 +94,7 @@ get_header();
         <div class="login-form__wrapper-image">
             <picture class="login-form__picture">
                 <source srcset="<?php echo TDU . '/assets/images/login/login-image-desktop.jpg'; ?>" media="(min-width: 768px)">
-                <img class="login-form__image image--fluid" src="<?php echo TDU . '/assets/images/login/login-image-mobile.jpg'; ?>" alt="Login Deema Murad">
+                <img class="login-form__image image--fluid" src="<?php echo TDU . '/assets/images/login/login-image-mobile-v2.jpg'; ?>" alt="Login Deema Murad">
             </picture>
         </div>
     </div>

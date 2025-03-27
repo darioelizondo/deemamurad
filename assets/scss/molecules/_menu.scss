@@ -135,7 +135,7 @@
                 width: auto;
                 border-bottom: none;
                 padding: 0;
-                padding-bottom: 16px;
+                padding-bottom: 10px;
             }
         }
 
@@ -230,7 +230,7 @@
         &--first-level {
             display: flex;
             flex-direction: column;
-            gap: calc( index.$lh / 3 );
+            align-items: center;
             width: calc(100% - 24px);
             margin: 0 auto;
 
@@ -242,6 +242,8 @@
                 width: 100%;
                 flex-direction: row;
                 justify-content: space-between;
+                align-items: flex-start;
+                gap: calc( index.$lh / 3 );
             }
 
             @include index.xl {
@@ -268,7 +270,7 @@
                 }
 
                 &:first-child {
-                    padding-top: calc( index.$lh / 1.7 );
+                    padding-top: calc( index.$lh / 2.5 );
                 }
 
             }
@@ -331,7 +333,7 @@
         }
 
         @include index.xxl {
-            max-width: 500px;
+            max-width: 600px;
         }
 
     }

@@ -49,14 +49,15 @@ do_action( 'woocommerce_before_account_orders', $has_orders ); ?>
 				
 				<div class="order-accordion">
 					<button class="accordion-toggle">
-						<span class="accordion-toggle__id">Orden #<?php echo esc_html($order_id); ?></span>
+						<span class="accordion-toggle__id">Order #<?php echo esc_html($order_id); ?></span>
 						<span class="accordion-toggle__date"><?php echo esc_html($order_date); ?></span>
-						<span class="accordion-toggle__status">Status: <?php echo esc_html($order_status); ?></span>
+						<span class="accordion-toggle__status status-desktop">Status: <?php echo esc_html($order_status); ?></span>
 						<?php echo $order_total; ?>
 						<span class="accordion-toggle__plus-minus-toggle collapsed"></span>
 					</button>
 					
 					<div class="accordion-content">
+						<span class="accordion-toggle__status status-mobile">Status: <?php echo esc_html($order_status); ?></span>
 						<?php foreach ($order_items as $item_id => $item): ?>
 							<?php
 							$order_item = new WC_Order_Item_Product( $item[ 'id' ] );
@@ -113,7 +114,7 @@ do_action( 'woocommerce_before_account_orders', $has_orders ); ?>
 											</div>
 										<?php endif; ?>
 										<div class="order-item__wrapper-order-quantity">
-											<span class="order-item__span-quantity">Cantidad:</span>
+											<span class="order-item__span-quantity">Quantity:</span>
 											<span><?php echo esc_html($quantity); ?></span>
 										</div>
 									</div>

@@ -55,7 +55,7 @@
         flex-wrap: wrap;
         gap: calc( index.$lh / 2 );
 
-        @include index.xl {
+        @include index.l {
             width: auto;
             gap: index.$lh;
 

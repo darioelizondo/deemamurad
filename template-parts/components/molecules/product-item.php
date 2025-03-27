@@ -30,7 +30,15 @@
             <h3 class="product-item__title"><?php echo get_the_title( $item_id ); ?></h3>
                 <?php  if( !is_product() ) : ?>
                     <?php if( isset( $filters_text ) && !empty( $filters_text ) ) : ?>
-                        <p class="product-filters"><?php echo esc_html( $filters_text ); ?></p>
+                        <p class="product-filters">
+                            <?php
+                                 if( isset( $filters_text_qty ) && !empty( $filters_text_qty ) ) {
+                                    echo esc_html( $filters_text . $filters_text_qty );
+                                } else {
+                                    echo esc_html( $filters_text );
+                                }
+                            ?>
+                        </p>
                     <?php endif; ?>
                     <span><?php echo wc_price( get_post_meta( $item_id, '_price', true ) ); ?></span>
                 <?php endif; ?>

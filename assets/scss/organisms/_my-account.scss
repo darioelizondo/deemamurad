@@ -73,6 +73,7 @@
         background-color: index.$black !important;
         border-radius: 0 !important;
         margin-top: calc( index.$lh / 2 ) !important;
+        margin-bottom: calc( index.$lh * 1.5 ) !important;
 
         &:hover {
             background-color: #4B4B4B !important;
@@ -201,6 +202,26 @@
 
     }
 
+    // Edit address
+    #billing_postcode_field,
+    #shipping_postcode_field {
+        width: 100% !important;
+    }
+
+    #billing_address_1,
+    #billing_address_2,
+    #shipping_address_1,
+    #shipping_address_2 {
+        &::placeholder {
+            color: transparent !important;
+        }
+    }
+
+    #billing_address_2_field,
+    #shipping_address_2_field {
+        display: none !important;
+    }
+
 }
 
 // Dashboard
@@ -219,7 +240,7 @@
         
     .woocommerce {
         display: grid;
-        margin-top: calc( index.$lh * 0.8 ) ;
+        margin-top: calc( index.$lh * 0.3 ) ;
 
         @include index.l {
             grid-template-columns: repeat( 12, minmax( 0, 1fr ) );
@@ -361,6 +382,9 @@
 
     .woocommerce-notices-wrapper {
         order: 1;
+        .woocommerce-message {
+            margin-bottom: index.$lh !important;
+        }
     }
 
     .woocommerce-EditAccountForm.edit-account{
@@ -377,7 +401,7 @@
         font-family: index.$font-primary-light;
         font-size: 16px;
         line-height: 1;
-        margin-bottom: index.$lh;
+        margin-bottom: calc( index.$lh / 2 );
 
         @include index.l {
             font-size: 18px;
@@ -390,7 +414,11 @@
 
     // Fieldset
     fieldset {
-        margin-top: index.$lh;
+        margin-top: calc( index.$lh * 1.2 );
+
+        @include index.l {
+            margin-top: calc( index.$lh * 2 );
+        }
 
         label {
             display: none !important;
@@ -400,7 +428,7 @@
             font-family: index.$font-primary-light;
             font-size: 16px;
             line-height: 1;
-            margin-bottom: index.$lh;
+            margin-bottom: calc( index.$lh / 2 );
     
             @include index.l {
                 font-size: 18px;
@@ -470,8 +498,7 @@
         display: flex;
         flex-direction: column;
         gap: index.$lh;
-
-    
+        margin-top: -26px;
 
     }
 
@@ -577,7 +604,8 @@
         order: 1;
     }
 
-    .orders-list{
+    .orders-list,
+    .woocommerce-info {
         order: 3;
     }
 
@@ -621,6 +649,7 @@
         }
 
         .button {
+            display: none !important;
             width: 100% !important;
             height: 34px;
             color: index.$white !important;
@@ -682,35 +711,37 @@
 
         @include index.l {
             display: grid;
-            grid-template-columns: repeat( 14, minmax( 0, 1fr ) );
+            grid-template-columns: repeat( 16, minmax( 0, 1fr ) );
             font-size: 15px;
         }
 
         @include index.xxl {
-            grid-template-columns: repeat( 16, minmax( 0, 1fr ) );
+            grid-template-columns: repeat( 18, minmax( 0, 1fr ) );
         }
 
         &__id {
             font-family: index.$font-primary-medium;
+            font-size: 14px;
             font-weight: normal;
             letter-spacing: 0;
             grid-column: span 3;
 
             @include index.l {
-                grid-column: span 3;
+                grid-column: span 5;
             }
 
             @include index.xl {
-                grid-column: span 3;
+                grid-column: span 5;
             }
 
             @include index.xxl {
-                grid-column: span 3;
+                grid-column: span 5;
             }
         }
 
         &__date {
-            grid-column: span 2;
+            font-size: 14px;
+            grid-column: span 6;
 
             @include index.l {
                 grid-column: span 4;
@@ -726,6 +757,7 @@
         }
 
         &__status {
+            font-size: 14px;
             grid-column: span 4;
 
             @include index.l {
@@ -739,10 +771,34 @@
             @include index.xxl {
                 grid-column: span 6;
             }
+
+            &.status-desktop {
+                display: none;
+
+                @include index.l {
+                    display: block;
+                }
+
+            }
+
+            &.status-mobile {
+                display: block;
+                padding-bottom: 6px;
+
+                @include index.l {
+                    display: none;
+                }
+
+            }
+
         }
 
         .woocommerce-Price-amount {
             grid-column: span 2;
+
+            // @include index.l {
+            //     grid-column: span 1;
+            // }
 
             bdi {
                 font-family: index.$font-primary-medium;
@@ -794,6 +850,7 @@
     .accordion-content {
         // display: none;
         padding: 10px 0;
+        padding-bottom: 0;
     }
 
     .order-item {
@@ -801,14 +858,18 @@
         grid-template-columns: repeat( 12, minmax( 0, 1fr ) );
         column-gap: calc( index.$lh / 3 );
         padding-bottom: calc( index.$lh / 3 );
-        margin-top: 13px;
+        // margin-top: 13px;
+
+        &:last-child {
+            padding-bottom: 0;
+        }
 
         @include index.l {
-            grid-template-columns: repeat( 14, minmax( 0, 1fr ) );
+            grid-template-columns: repeat( 16, minmax( 0, 1fr ) );
         }
 
         @include index.xxl {
-            grid-template-columns: repeat( 16, minmax( 0, 1fr ) );
+            grid-template-columns: repeat( 18, minmax( 0, 1fr ) );
         }
 
         &:not( :first-child ) {
@@ -840,15 +901,15 @@
             flex-direction: column;
 
             @include index.l {
-                grid-column: span 9;
+                grid-column: span 11;
             }
 
             @include index.xl {
-                grid-column: span 9;
+                grid-column: span 11;
             }
 
             @include index.xxl {
-                grid-column: span 11;
+                grid-column: span 13;
             }
 
         }

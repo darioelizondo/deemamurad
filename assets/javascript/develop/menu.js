@@ -67,13 +67,15 @@ const toggleOpenCloseMegaMenu = () => {
                 // Megamenu active
                 jQuery( link ).next().toggleClass( 'active' );
             });
-            backCollections.addEventListener( 'click', ( event ) => {
-                event.preventDefault();
-                 // Link active
-                 jQuery( link ).parent().toggleClass( 'active' );
-                 // Megamenu active
-                 jQuery( link ).next().toggleClass( 'active' );
-            } )
+            if( backCollections ) {
+                backCollections.addEventListener( 'click', ( event ) => {
+                    event.preventDefault();
+                     // Link active
+                     jQuery( link ).parent().toggleClass( 'active' );
+                     // Megamenu active
+                     jQuery( link ).next().toggleClass( 'active' );
+                } )
+            }
         }
 
 
@@ -158,6 +160,8 @@ const toggleOpenCloseSubmenu = () => {
             }
             if ( !flagIsMobile ) {
                 jQuery( link ).next().slideDown(); // Abrir submenús en modo escritorio
+                link.addEventListener( 'click', ( event ) => event.preventDefault() ); // Evitar comportamiento en escritorio
+                link.style.pointerEvents = 'none'; // Deshabilitar el click en escritorio
                 link.removeEventListener('change', handleToggleSubmenu); // Cleanup
             }
 

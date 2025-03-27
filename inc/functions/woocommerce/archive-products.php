@@ -647,7 +647,8 @@
         
                     // Mostrar la variación
                     $colour = $product->get_attribute('pa_colour'); // Atributo de color de la variación
-                    mostrar_imagenes_variacion($parent_product, $variation_id, $colour);
+                    $quantity = $product->get_attribute('pa_quantity') ? $product->get_attribute('pa_quantity') : null; // Atributo de cantidad
+                    mostrar_imagenes_variacion($parent_product, $variation_id, $colour, $quantity);
                     $counter++;
         
                     // Marcar esta variación como procesada
@@ -671,7 +672,7 @@
         die();
     }
 
-    function mostrar_imagenes_variacion( $product, $variation_id, $colour ) {
+    function mostrar_imagenes_variacion( $product, $variation_id, $colour, $quantity ) {
         // Obtener la galería de la variación desde ACF
         $variation_galleries = get_field('variation_galleries', $product->get_id());
         
@@ -685,10 +686,11 @@
                     $main_image   = !empty($gallery_images[0]) ? $gallery_images[0]['url'] : wc_placeholder_img_src();
                     $second_image = !empty($gallery_images[1]) ? $gallery_images[1]['url'] : $main_image;
                     $filters_text = !empty( $colour ) ? $colour : '';
+                    $filters_text_qty = !empty( $quantity ) ? ', ' . $quantity : null;
 
                     include TD . '/template-parts/components/molecules/product-item.php';
 
-                    unset( $item_id, $main_image, $second_image, $filters_text );
+                    unset( $item_id, $main_image, $second_image, $filters_text, $filters_text_qty );
                 }
             }
         }

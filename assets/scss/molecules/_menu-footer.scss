@@ -162,6 +162,15 @@
         list-style: none;
     }
 
+    // No interaction
+    .no-interaction {
+        .menu-footer__has-child--first-level {
+            @include index.l {
+                pointer-events: none;
+            }
+        }
+    }
+
 }
 
 .footer {

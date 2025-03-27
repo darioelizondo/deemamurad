@@ -50,7 +50,7 @@
                                     </div>
 
                                     <div class="register-form__wrapper-input">
-                                        <input class="register-form__submit" type="submit" name="register" value="Registrarse">
+                                        <input class="register-form__submit" type="submit" name="register" value="Sign up">
                                     </div>
                                 </form>
                                 <div class="register-form__no-account">
@@ -72,7 +72,7 @@
              <div class="register-form__wrapper-image">
                 <picture class="register-form__picture">
                     <source srcset="<?php echo TDU . '/assets/images/login/login-image-desktop.jpg'; ?>" media="(min-width: 768px)">
-                    <img class="register-form__image image--fluid" src="<?php echo TDU . '/assets/images/login/login-image-mobile.jpg'; ?>" alt="Login Deema Murad" >
+                    <img class="register-form__image image--fluid" src="<?php echo TDU . '/assets/images/login/login-image-mobile-v2.jpg'; ?>" alt="Login Deema Murad" >
                 </picture>
              </div>
         </div>

@@ -75,7 +75,7 @@
 									if (!$product_permalink) {
 										echo wp_kses_post($_product->get_name());
 									} else {
-										echo wp_kses_post(apply_filters('woocommerce_cart_item_name', sprintf('<a href="%s">%s</a>', esc_url($product_permalink), $_product->get_name()), $cart_item, $cart_item_key));
+										echo wp_kses_post(apply_filters('woocommerce_cart_item_name', sprintf('<a href="%s">%s</a>', esc_url($product_permalink), strstr( $_product->get_name(), " -", true )), $cart_item, $cart_item_key));
 									}
 									?>
 								</td>

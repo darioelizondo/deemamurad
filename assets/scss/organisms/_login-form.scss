@@ -31,7 +31,7 @@
     &__title {
         font-family: index.$font-primary-light;
         font-weight: normal;
-        font-size: 16px;
+        font-size: 18px;
         line-height: 1;
 
         @include index.l {
@@ -102,6 +102,17 @@
                 font-size: 15px;
                 line-height: 22px;
             }
+
+            &::placeholder {
+                color: #a8a8a8 !important;
+            }
+        }
+
+        input:-webkit-autofill {
+            background-color: transparent !important;
+            -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+            box-shadow: 0 0 0px 1000px white inset !important;
+            color: #000 !important;
         }
 
         .login-submit {
@@ -182,7 +193,6 @@
     &__wrapper-image {
         position: relative;
         overflow: hidden;
-        height: 100dvh;
         font-size: 0;
         line-height: 1;
         order: 1;
@@ -288,4 +298,17 @@
 
     }
 
+}
+
+.page-template-page-login {
+
+    // Hide footer
+    .footer {
+        display: none;
+    }
+
+    // Header
+    .header {
+        border-bottom: solid 1px #d6d6d5;
+    }
 }

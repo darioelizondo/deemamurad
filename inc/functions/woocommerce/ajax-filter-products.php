@@ -322,7 +322,8 @@ function filter_products_ajax() {
 
                     // Mostrar la variación
                     $colour = $variation_obj->get_attribute('pa_colour');
-                    mostrar_imagenes_variacion($product, $variation_id, $colour);
+                    $quantity = $variation_obj->get_attribute('pa_quantity') ? $variation_obj->get_attribute('pa_quantity') : null;
+                    mostrar_imagenes_variacion($product, $variation_id, $colour, $quantity);
                     $processed_variations[] = $variation_id; // Marcar como procesada
                     $counter++;
                 }
@@ -377,7 +378,8 @@ function filter_products_ajax() {
                     
         						// Mostrar la variación
         						$colour = $product->get_attribute('pa_colour'); // Atributo de color de la variación
-        						mostrar_imagenes_variacion($parent_product, $variation_id, $colour);
+                                $quantity = $product->get_attribute('pa_quantity') ? $product->get_attribute('pa_quantity') : null;
+        						mostrar_imagenes_variacion($parent_product, $variation_id, $colour, $quantity);
         						$counter++;
                     
         						// Marcar esta variación como procesada

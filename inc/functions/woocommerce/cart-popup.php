@@ -348,3 +348,19 @@
             WC()->cart->calculate_totals();
         }
     }
+
+    /** 
+     * Update cart on cart page
+     */
+
+     add_action('wp_footer', function() {
+        if (is_cart()) { ?>
+            <script>
+                jQuery(function($) {
+                    $('div.woocommerce').on('change', 'input.qty', function() {
+                        $('button[name="update_cart"]').trigger('click');
+                    });
+                });
+            </script>
+        <?php }
+    });
