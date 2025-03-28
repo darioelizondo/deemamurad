@@ -1250,6 +1250,10 @@ form.woocommerce-form-coupon > p:first-child {
 
         }
 
+        td {
+            padding-left: 0 !important;
+        }
+
         tr {
             border-bottom: solid 1px #3F3F46 !important;
         }
@@ -1261,6 +1265,7 @@ form.woocommerce-form-coupon > p:first-child {
             font-size: 14px !important;
             line-height: 1 !important;
             white-space: nowrap !important;
+            padding-left: 0 !important;
     
             @include index.l {
                 font-size: 15px !important;

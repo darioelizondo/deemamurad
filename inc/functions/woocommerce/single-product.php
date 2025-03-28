@@ -201,12 +201,17 @@
         global $product;
         
         if ( !$product ) return;
-    
-        $acf_value = get_field( 'size_guide', 'option' );
-        
-        if ( $acf_value ) {
-            echo '<div id="wrapper_SizeGuideButton" class="woocommerce-single__wrapper-attribute-button"><button type="button" id="sizeGuideOpen">'. $acf_value[ 'button' ][ 'title' ] . '</button></div>';
+
+        $product_id = get_the_ID(); // Obtener ID del producto actual
+
+        if ( has_term('rings', 'product_cat', $product_id ) ) {
+            $acf_value = get_field( 'size_guide', 'option' );
+            
+            if ( $acf_value ) {
+                echo '<div id="wrapper_SizeGuideButton" class="woocommerce-single__wrapper-attribute-button"><button type="button" id="sizeGuideOpen">'. $acf_value[ 'button' ][ 'title' ] . '</button></div>';
+            }
         }
+    
     
     }, 25); 
 
@@ -216,25 +221,33 @@
     add_action('wp_footer', function() {
 
         if (!is_product()) return;
-    ?>
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
 
-                const sizeGuideButton = document.getElementById('wrapper_SizeGuideButton');
-                const sizeLabel = document.querySelector('label[for="pa_size"]');
+        $product_id = get_the_ID(); // Obtener ID del producto actual
 
-                // Move the info right after the label
-                if( sizeLabel && sizeGuideButton ) {
-                    sizeLabel.after( sizeGuideButton );
-                }
+        if( !$product_id ) return;
 
-                if( !sizeLabel ) {
-                    sizeGuideButton.style.display = 'none';
-                }
-    
-            });
-        </script>
-    <?php
+        if ( has_term('rings', 'product_cat', $product_id ) ) {
+            ?>
+                <script>
+                    document.addEventListener("DOMContentLoaded", function() {
+
+                        const sizeGuideButton = document.getElementById('wrapper_SizeGuideButton');
+                        const sizeLabel = document.querySelector('label[for="pa_size"]');
+
+                        // Move the info right after the label
+                        if( sizeLabel && sizeGuideButton ) {
+                            sizeLabel.after( sizeGuideButton );
+                        }
+
+                        if( !sizeLabel ) {
+                            sizeGuideButton.style.display = 'none';
+                        }
+            
+                    });
+                </script>
+            <?php
+        }
+        
 
     });
 

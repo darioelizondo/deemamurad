@@ -232,7 +232,7 @@
 
     .shop_table {
         border: none !important;
-        border-collapse: separate;
+        border-collapse: collapse !important;
         margin-bottom: 0 !important;
 
         @include index.l {
@@ -258,7 +258,7 @@
         }
 
         tr {
-            border-bottom: solid 1px #3F3F46 !important;
+            border-bottom: solid 1px #d2d2d2 !important;
         }
 
         th {
@@ -296,7 +296,7 @@
 
         @include index.l {
             display: table-cell;
-            text-align: right;
+            // text-align: right;
         }
 
     }
@@ -305,6 +305,11 @@
         @include index.l {
             text-align: right;
         }
+    }
+
+    th.cart-subtotal,
+    td.cart-subtotal {
+        padding-right: 0 !important;
     }
     
     // Hide column "Details" in mobile"
@@ -318,6 +323,7 @@
 
     // Cart image
     .cart-image {
+        
         @media only screen and (max-width: 640px) {
             width: 100px;
         }
@@ -333,6 +339,11 @@
                 width: 175px !important;
             }
         }
+    }
+
+    th.cart-image,
+    td.cart-image {
+        padding-left: 0 !important;
     }
 
     // Summary
@@ -353,10 +364,19 @@
 
         td {
             text-align: right !important;
+            padding-right: 0 !important;
         }
 
         tr  {
             border-bottom: solid 1px #e0e0e0!important;
+        }
+
+        .cart-subtotal {
+            text-align: left;
+        }
+
+        bdi {
+            padding-right: 0 !important;
         }
 
         &.calculated_shipping {
@@ -693,14 +713,26 @@
         td {
             background-color: transparent !important;
         }
+
+        &.shipping {
+            height: 72px;
+            position: relative;
+        }
+
     }
 
     // Shipping destination
     .woocommerce-shipping-destination {
-        text-align: left;
+        color: #969696;
+        text-align: left !important;
+        font-size: 12px;
+        line-height: 1.2;
+        position: absolute;
+        left: 5px;
     
         @include index.l {
-            text-align: right;
+            font-size: 13px;
+            left: 0;
         }
     
     }

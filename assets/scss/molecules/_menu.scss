@@ -148,6 +148,15 @@
 
         }
 
+        .submenu--first-level li:nth-child(2) {
+            border-top: solid 1px #A4A49C !important;
+
+            @include index.l {
+                border-top: none !important;
+            }
+
+        }
+
     }
 
 

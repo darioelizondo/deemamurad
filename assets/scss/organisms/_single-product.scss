@@ -173,7 +173,7 @@
         tbody {
             display: flex;
             flex-direction: column;
-            gap: index.$lh;
+            gap: calc( index.$lh / 2 );
         }
     }
 
@@ -360,6 +360,7 @@
         display: flex;
         gap: calc( index.$lh / 2);
         align-items: center;
+        margin-top: 32px;
     }
 
     .single_add_to_cart_button {

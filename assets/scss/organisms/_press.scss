@@ -1,6 +1,12 @@
 // Press
 @use '../@config/index';
 
+.page-id-854 {
+    .footer {
+        border-top: none;
+    }
+}
+
 .press {
     background-color: index.$soft-gray;
 
@@ -19,12 +25,12 @@
     &__title {
         font-family: index.$font-primary-light;
         font-weight: normal;
-        font-size: 16px;
+        font-size: 18px;
         line-height: 1;
         margin-bottom: calc( index.$lh * 1.4 );
 
         @include index.l {
-            font-size: 18px;
+            font-size: 20px;
         }
 
         @include index.xl {
