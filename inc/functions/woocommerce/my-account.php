@@ -156,7 +156,7 @@
     }
 
      /** 
-     * Hide "display name"
+     * Hide "display name" 
      */
     add_action('wp_footer', 'adjust_my_account_fields');
 
@@ -167,6 +167,7 @@
 
                     jQuery(document).ready(function(){
                        jQuery( '#account_display_name' ).parent().hide();
+                       jQuery( '#account_display_name' ).attr( "readonly", "readonly" );
                     });
 
 

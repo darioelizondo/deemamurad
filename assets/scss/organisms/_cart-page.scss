@@ -236,7 +236,7 @@
         margin-bottom: 0 !important;
 
         @include index.l {
-            margin-bottom: 24px !important;
+            margin-bottom: 12px !important;
         }
 
         td, th, bdi {
@@ -286,8 +286,17 @@
 
     }
 
+    .shop_table_responsive {
+        border-collapse: separate !important;
+        margin-bottom: 5px !important;
+    }
+
     .shop_table_responsive tr td::before {
         font-weight: normal !important;
+    }
+
+    .wc-proceed-to-checkout {
+        padding-top: 0 !important;
     }
 
     // Hide column "Price" in mobile"

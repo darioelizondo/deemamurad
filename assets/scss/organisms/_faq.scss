@@ -143,13 +143,18 @@
         }
 
         ul {
-            margin-left: 10px;
+            margin-left: 0;
         }
 
         li {
-            &::marker {
+            list-style: none;
+            margin-left: 10px;
+
+            &::before {
                 content: '- ' !important;
+                margin-left: -10px;
             }
+
         }
 
         a {

@@ -287,5 +287,10 @@
     // Header
     .header {
         border-bottom: solid 1px #d6d6d5;
+
+        @media only screen and (max-width: 1024px) {
+            border-bottom: none;
+        }
+
     }
 }
