@@ -13,7 +13,8 @@
 
 <!-- Product item -->
 <div class="product-item swiper-slide <?php if( $nitem ) echo 'item-' . $nitem; ?>">
-    <?php if( isset( $item_id ) && !empty( $item_id ) ) : ?>
+    <?php if( isset( $item_id ) && !empty( $item_id ) ) : ?>   
+    <?php $product = wc_get_product($item_id);  ?>
 
         <a href="<?php the_permalink( $item_id ); ?>">
             <div class="product-item__product-image">
@@ -40,7 +41,7 @@
                             ?>
                         </p>
                     <?php endif; ?>
-                    <span><?php echo wc_price( get_post_meta( $item_id, '_price', true ) ); ?></span>
+                    <span><?php echo wc_price(wc_get_price_to_display($product)); ?></span>
                 <?php endif; ?>
         </a>
 

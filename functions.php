@@ -27,3 +27,4 @@
     require_once 'inc/functions/woocommerce/checkout.php';
     require_once 'inc/functions/woocommerce/login.php';
     require_once 'inc/functions/woocommerce/my-account.php';
+    require_once 'inc/functions/woocommerce/currency.php';

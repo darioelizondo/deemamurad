@@ -25,6 +25,7 @@
         <!-- Logo -->
         <div class="footer__wrapper-logo">
             <?php include TD . '/template-parts/components/atoms/logo-footer.php'; ?>
+            <?php include TD . '/template-parts/components/atoms/currency-switcher.php'; ?>
         </div>
         <!-- Footer menu -->
         <div class="footer__wrapper-menu">
