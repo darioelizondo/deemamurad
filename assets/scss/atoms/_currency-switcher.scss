@@ -1,0 +1,35 @@
+// Currency switcher
+@use '../@config/index';
+
+.currency-switcher {
+    display: flex;
+    align-items: center;
+    gap: calc( index.$lh / 8 );
+
+    // Buttons
+    &__button {
+        display: inline-block;
+        position: relative;
+        padding: 0;
+
+        &:hover {
+            color: index.$gray;
+        }
+
+        &.active:before{
+            content: '';
+            position: absolute;
+            top: 16px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background-color: #838383;
+
+            @include index.l {
+                top: 18px;
+            }
+        }
+
+    }
+
+}

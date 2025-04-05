@@ -39,7 +39,7 @@
                 <div class="header__wrapper-currency-account">
                     <!-- Currency -->
                     <div class="header__wrapper-currency">
-                        <?php include TD . '/template-parts/components/atoms/currency.php'; ?>
+                        <?php include TD . '/template-parts/components/atoms/currency-switcher.php'; ?>
                     </div>
                     <!-- Account -->
                     <div class="header__wrapper-account">
