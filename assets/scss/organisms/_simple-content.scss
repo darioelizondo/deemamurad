@@ -1,0 +1,53 @@
+// Simple content
+@use '../@config/index';
+
+.simple-content {
+    min-height: 65dvh;
+
+    // Title
+    &__wrapper-title {
+        padding-top: index.$lh;
+        padding-bottom: index.$lh;
+
+        @include index.l {
+            padding-top: index.$lh;
+            padding-bottom: index.$lh;
+        }
+
+    }
+
+    &__title {
+        font-family: index.$font-primary-light;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 1;
+
+        @include index.l {
+            position: sticky;
+            top: 20px;
+            left: 0;
+            font-size: 20px;
+        }
+
+        @include index.xl {
+            font-size: 21px;
+        }
+    }
+
+    // Content
+    &__wrapper-content {
+
+        @include index.l {
+            padding-bottom: index.$lh;
+        }
+
+        p {
+            margin-bottom: calc( index.$lh * 0.8 );
+        }
+
+        b {
+            font-family: index.$font-primary-medium;
+        }
+    }
+
+}
