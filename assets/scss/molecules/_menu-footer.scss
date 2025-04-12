@@ -10,16 +10,16 @@
         
         @include index.l {
             flex-direction: row;
-            gap: index.$lh;
+            gap: calc( index.$lh * 1.5 );
             justify-content: space-between;
         }
 
         @include index.xl {
-            gap: calc( index.$lh * 1.5 );
+            gap: calc( index.$lh * 2 );
         }
 
         @include index.xxl {
-            gap: calc( index.$lh * 2 );
+            gap: calc( index.$lh * 2.5 );
         }
 
     }

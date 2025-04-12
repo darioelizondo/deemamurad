@@ -24,11 +24,11 @@
         }
 
         @include index.xl {
-            column-gap: calc( index.$lh * 2 );
+            column-gap: calc( index.$lh * 3 );
         }
 
         @include index.xxl {
-            column-gap: calc( index.$lh * 2.5 );
+            column-gap: calc( index.$lh * 3.5 );
         }
 
     }

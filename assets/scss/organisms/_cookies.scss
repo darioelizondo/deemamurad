@@ -1,10 +1,88 @@
 // Cookies
+@use '../@config/index';
+
+.cky-consent-container{
+   @media only screen and ( max-width: 768px ) {
+        width: 90% !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+   }
+}
+
+.cky-box-bottom-right {
+    @media only screen and ( max-width: 768px ) {
+        bottom: 13px !important;
+   }
+}
+
+.cky-notice-btn-wrapper {
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 5px;
+
+    @include index.m {
+        align-items: flex-start !important;
+        gap: 0;
+    }
+
+}
+
 .cky-btn-customize,
 .cky-btn-reject,
 .cky-btn-accept {
+    width: auto !important;
     padding: 2px 8px !important;
     border-width: 1px !important;
+    margin-top: 16px !important;
+
+    &:hover {
+        color: index.$white !important;
+        background-color: index.$black !important;
+        opacity: 1 !important;
+    }
+
 }
+
+.cky-btn-preferences {
+    color: index.$white !important;
+    background-color: index.$black !important;
+    padding: 2px 4px !important;
+}
+
+
+.cky-prefrence-btn-wrapper {
+    .cky-btn-customize,
+    .cky-btn-reject,
+    .cky-btn-accept {
+        width: 100% !important;
+        margin-top: 10px !important;
+
+        @include index.m {
+            width: auto !important;
+            margin-top: 0 !important;
+            height: 32px !important;
+        }
+
+    }
+}
+
+.cky-box-bottom-right {
+    @include index.l {
+        bottom: 20px !important;
+        right: 20px !important;
+    }
+}
+
+.cky-consent-container {
+    @include index.l {
+        width: 550px !important;
+    }
+}
+
+.cky-accordion-header .cky-accordion-btn {
+    font-size: 14px !important;   
+}
+
 
 .cky-consent-container .cky-consent-bar,
 .cky-modal {
@@ -14,3 +92,9 @@
 .cky-title {
     font-weight: normal !important;
 }
+
+.cky-show-desc-btn,
+.cky-always-active {
+    color:#ACACB1 !important;
+}
+

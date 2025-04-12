@@ -39,14 +39,56 @@
 
         @include index.l {
             padding-bottom: index.$lh;
-        }
-
-        p {
-            margin-bottom: calc( index.$lh * 0.8 );
+            width: 75%;
+            margin: 0 auto;
         }
 
         b {
             font-family: index.$font-primary-medium;
+        }
+
+        p, ul {
+            margin-bottom: calc( index.$lh / 2 );
+        }
+
+        ul {
+            margin-left: 0;
+        }
+
+        li {
+            list-style: none;
+            margin-left: 10px;
+
+            &::before {
+                content: '- ' !important;
+                margin-left: -10px;
+            }
+
+        }
+
+        a {
+            display: inline-block;
+            position: relative;
+            text-decoration: none;
+
+            &:hover {
+                color: #ACACB1;
+            }
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: 16px;
+                left: 0;
+                width: 100%;
+                height: 1px;
+                background-color: #838383;
+    
+                @include index.l {
+                    top: 18px;
+                }
+            }
+
         }
     }
 
