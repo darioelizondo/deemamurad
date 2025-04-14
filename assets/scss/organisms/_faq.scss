@@ -56,8 +56,17 @@
         gap: calc( index.$lh / 2 );
         
         @include index.l {
-            width: 75%;
-            margin: 0 auto;
+            width: 69%;
+            margin:
+             0 auto;
+        }
+
+        @include index.xl {
+            width: 65%;
+        }
+
+        @include index.xxl {
+            width: 72%;
         }
 
     }
