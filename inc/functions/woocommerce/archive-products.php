@@ -316,6 +316,7 @@
                 // Botón para limpiar filtros
                 $("#clear-filters").on("click", function () {
                     const allCounters = document.querySelectorAll('.products-filters__filter-count');
+                    $( '.woocommerce-shop__list-item' ).removeClass('active');
                     allCounters.forEach( counter => counter.textContent = '' );
                     $("#productsFilters input").prop("checked", false);
                     history.pushState(null, null, window.location.pathname);
@@ -418,14 +419,23 @@
                         parentItem.removeClass("active");
                         checkbox.prop("checked", false);
                     } else {
-                        // Si no está activo, se limpia el grupo correspondiente y se selecciona el nuevo
-                        if (filterType === "products") {
-                            $(".woocommerce-shop__wrapper-categories .woocommerce-shop__list-item").removeClass("active");
-                            $('.products-filters__checkbox[data-filter="products"]').prop("checked", false);
-                        } else if (filterType === "collections") {
-                            $(".woocommerce-shop__wrapper-collections .woocommerce-shop__list-item").removeClass("active");
-                            $('.products-filters__checkbox[data-filter="collections"]').prop("checked", false);
-                        }
+                        // Si no está activo, limpia todos los grupos y se selecciona el nuevo
+                        // Categories
+                        $(".woocommerce-shop__wrapper-categories .woocommerce-shop__list-item").removeClass("active");
+                        $('.products-filters__checkbox[data-filter="products"]').prop("checked", false);
+                        // Collections
+                        $(".woocommerce-shop__wrapper-collections .woocommerce-shop__list-item").removeClass("active");
+                        $('.products-filters__checkbox[data-filter="collections"]').prop("checked", false);
+                        // Clear counters
+                        $( '.products-filters__filter-count' ).text('');
+
+                        // if (filterType === "products") {
+                        //     $(".woocommerce-shop__wrapper-categories .woocommerce-shop__list-item").removeClass("active");
+                        //     $('.products-filters__checkbox[data-filter="products"]').prop("checked", false);
+                        // } else if (filterType === "collections") {
+                        //     $(".woocommerce-shop__wrapper-collections .woocommerce-shop__list-item").removeClass("active");
+                        //     $('.products-filters__checkbox[data-filter="collections"]').prop("checked", false);
+                        // }
 
                         parentItem.addClass("active");
                         checkbox.prop("checked", true);
