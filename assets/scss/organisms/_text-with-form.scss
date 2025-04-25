@@ -16,13 +16,20 @@
 
         @include index.l {
             grid-template-columns: repeat( 2, minmax( 0, 1fr ) );
-            gap: calc( index.$lh * 2 );
+            column-gap: calc( index.$lh / 2.5 );
         }
         
-        @include index.xl {
-            gap: calc( index.$lh * 3 );
-        }
+        // @include index.xl {
+        //     gap: calc( index.$lh * 3 );
+        // }
 
+    }
+
+    // Wrapper content
+    &__wrapper-content {
+        @include index.l {
+            padding-right: calc(  index.$lh * 2 );
+        }
     }
 
     // Title
