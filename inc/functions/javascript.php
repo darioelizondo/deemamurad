@@ -21,7 +21,7 @@
         wp_register_script( 'jquery.espy', TDU . '/assets/third/jquery.espy/jquery.espy.min.js', array( 'jquery' ), '0.1.0', true );
 
         // App
-        wp_enqueue_script( 'deemamurad.onload-page', TDU . '/assets/javascript/production/onload-page.js', array( 'jquery' ), filemtime( TD . '/assets/javascript/production/onload-page.js' ), true );
+        // wp_enqueue_script( 'deemamurad.onload-page', TDU . '/assets/javascript/production/onload-page.js', array( 'jquery' ), filemtime( TD . '/assets/javascript/production/onload-page.js' ), true );
         wp_register_script( 'deemamurad.menu', TDU . '/assets/javascript/production/menu.js', array( 'jquery' ), filemtime( TD . '/assets/javascript/production/menu.js' ), true );
         wp_register_script( 'deemamurad.menu-footer', TDU . '/assets/javascript/production/menu-footer.js', array( 'jquery' ), filemtime( TD . '/assets/javascript/production/menu-footer.js' ), true );
         wp_register_script( 'deemamurad.header', TDU . '/assets/javascript/production/header.js', array( 'jquery' ), filemtime( TD . '/assets/javascript/production/header.js' ), true );
