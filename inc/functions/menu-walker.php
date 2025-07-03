@@ -12,6 +12,9 @@ class DeemaMurad_Menu_Walker extends Walker_Nav_Menu {
         // Get image placeholder
         $image = get_field( 'image_menu_item', $item->ID );
 
+        // Get slug if exists
+        $slug = get_field( 'slug_menu_item', $item->ID );
+
         // CSS class of the <li> element
         $classes = implode(" ", $item->classes);
 
@@ -28,7 +31,12 @@ class DeemaMurad_Menu_Walker extends Walker_Nav_Menu {
         // Build the link
         $link_class = $has_children ? "menu__link menu__has-child" : "menu__link";
         $link_class_first_level = $has_children && $depth == 0 ? "menu__has-child--first-level" : "";
-        $output .= '<a class="' . esc_attr($link_class). ' ' . esc_attr($link_class_first_level) . '" href="' . esc_url($item->url) . '" data-title="' . esc_attr($item->title) . '" target="' . esc_attr($item->target) . '">';
+
+        if( isset( $slug ) && !empty( $slug ) ) {
+            $output .= '<a class="' . esc_attr($link_class). ' ' . esc_attr($link_class_first_level) . '" href="' . esc_url($item->url) . '" data-title="' . esc_attr($item->title) . '" target="' . esc_attr($item->target) . '"  data-slug="' . esc_attr($slug) . '">';
+        } else {
+            $output .= '<a class="' . esc_attr($link_class). ' ' . esc_attr($link_class_first_level) . '" href="' . esc_url($item->url) . '" data-title="' . esc_attr($item->title) . '" target="' . esc_attr($item->target) . '">';
+        }
 
         // Additional content if it is top level
         // if ($depth == 0) {
