@@ -447,47 +447,52 @@
                     updateFilterCount(filterType);
                 });
 
-                // Prevent reload the page when clicking on the links in Shop page
-                $('.menu__link ').on( 'click', (e) => {
-                    
-                    const currentPath = window.location.pathname;
-                    const productPagePath = '/shop/'; 
-                    const productPagePathStaging = '/deema-murad/shop/';
-                    const currentLink = $(e.target).parent();
-                    const category = currentLink.data('slug') ? currentLink.data('slug') : null; // Extraer el slug de la categoría del atributo data-slug
+                                // Prevent reload the page when clicking on the links in Shop page
+                document.querySelectorAll('.menu__link').forEach( link => {
 
-                    if ( currentPath === productPagePath || currentPath === productPagePathStaging && category !== null ) {
+                    link.addEventListener('click', (e) => {
+                        
+                        const currentPath = window.location.pathname;
+                        const productPagePath = '/shop/'; 
+                        const productPagePathStaging = '/deema-murad/shop/';
+                        const category = link.dataset.slug ? link.dataset.slug : null; // Extraer el slug de la categoría del atributo data-slug
 
-                        e.preventDefault(); // Prevenir la recarga
+                        if ( currentPath === productPagePath || currentPath === productPagePathStaging && category !== null ) {
 
-                        const itemList = $(`.woocommerce-shop__list-link[data-slug="${category}"]`);
-                        const itemListParent = itemList.parent();
-                        const checkbox = $(`.products-filters__checkbox[data-filter="products"][value="${category}"]`);
+                            console.log( category );
 
-                        if( itemListParent.hasClass("active") ) {
-                             // Si ya está activo, lo desactiva
-                            itemListParent.removeClass("active");
-                            checkbox.prop("checked", false);
-                        } else {
-                            // Si no está activo, limpia todos los grupos y se selecciona el nuevo
-                            // Categories
-                            $(".woocommerce-shop__wrapper-categories .woocommerce-shop__list-item").removeClass("active");
-                            $('.products-filters__checkbox[data-filter="products"]').prop("checked", false);
-                            // Collections
-                            $(".woocommerce-shop__wrapper-collections .woocommerce-shop__list-item").removeClass("active");
-                            $('.products-filters__checkbox[data-filter="collections"]').prop("checked", false);
-                            // Clear counters
-                            $( '.products-filters__filter-count' ).text('');
-                            itemListParent.addClass("active");
-                            checkbox.prop("checked", true);
+                            e.preventDefault(); // Prevenir la recarga
+
+                            const itemList = $(`.woocommerce-shop__list-link[data-slug="${category}"]`);
+                            const itemListParent = itemList.parent();
+                            const checkbox = $(`.products-filters__checkbox[data-filter="products"][value="${category}"]`);
+
+                            if( itemListParent.hasClass("active") ) {
+                                // Si ya está activo, lo desactiva
+                                itemListParent.removeClass("active");
+                                checkbox.prop("checked", false);
+                            } else {
+                                // Si no está activo, limpia todos los grupos y se selecciona el nuevo
+                                // Categories
+                                $(".woocommerce-shop__wrapper-categories .woocommerce-shop__list-item").removeClass("active");
+                                $('.products-filters__checkbox[data-filter="products"]').prop("checked", false);
+                                // Collections
+                                $(".woocommerce-shop__wrapper-collections .woocommerce-shop__list-item").removeClass("active");
+                                $('.products-filters__checkbox[data-filter="collections"]').prop("checked", false);
+                                // Clear counters
+                                $( '.products-filters__filter-count' ).text('');
+                                itemListParent.addClass("active");
+                                checkbox.prop("checked", true);
+                            }
+
+                            // Disparar la función de filtrado AJAX
+                            updateFilters();
+                            // Contar los filtros aplicados
+                            updateFilterCount('products');
+
                         }
-
-                        // Disparar la función de filtrado AJAX
-                        updateFilters();
-                        // Contar los filtros aplicados
-                        updateFilterCount('products');
-
-                    }
+                    });
+                
                 });
 
             });
