@@ -1,0 +1,11 @@
+// Languages
+@use '../@config/index';
+
+.laguage-switcher {
+
+    // Link
+    .glink:first-child {
+        margin-right: calc( index.$lh / 3 );
+    }
+
+}

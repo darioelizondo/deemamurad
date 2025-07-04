@@ -45,6 +45,10 @@
                     <div class="header__wrapper-account">
                         <?php include TD . '/template-parts/components/atoms/account.php'; ?>
                     </div>
+                    <!-- Languages -->
+                    <div class="header__wrapper-languages">
+                        <?php include TD . '/template-parts/components/atoms/language-switcher.php'; ?>
+                    </div>
                 </div>
             </div>
         </div>
