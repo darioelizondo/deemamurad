@@ -37,6 +37,10 @@
                 </div>
                 <!-- Wrapper currency & account -->
                 <div class="header__wrapper-currency-account">
+                    <!-- Languages -->
+                    <div class="header__wrapper-languages">
+                        <?php include TD . '/template-parts/components/atoms/language-switcher.php'; ?>
+                    </div>
                     <!-- Currency -->
                     <div class="header__wrapper-currency">
                         <?php include TD . '/template-parts/components/atoms/currency-switcher.php'; ?>
@@ -44,10 +48,6 @@
                     <!-- Account -->
                     <div class="header__wrapper-account">
                         <?php include TD . '/template-parts/components/atoms/account.php'; ?>
-                    </div>
-                    <!-- Languages -->
-                    <div class="header__wrapper-languages">
-                        <?php include TD . '/template-parts/components/atoms/language-switcher.php'; ?>
                     </div>
                 </div>
             </div>

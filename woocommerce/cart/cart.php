@@ -136,7 +136,7 @@
 								<!-- Subtotal -->
 								<td class="cart-subtotal">
 									<?php
-									echo wp_kses_post(WC()->cart->get_product_subtotal($_product, $cart_item['quantity']));
+										echo wp_kses_post(WC()->cart->get_product_subtotal($_product, $cart_item['quantity']));
 									?>
 								</td>
 							</tr>

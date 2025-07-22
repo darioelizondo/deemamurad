@@ -257,8 +257,25 @@
 
         }
 
+        // Details price
+        &__details-price {
+            display: flex;
+            flex-direction: column;
+            text-align: right;
+        }
+    
+        &__tax-included {
+            font-size: 13px;
+            color: #A2A2A2;
+    
+            @include index.l {
+                font-size: 14px;
+            }
+    
+        }
 
     }
+
 
     // Checkout button
     &__checkout-button {

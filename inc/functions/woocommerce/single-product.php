@@ -33,8 +33,12 @@
     add_action('woocommerce_single_product_summary', function() {
         echo '<div class="woocommerce-single__wrapper-title-and-price">';
             woocommerce_template_single_title();
-            woocommerce_template_single_price();
+            echo '<div class="woocommerce-single__wrapper-price">';
+                woocommerce_template_single_price();
+                echo '<div class="tax-included">Tax included</div>';
+            echo '</div>';
         echo '</div>';
+            
     }, 5);
 
     /** 

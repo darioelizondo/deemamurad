@@ -25,6 +25,15 @@
         <!-- Logo -->
         <div class="footer__wrapper-logo">
             <?php include TD . '/template-parts/components/atoms/logo-footer.php'; ?>
+            <!-- Contact info -->
+            <div class="footer__wrapper-contact-info">
+                <p class="footer__contact-info">
+                    Deema Murad Lda.<br>
+                    <a href="mailto:info@deemamurad.com">info@deemamurad.com</a><br>
+                    Rua do Alviela 1i, 2nd floor, 1170-012 Lisbon, Portugal<br>
+                    CAE 32122 | NIPC 515326151
+                </p>
+            </div>
         </div>
         <!-- Footer menu -->
         <div class="footer__wrapper-menu">

@@ -314,6 +314,17 @@
         @include index.l {
             text-align: right;
         }
+
+        &__tax-included {
+            font-size: 13px;
+            color: #A2A2A2;
+            text-align: left;
+    
+            @include index.l {
+                font-size: 14px;
+            }
+    
+        }
     }
 
     th.cart-subtotal,

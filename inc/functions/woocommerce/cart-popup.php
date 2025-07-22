@@ -219,7 +219,10 @@
                 echo                    '</div>';
                 echo                '</div>';
                 echo            '</div>';
-                echo            '<p class="cart-item__details-text">' . wc_price($cart_item['line_total']) . '</p>';
+                echo            '<div class="cart-item__details-price">';
+                echo                '<p class="cart-item__details-text">' . wc_price($cart_item['line_total']) . '</p>';
+                echo                '<p class="cart-item__tax-included">Tax included</p>';
+                echo            '</div>';
                 echo        '</div>';
                 echo        '<div class="cart-item__wrapper-remove">';
                 echo            '<button class="cart-item__remove-item" data-cart-key="' . $cart_item_key . '">Remove</button>';

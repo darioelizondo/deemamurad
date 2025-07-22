@@ -35,4 +35,12 @@ global $product;
 	<input type="hidden" name="add-to-cart" value="<?php echo absint( $product->get_id() ); ?>" />
 	<input type="hidden" name="product_id" value="<?php echo absint( $product->get_id() ); ?>" />
 	<input type="hidden" name="variation_id" class="variation_id" value="0" />
+
+</div>
+
+<!-- Certification and Authenticity -->
+<div class="deema-below-add-to-cart">
+	<a class="deema-below-add-to-cart__link" href="<?php echo get_site_url() . '/incm-certification'; ?>">
+		Certification and Authenticity
+	</a>
 </div>

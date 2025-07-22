@@ -92,7 +92,14 @@
         flex-wrap: wrap;
         gap: index.$lh;
         justify-content: space-between;
-        align-items: center;
+    }
+
+    &__wrapper-price {
+        text-align: right;
+    }
+
+    .tax-included {
+        color: #A2A2A2;
     }
 
     // Title
@@ -495,4 +502,20 @@
         display: none;
     }
 
+}
+
+// Certification and Authenticity
+.deema-below-add-to-cart {
+    margin-top: index.$lh;
+
+    a {
+        font-size: 13px;
+        text-decoration: underline;
+        transition: color .3s ease;
+
+        @include index.l {
+            font-size: 14px;
+        }
+
+    }
 }

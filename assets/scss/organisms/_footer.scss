@@ -35,12 +35,33 @@
 
     // Logo
     &__wrapper-logo {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        order: 3;
+
+        @include index.l {
+            order: 1;
+        }
+
+    }
+
+    &__wrapper-logo .logo-footer {
         display: none;
 
         @include index.l {
             display: block;
         }
 
+    }
+
+    &__contact-info,
+    &__contact-info a {
+        font-size: 13px;
+
+        @include index.l {
+            font-size: 14px;
+        }
     }
 
     // Subscribe form & social
@@ -66,6 +87,25 @@
             font-size: 12px;
         }
 
+    }
+
+    // Menu
+    &__wrapper-menu {
+        order: 1;
+        
+        @include index.l {
+            order: 2;
+        }
+
+    }
+
+    // Form & Social
+    &__wrapper-form-and-social {
+        order: 2;
+        
+        @include index.l {
+            order: 3;
+        }
     }
 
 }
