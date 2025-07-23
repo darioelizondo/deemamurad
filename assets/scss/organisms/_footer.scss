@@ -57,9 +57,10 @@
 
     &__contact-info,
     &__contact-info a {
+
         font-size: 13px;
 
-        @include index.l {
+        @include index.xl {
             font-size: 14px;
         }
     }

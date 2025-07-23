@@ -39,5 +39,6 @@
         wp_register_script( 'deemamurad.faq', TDU . '/assets/javascript/production/faq.js', array( 'jquery' ), filemtime( TD . '/assets/javascript/production/faq.js' ), true );
         wp_register_script( 'deemamurad.cart-popup', TDU . '/assets/javascript/production/cart-popup.js', array( 'jquery' ), filemtime( TD . '/assets/javascript/production/cart-popup.js' ), true );
         wp_register_script( 'deemamurad.shop-filters', TDU . '/assets/javascript/production/shop-filters.js', array( 'jquery' ), filemtime( TD . '/assets/javascript/production/shop-filters.js' ), true );
+        wp_register_script( 'deemamurad.terms-and-conditions-popup', TDU . '/assets/javascript/production/terms-and-conditions-popup.js', array( 'jquery' ), filemtime( TD . '/assets/javascript/production/terms-and-conditions-popup.js' ), true );
 
     }

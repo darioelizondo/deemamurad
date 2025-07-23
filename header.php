@@ -23,6 +23,8 @@
         <?php wp_head(); ?>
     </head>
 
+    <?php include TD . '/template-parts/components/molecules/terms-and-conditions-popup.php'; ?>
+    
     <body <?php body_class(); ?>>
         <main class="main">
             <?php include TD . '/template-parts/components/organisms/header.php'; ?>
