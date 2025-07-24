@@ -63,6 +63,8 @@
     &__contact-info a {
         font-size: 11px;
         line-height: 1.2;
+        color: #969696;
+        letter-spacing: 1px;
 
         @include index.l {
             font-size: 12px;

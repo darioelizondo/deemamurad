@@ -10,7 +10,7 @@
     top: 0;
     left: 0;
     justify-content: flex-end;
-    background-color: rgba( $color: #D9D9D9, $alpha: 0.4 );
+    // background-color: rgba( $color: #D9D9D9, $alpha: 0.4 );
     z-index: 999999999999999999;
     
     &.opened {
@@ -25,7 +25,7 @@
         top: 50%;
         left: 50% ;
         transform: translate(-50%, -50%);
-        padding: calc( index.$lh * 2 ) calc( index.$lh / 2 );
+        padding: 20px index.$lh;
         padding-top: index.$lh;
         display: flex;
         flex-direction: column;
@@ -36,18 +36,17 @@
 
         @include index.m {
             width: 440px;
-            height: 390px;
+            height: 400px;
             top: auto;
             left: auto;
             bottom: 40px;
             right: 40px;
             transform: translateX(0);
-            padding: calc( index.$lh * 1.5 );
         }
 
         @include index.l {
             width: 550px;
-            height: 350px;
+            height: 360px;
             bottom: 20px;
             right: 20px;
         }
@@ -216,18 +215,10 @@
     }
 
     h4 {
-        font-family: index.$font-primary;
+        font-family: index.$font-primary-light;
         font-size: 18px;
         line-height: 1.2;
         margin-bottom: calc( index.$lh / 2 );
-
-        @include index.l {
-            font-size: 20px;
-        }
-
-        @include index.xl {
-            font-size: 22px;
-        }
     }
 
 }
