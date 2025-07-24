@@ -265,13 +265,8 @@
         }
     
         &__tax-included {
-            font-size: 13px;
-            color: #A2A2A2;
-    
-            @include index.l {
-                font-size: 14px;
-            }
-    
+            font-size: 12px;
+            color: #A2A2A2;    
         }
 
     }

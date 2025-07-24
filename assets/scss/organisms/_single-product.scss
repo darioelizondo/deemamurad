@@ -92,6 +92,15 @@
         flex-wrap: wrap;
         gap: index.$lh;
         justify-content: space-between;
+
+        @include index.m {
+             flex-wrap: nowrap;
+        }
+
+        @include index.e {
+             flex-wrap: wrap;
+        }
+
     }
 
     &__wrapper-price {
@@ -99,7 +108,9 @@
     }
 
     .tax-included {
+        font-size: 12px;
         color: #A2A2A2;
+        white-space: nowrap;
     }
 
     // Title

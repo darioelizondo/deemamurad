@@ -103,6 +103,7 @@
         display: flex;
         gap: calc( index.$lh / 2 );
         justify-content: space-between;
+        align-items: flex-end;
 
         @include index.l {
             flex-direction: row;
@@ -146,8 +147,6 @@
         }
 
     }
-
-
 
     &__wrapper-about-me-and-press {
         display: flex;

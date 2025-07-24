@@ -11,19 +11,28 @@
      * Add text tax included
      */
 
-add_action('wp_footer', 'add_tax_included_text');
-
-     function add_tax_included_text() {
-        ?>
-
+    add_action('wp_footer', function() {
+        if ( is_cart() ) : ?>
             <script>
                 document.addEventListener("DOMContentLoaded", function() {
-                    const cartTotals = document.querySelector('.cart_totals');
-                    const cartSubtotal = cartTotals.querySelector('.cart-subtotal th');
-                    const taxIncludedText = document.createElement('p');
-                    cartSubtotal.innerHTML = 'Subtotal <br><span class="cart-subtotal__tax-included">Tax included</span>';
+                    const subtotalRow = document.querySelector(".cart-subtotal th");
+                    if (subtotalRow && !subtotalRow.querySelector(".cart-subtotal__tax-included")) {
+                        subtotalRow.innerHTML = '<p>Subtotal (Tax included)</p>';
+                        subtotalRow.insertAdjacentHTML(
+                            "beforeend",
+                            '<p class="cart-subtotal__tax-included">Including: <?php echo wc_price(WC()->cart->get_taxes_total()); ?> VAT</p>'
+                        );
+                    }
                 });
             </script>
+        <?php endif;
+    });
 
-        <?php
-     }
+    /** 
+     * Hide tax line in cart totals by default
+     */
+    add_filter('woocommerce_cart_totals_taxes_total_html', '__return_empty_string');
+    add_filter('woocommerce_cart_totals_order_total_html', function($value) {
+        // Quita la línea de impuestos si se está mostrando junto al total
+        return preg_replace('/<small class="includes_tax">.*?<\/small>/', '', $value);
+    });

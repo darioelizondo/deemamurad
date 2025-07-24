@@ -220,7 +220,7 @@
                 echo                '</div>';
                 echo            '</div>';
                 echo            '<div class="cart-item__details-price">';
-                echo                '<p class="cart-item__details-text">' . wc_price($cart_item['line_total']) . '</p>';
+                echo                '<p class="cart-item__details-text">' . wc_price($cart_item['line_total'] + $cart_item['line_tax']) . '</p>';
                 echo                '<p class="cart-item__tax-included">Tax included</p>';
                 echo            '</div>';
                 echo        '</div>';

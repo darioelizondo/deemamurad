@@ -133,7 +133,7 @@
         height: 34px;
         color: index.$white;
         font-weight: 400;
-        padding: 6px index.$lh;
+        padding: 3px index.$lh;
         background-color: index.$black;
         border-radius: 0;
     
@@ -143,12 +143,12 @@
     
         @include index.m {
             // width: auto;
-            padding: calc( index.$lh / 3 ) index.$lh * .8;
+            padding: 3px index.$lh * .8;
         }
     
         @include index.l {
             // width: auto;
-            padding: calc( index.$lh / 3 ) index.$lh * 1.4;
+            padding: 3px index.$lh * 1.4;
         }
 
         &.disabled {

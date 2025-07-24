@@ -23,14 +23,23 @@
             </div>
             <!-- Separator -->
             <div class="terms-and-conditions-popup__separator"></div>
-            <!-- Checkbox -->
+            <!-- Checkboxes -->
             <div class="terms-and-conditions-popup__wrapper-checkbox">
                 <label class="terms-and-conditions-popup__label-checkbox">
-                    <input type="checkbox" class="terms-and-conditions-popup__input terms-and-conditions-popup__input-checkbox" name="terms-and-conditions-popup-checkbox" id="termsAndConditionsCheckbox" />
+                    <input type="checkbox" class="terms-and-conditions-popup__input terms-and-conditions-popup__input-checkbox" name="terms-and-conditions-popup-checkbox" id="termsAndConditionsCheckbox_understood" />
                     <span class="checkmark"></span>
                 </label>
                 <span class="terms-and-conditions-popup__checkbox-span">
-                    I have read and I agree with the Deema Murad's Terms & Conditions and Privacy Policy.
+                    I confirm that I have read and understood Deema Murad’s Privacy Policy.
+                </span>
+            </div>
+            <div class="terms-and-conditions-popup__wrapper-checkbox">
+                <label class="terms-and-conditions-popup__label-checkbox">
+                    <input type="checkbox" class="terms-and-conditions-popup__input terms-and-conditions-popup__input-checkbox" name="terms-and-conditions-popup-checkbox" id="termsAndConditionsCheckbox_readTerms" />
+                    <span class="checkmark"></span>
+                </label>
+                <span class="terms-and-conditions-popup__checkbox-span">
+                    I have read and I agree with Deema Murad’s Terms and Conditions.
                 </span>
             </div>
             <!-- Accept -->

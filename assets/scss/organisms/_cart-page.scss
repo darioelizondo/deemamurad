@@ -316,14 +316,9 @@
         }
 
         &__tax-included {
-            font-size: 13px;
+            font-size: 12px;
             color: #A2A2A2;
             text-align: left;
-    
-            @include index.l {
-                font-size: 14px;
-            }
-    
         }
     }
 
@@ -764,6 +759,12 @@
             font-weight: normal;
             letter-spacing: 0;
         }
+    }
+
+    .order-total .woocommerce-Price-amount .woocommerce-Price-currencySymbol {
+        font-family: index.$font-primary-medium !important;
+        font-weight: normal !important;
+        letter-spacing: 0 !important;
     }
 
 }

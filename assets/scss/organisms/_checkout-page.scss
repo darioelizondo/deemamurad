@@ -113,7 +113,7 @@
                     
                     tr {
                         display: flex;
-                        align-items: center;
+                        // align-items: center;
                         justify-content: space-between;
                     }
                 }
@@ -128,6 +128,15 @@
 
                 .cart-subtotal {
                     margin-top: 10px;
+                    margin-bottom: 4px;
+
+                    &__tax,
+                    &__tax bdi,
+                    &__tax .woocommerce-Price-currencySymbol {
+                        color: #999797 !important;
+                        font-size: 12px !important;
+                    }
+
                 }
 
                 .cart-subtotal th,
@@ -151,6 +160,12 @@
                         font-size: 17px;
                     }
 
+                }
+
+                .order-total .woocommerce-Price-amount .woocommerce-Price-currencySymbol {
+                    font-family: index.$font-primary-medium !important;
+                    font-weight: normal !important;
+                    letter-spacing: 0 !important;
                 }
 
             }

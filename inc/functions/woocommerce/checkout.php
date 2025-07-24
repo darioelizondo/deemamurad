@@ -436,3 +436,11 @@
 
         <?php
     }
+
+    /** 
+     * Hide tax line in cart totals by default
+    */
+    add_filter('woocommerce_cart_totals_taxes_total_html', '__return_empty_string');
+    add_filter('woocommerce_cart_totals_order_total_html', function($value) {
+        return preg_replace('/<small class="includes_tax">.*?<\/small>/', '', $value);
+    });

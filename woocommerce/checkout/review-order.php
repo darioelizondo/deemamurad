@@ -70,8 +70,8 @@ defined( 'ABSPATH' ) || exit;
 					</div>
                 </td>
                 <td class="cart-item__price">
-                    <p><?php echo wc_price($cart_item['line_total']); ?></p>
-                </td>
+					<p><?php echo wc_price($cart_item['line_total'] + $cart_item['line_tax']); ?></p>
+				</td>
             </tr>
             <?php
         }
@@ -80,7 +80,16 @@ defined( 'ABSPATH' ) || exit;
 	<tfoot>
 
 		<tr class="cart-subtotal">
-			<th><?php esc_html_e( 'Subtotal (Tax included)', 'woocommerce' ); ?></th>
+			<th>
+				<?php
+					echo '<p>Subtotal (Tax included)</p>';
+					$taxes = WC()->cart->get_taxes();
+					if (!empty($taxes)) {
+						echo '<p class="cart-subtotal__tax"">Including:' . wc_price(WC()->cart->get_taxes_total()) . ' VAT</p>';
+						//esc_html_e( 'Including:' . wc_price(WC()->cart->get_taxes_total()), 'woocommerce' );
+					}
+				?>
+			</th>
 			<td><?php wc_cart_totals_subtotal_html(); ?></td>
 		</tr>
 
