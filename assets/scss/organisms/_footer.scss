@@ -55,13 +55,17 @@
 
     }
 
+    &__contact-info {
+        padding-bottom: 8px;
+    }
+
     &__contact-info,
     &__contact-info a {
+        font-size: 11px;
+        line-height: 1.2;
 
-        font-size: 13px;
-
-        @include index.xl {
-            font-size: 14px;
+        @include index.l {
+            font-size: 12px;
         }
     }
 

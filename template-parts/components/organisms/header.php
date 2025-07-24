@@ -37,17 +37,36 @@
                 </div>
                 <!-- Wrapper currency & account -->
                 <div class="header__wrapper-currency-account">
-                    <!-- Languages -->
-                    <div class="header__wrapper-languages">
-                        <?php include TD . '/template-parts/components/atoms/language-switcher.php'; ?>
+                    <!-- Languages & Currency -->
+                    <div class="header__wrapper-languages-and-currency">     
+                        <!-- Languages -->
+                        <div class="header__wrapper-languages">
+                            <?php include TD . '/template-parts/components/atoms/language-switcher.php'; ?>
+                        </div>
+                        <!-- Currency -->
+                        <div class="header__wrapper-currency">
+                            <?php include TD . '/template-parts/components/atoms/currency-switcher.php'; ?>
+                        </div>
                     </div>
-                    <!-- Currency -->
-                    <div class="header__wrapper-currency">
-                        <?php include TD . '/template-parts/components/atoms/currency-switcher.php'; ?>
-                    </div>
-                    <!-- Account -->
-                    <div class="header__wrapper-account">
-                        <?php include TD . '/template-parts/components/atoms/account.php'; ?>
+                    <!-- About me & Press and Account -->
+                    <div class="header__wrapper-about-me-press-and-account">
+                        <!-- About me & Press -->
+                        <div class="header__wrapper-about-me-and-press">
+                            <div class="header__about-me-and-press">
+                                <a class="header__about-me-and-press-link" href="<?php echo get_site_url() . '/about-deema'; ?>">
+                                    About me
+                                </a>
+                            </div>
+                            <div class="header__about-me-and-press">
+                                <a class="header__about-me-and-press-link" href="<?php echo get_site_url() . '/press-events'; ?>">
+                                    Press & Events
+                                </a>
+                            </div>
+                        </div>
+                        <!-- Account -->
+                        <div class="header__wrapper-account">
+                            <?php include TD . '/template-parts/components/atoms/account.php'; ?>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -101,11 +101,12 @@
     // Wrapper currency & account
     &__wrapper-currency-account {
         display: flex;
-        flex-direction: column;
         gap: calc( index.$lh / 2 );
+        justify-content: space-between;
 
         @include index.l {
             flex-direction: row;
+            justify-content: flex-start;
             align-items: center;
         }
 
@@ -113,7 +114,56 @@
             gap: index.$lh;
         }
 
+    }
 
+        // Languages & Currency
+    &__wrapper-languages-and-currency {
+        display: flex;
+        flex-direction: column;
+        gap: calc( index.$lh / 2 );
+        order: 2;
+
+        @include index.l {
+            flex-direction: row;
+            align-items: center;
+            order: 1;
+        }
+
+        @include index.e {
+            gap: index.$lh;
+        }
+    }
+
+    // About me & Press
+    &__wrapper-about-me-press-and-account {
+        display: flex;
+        flex-direction: column;
+        gap: calc( index.$lh / 3 );
+        order: 1;
+
+        @include index.l {
+            order: 2;
+        }
+
+    }
+
+
+
+    &__wrapper-about-me-and-press {
+        display: flex;
+        flex-direction: column;
+        gap: calc( index.$lh / 3 );
+
+        @include index.l {
+            display: none;
+            flex-direction: row;
+            align-items: center;
+            gap: calc( index.$lh / 2 );
+        }
+
+        @include index.e {
+            gap: index.$lh;
+        }
     }
 
     // Wrapper menu
@@ -149,6 +199,7 @@
     }
 
 }
+
 
 // .logged-in {
 //     .header__center {
