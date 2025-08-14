@@ -97,48 +97,6 @@
     function adjust_in_edit_address () {
         if( is_page_template( 'templates/page-my-account.php' ) ) {
 
-            // Obtener los datos de billing y shipping
-            // $user_id = get_current_user_id();
-            // $billing_address = get_user_meta($user_id, 'billing_address_1', true);
-            // $shipping_address = get_user_meta($user_id, 'shipping_address_1', true);
-
-            // if ( !empty($billing_address ) || !empty( $shipping_address ) ) {
-            //     ?>
-            //         <script>
-
-            //             // Adjust content
-            //             jQuery(document).ready(function(){
-
-            //                 const element = document.querySelector( '.woocommerce-edit-address .woocommerce-notices-wrapper' );
-
-            //                 if( element && element.nextElementSibling && element.nextElementSibling.tagName.toLowerCase() === 'p' ) {
-            //                     element.nextElementSibling.classList.add( 'edit-address-title' );
-            //                     element.nextElementSibling.innerHTML = 'My address';
-            //                 }
-
-            //             });
-
-
-            //         </script>
-            //     <?php
-            // } else {
-            //     ?>
-            //         <script>
-            //             // Adjust content
-            //             jQuery(document).ready(function(){
-
-            //                 const element = document.querySelector( '.woocommerce-edit-address .woocommerce-notices-wrapper' );
-
-            //                 if( element && element.nextElementSibling && element.nextElementSibling.tagName.toLowerCase() === 'p' ) {
-            //                     element.nextElementSibling.remove();
-            //                 }
-            //             });
-
-
-            //         </script>
-            //     <?php
-            // }
-
             ?>  
                 <script>
                     // Adjust content
@@ -200,3 +158,170 @@
         }
         return $value;
     }, 10, 3);
+
+    /**
+     * Términos en el registro (My Account + Checkout Create Account)
+     * - Muestra modal y bloquea envío hasta aceptar
+     * - Valida server-side
+     * - Guarda meta al crear usuario
+     */
+
+    // 1) Inyecta modal + JS en páginas relevantes
+    add_action( 'wp_footer', function () {
+
+        // Si el usuario ya está logueado no aplica
+        if ( is_user_logged_in() ) return;
+
+        // Mostrar solo en Mi cuenta (registro) o en Checkout
+        if ( !( is_account_page() || is_checkout() || is_page( 'register' ) ) ) return;
+
+        include TD . '/template-parts/components/molecules/terms-and-conditions-popup-register.php';
+
+        ?>
+
+        <script>
+        jQuery(function($) {
+
+            // --- Selectores del popup de REGISTRO ---
+            const $popup   = $('#termsConditionsPopupRegister');
+            const $btn     = $('#termsAndConditionsPopupButtonRegister');
+            const $chkA    = $('#termsAndConditionsCheckboxRegister_understood');
+            const $chkB    = $('#termsAndConditionsCheckboxRegister_readTerms');
+
+            // Formularios:
+            // My Account -> form.register
+            const $formRegister = $('form.register-form__form');
+            const $hidAccept = $formRegister.find('input[name="tos_modal_accept"]');
+
+            // Checkout -> si marcan "Crear una cuenta" #createaccount
+            const $formCheckout = $('form.checkout');
+            const $createAccount = $('#createaccount');
+
+            // Campo oculto para validar server-side
+            // Lo creamos y lo inyectamos donde haga falta.
+            const hiddenName = 'tos_modal_accept';
+            const $hidden = $('<input>', {type: 'hidden', name: hiddenName, value: ''});
+
+            let accepted = false;
+            let lastTrigger = null; // 'register' | 'checkout'
+
+            function toggleBtn() {
+                const ready = $chkA.prop('checked') && $chkB.prop('checked');
+                $btn.toggleClass('disabled', !ready).prop('disabled', !ready);
+            }
+            $chkA.on('change', toggleBtn);
+            $chkB.on('change', toggleBtn);
+            toggleBtn();
+
+            function openPopup() {
+                $popup.addClass('opened');
+                setTimeout(() => { $chkA.trigger('focus'); }, 40);
+            }
+            function closePopup() {
+                $popup.removeClass('opened');
+            }
+
+            // --- BLOQUEO EN MI CUENTA (registro clásico) ---
+            if ($formRegister.length) {
+                // Inyectar el hidden en el form de registro
+                if (!$formRegister.find('input[name="'+hiddenName+'"]').length) {
+                    $formRegister.append($hidden.clone());
+                }
+
+                $formRegister.on('submit', function(e) {
+                    if (!accepted) {
+                        e.preventDefault();
+                        lastTrigger = 'register';
+                        openPopup();
+                        return false;
+                    }
+                    return true;
+                });
+            }
+
+            // --- BLOQUEO EN CHECKOUT SÓLO si van a crear cuenta ---
+            if ($formCheckout.length && $createAccount.length) {
+                // Inyectar hidden también en checkout por si crean cuenta
+                if (!$formCheckout.find('input[name="'+hiddenName+'"]').length) {
+                    $formCheckout.append($hidden.clone());
+                }
+
+                // Enganchar en el evento canónico antes de enviar Woo
+                const events = [
+                'checkout_place_order',          // genérico Woo
+                'checkout_place_order_stripe',   // si usas Stripe card (por consistencia)
+                ];
+                $formCheckout.on(events.join(' '), function () {
+                    // Mostrar popup SOLAMENTE si van a crear cuenta
+                    if (!accepted && $createAccount.is(':checked')) {
+                        lastTrigger = 'checkout';
+                        openPopup();
+                        return false;
+                    }
+                    return true;
+                });
+            }
+
+            // --- Confirmación del popup ---
+            $btn.on('click', function(e) {
+                e.preventDefault();
+                if ($btn.hasClass('disabled')) return;
+
+                accepted = true;
+                closePopup();
+
+                // Setear hidden para validación server-side
+                $('input[name="'+hiddenName+'"]').val('1');
+
+                if (lastTrigger === 'register' && $formRegister.length) {
+                    $hidAccept.val('1');
+                    $formRegister.trigger('submit');
+                } else if (lastTrigger === 'checkout' && $formCheckout.length) {
+                    $formCheckout.trigger('submit');
+                }
+            });
+
+            // Si WooCommerce lanza errores (checkout), volvemos a pedir aceptación
+            $(document.body).on('checkout_error', function () {
+                accepted = false;
+                $('input[name="'+hiddenName+'"]').val('');
+            });
+        });
+        </script>
+        <?php
+    });
+
+    // 2a) Validación en Mi Cuenta (registro clásico)
+    add_filter( 'woocommerce_registration_errors', function( $errors, $username, $email ) {
+        if ( is_user_logged_in() ) return $errors;
+
+        // Sólo en el flujo de registro
+        if ( isset($_POST['register']) ) {
+            $accepted = isset($_POST['tos_modal_accept']) && $_POST['tos_modal_accept'] === '1';
+            if ( ! $accepted ) {
+                $errors->add( 'tos_modal_missing', __( 'Debes aceptar los Términos y Condiciones para crear tu cuenta.', 'your-textdomain' ) );
+            }
+        }
+        return $errors;
+    }, 10, 3 );
+
+    // 2b) Validación en Checkout SÓLO si crearán cuenta
+    add_action( 'woocommerce_checkout_process', function () {
+        if ( is_user_logged_in() ) return;
+
+        $create_account = ! empty( $_POST['createaccount'] );
+        if ( $create_account ) {
+            $accepted = isset($_POST['tos_modal_accept']) && $_POST['tos_modal_accept'] === '1';
+            if ( ! $accepted ) {
+                wc_add_notice( __( 'Debes aceptar los Términos y Condiciones para crear tu cuenta.', 'your-textdomain' ), 'error' );
+            }
+        }
+    });
+
+    // 2c) Guardar meta al crear usuario (marca de aceptación en el alta)
+    add_action( 'user_register', function( $user_id ) {
+        if ( isset($_POST['tos_modal_accept']) && $_POST['tos_modal_accept'] === '1' ) {
+            update_user_meta( $user_id, '_tos_modal_accept', '1' );
+            update_user_meta( $user_id, '_tos_modal_accept_date', current_time( 'mysql', true ) ); // opcional: fecha UTC
+        }
+    });

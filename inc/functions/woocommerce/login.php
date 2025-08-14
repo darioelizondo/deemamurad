@@ -44,12 +44,19 @@
     add_action( 'template_redirect', 'custom_registration_handler' );
 
     function custom_registration_handler() {
-        if ( isset( $_POST['register'] ) && isset( $_POST['custom_register_nonce'] ) && wp_verify_nonce( $_POST['custom_register_nonce'], 'custom_register_action' ) ) {
+
+        if ( isset( $_POST['custom_register_nonce'] ) && wp_verify_nonce( $_POST['custom_register_nonce'], 'custom_register_action' ) ) {
             $first_name = sanitize_text_field( $_POST['first_name'] );
             $last_name = sanitize_text_field( $_POST['last_name'] );
             $email = sanitize_email( $_POST['email'] );
             $password = $_POST['password'];
             $password_confirm = $_POST['password_confirm'];
+
+            // Validación server-side del popup
+            if ( empty($_POST['tos_modal_accept']) ) {
+                wc_add_notice( 'You must accept the Terms & Conditions to create your account.', 'error' );
+                return;
+            }
     
             // Validar si las contraseñas coinciden
             if ( $password !== $password_confirm ) {
@@ -74,6 +81,10 @@
             // Agregar nombre y apellido al perfil
             update_user_meta( $user_id, 'first_name', $first_name );
             update_user_meta( $user_id, 'last_name', $last_name );
+
+            // Marca de aceptación
+            update_user_meta( $user_id, '_tos_modal_accept', '1' );
+            update_user_meta( $user_id, '_tos_modal_accept_date', current_time( 'mysql', true ) );
     
             // Asignar rol de "Customer" de WooCommerce
             wp_update_user( array( 'ID' => $user_id, 'role' => 'customer' ) );

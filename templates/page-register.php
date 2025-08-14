@@ -52,6 +52,10 @@
                                     <div class="register-form__wrapper-input">
                                         <input class="register-form__submit" type="submit" name="register" value="Sign up">
                                     </div>
+
+                                    <input type="hidden" name="register" value="1">
+                                    <input type="hidden" name="tos_modal_accept" value="">
+
                                 </form>
                                 <div class="register-form__no-account">
                                     <div class="register-form__no-account-inner">

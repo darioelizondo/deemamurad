@@ -12,6 +12,34 @@
     justify-content: flex-end;
     // background-color: rgba( $color: #D9D9D9, $alpha: 0.4 );
     z-index: 999999999999999999;
+
+    &.terms-and-conditions-popup-checkout {
+        background-color: rgba( $color: #D9D9D9, $alpha: 0.4 );
+
+        .terms-and-conditions-popup__inner {
+            @include index.m {
+                width: 440px !important;
+                height: 400px !important;
+                top: 50% !important;
+                left: 50% !important;
+                bottom: auto !important;
+                right: auto !important;
+                transform: translate(-50%, -50%) !important;
+            }
+
+            @include index.l {
+                width: 600px !important;
+                height: 500px !important;
+            }
+
+            @include index.xl {
+                width: 700px !important;
+                height: 550px !important;
+            }
+
+        }
+
+    }
     
     &.opened {
         display: block;

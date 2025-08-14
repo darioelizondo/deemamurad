@@ -444,3 +444,121 @@
     add_filter('woocommerce_cart_totals_order_total_html', function($value) {
         return preg_replace('/<small class="includes_tax">.*?<\/small>/', '', $value);
     });
+
+    /**
+     * Add Terms & Conditions Popup in Checkout + Stripe (incluye Google/Apple Pay)
+     */
+    add_action( 'wp_footer', function () {
+
+        if ( ! is_checkout() ) return;
+
+        include TD . '/template-parts/components/molecules/terms-and-conditions-popup-checkout.php';
+
+        ?>
+
+        <script>
+
+        jQuery(function($) {
+
+            const $form           = $('form.checkout');
+            const $popup          = $('#termsConditionsPopupCheckout');
+            const $btnConfirm     = $('#termsAndConditionsPopupButtonCheckout');
+            const $checkUnderstood= $('#termsAndConditionsCheckboxCheckout_understood');
+            const $checkReadTerms = $('#termsAndConditionsCheckboxCheckout_readTerms');
+
+            // Selectores típicos del Payment Request Button de Stripe en WooCommerce
+            // (usamos delegación por si Stripe re-renderiza)
+            const PRB_SELECTORS = [
+            '.wc-stripe-payment-request-button',
+            '.wc-stripe-googlepay-button',
+            '.wc-stripe-applepay-button',
+            '.stripe-payment-request-button',         // fallback
+            '.cpsw_express_checkout_button',
+            ].join(', ');
+
+            let confirmAccepted = false;
+            let lastTrigger = null; // 'form' | 'prb'
+
+            // Habilitar / deshabilitar botón del popup
+            function toggleConfirmBtn() {
+                const ready = $checkUnderstood.prop('checked') && $checkReadTerms.prop('checked');
+                $btnConfirm.toggleClass('disabled', !ready).prop('disabled', !ready);
+            }
+            $checkUnderstood.on('change', toggleConfirmBtn);
+            $checkReadTerms.on('change', toggleConfirmBtn);
+            toggleConfirmBtn();
+
+            // --- Bloqueo del flujo estándar (Woo + Stripe) ---
+            const events = [
+            'checkout_place_order',          // genérico Woo
+            'checkout_place_order_stripe',   // Stripe "card" (clásico)
+            // 'checkout_place_order_stripe_cc',
+            // 'checkout_place_order_stripe_sepa',
+            // 'checkout_place_order_stripe_ideal',
+            'checkout_place_order_stripe_klarna',
+            // 'checkout_place_order_stripe_bancontact',
+            // 'checkout_place_order_stripe_eps',
+            // 'checkout_place_order_stripe_giropay',
+            // 'checkout_place_order_stripe_p24'
+            ];
+
+            $form.on(events.join(' '), function () {
+                if (!confirmAccepted) {
+                    lastTrigger = 'form';
+                    openPopup();
+                    return false; // bloquea envío
+                }
+                return true;
+            });
+
+            // --- Payment Request Button (Apple Pay / Google Pay) ---
+            // Interceptamos el click antes de que Stripe inicie el flujo.
+            $(document).on('click', PRB_SELECTORS, function (e) {
+                if (!confirmAccepted) {
+                    e.preventDefault();
+                    e.stopImmediatePropagation();
+                    lastTrigger = 'prb';
+                    openPopup();
+                    return false;
+                }
+            });
+
+            // Si WooCommerce lanza errores de validación, pedimos confirmación de nuevo.
+            $(document.body).on('checkout_error', function () {
+                confirmAccepted = false;
+            });
+
+            // --- Confirmación del popup ---
+            $btnConfirm.on('click', function (e) {
+                e.preventDefault();
+                if ($btnConfirm.hasClass('disabled')) return;
+
+                confirmAccepted = true;
+                closePopup();
+
+                if (lastTrigger === 'prb') {
+                    // Reintentar el click del PRB (ahora confirmAccepted = true, no se bloquea)
+                    // Disparamos el primero que esté visible/activo.
+                    const $prb = $(PRB_SELECTORS).filter(':visible:first');
+                    if ($prb.length) $prb.trigger('click');
+                    // Si no hay botón visible, como fallback ejecutamos el submit normal:
+                    else $form.trigger('submit');
+                } else {
+                    // Flujo normal del checkout
+                    $form.trigger('submit');
+                }
+            });
+
+            // Helpers popup
+            function openPopup() {
+                $popup.addClass('opened');
+                // Opcional: foco al primer checkbox
+                setTimeout(() => { $checkUnderstood.trigger('focus'); }, 50);
+            }
+            function closePopup() {
+                $popup.removeClass('opened');
+            }
+        });
+        </script>
+        <?php
+    });

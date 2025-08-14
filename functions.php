@@ -3,7 +3,7 @@
     /**
      * Functions
      * 
-     * @package Darío Elizondo & Andra Estudio
+     * @package Darío Elizondo
      * 
      */
 
