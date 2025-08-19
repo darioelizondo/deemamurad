@@ -528,44 +528,41 @@
             <script>
 
                 document.addEventListener("DOMContentLoaded", function () {
-                    const form = document.querySelector("form.variations_form"); // Formulario de variaciones
+                    const form = document.querySelector("form.variations_form");
                     if (!form) return;
-                
-                    const selects = form.querySelectorAll("select"); // Todos los select de variaciones
-                    const productId = form.dataset.product_id || form.querySelector('input[name="product_id"]').value;
-                    const storageKey = `product_variation_${productId}`; // Clave única para este producto
-                
-                    // 🔹 Recuperar la selección previa desde localStorage
-                    const savedVariations = JSON.parse(localStorage.getItem(storageKey));
-                    if (savedVariations) {
-                        selects.forEach(select => {
-                            if (savedVariations[select.name]) {
-                                select.value = savedVariations[select.name];
-                            }
+
+                    const $form = jQuery(form);
+                    const selects = form.querySelectorAll("select");
+                    const productId = form.dataset.product_id || form.querySelector('input[name="product_id"]')?.value;
+                    const storageKey = `product_variation_${productId}`;
+
+                    // 1) Restaurar selección previa
+                    const saved = JSON.parse(localStorage.getItem(storageKey) || "null");
+                    if (saved) {
+                        selects.forEach(s => {
+                        if (saved[s.name]) s.value = saved[s.name];
                         });
-                
-                        // 🔹 Disparar evento 'change' para actualizar la interfaz de WooCommerce
-                        setTimeout(() => {
-                            selects.forEach(select => {
-                                select.dispatchEvent(new Event("change"));
-                            });
-                        }, 200);
+                        // Disparar la secuencia oficial de WC una sola vez
+                        $form.trigger('woocommerce_variation_select_change');
+                        $form.trigger('check_variations');
                     }
-                
-                    // 🔹 Guardar la selección cuando el usuario cambie una variante
+
+                    // 2) Guardar cada cambio
                     selects.forEach(select => {
                         select.addEventListener("change", function () {
-                            const variations = {};
-                            selects.forEach(s => variations[s.name] = s.value);
-                            localStorage.setItem(storageKey, JSON.stringify(variations));
+                        const current = {};
+                        selects.forEach(s => current[s.name] = s.value);
+                        localStorage.setItem(storageKey, JSON.stringify(current));
+
+                        // También disparar la secuencia de WC para recalcular al instante
+                        $form.trigger('woocommerce_variation_select_change');
+                        $form.trigger('check_variations');
                         });
                     });
-                
-                    // 🔹 Limpiar almacenamiento después de agregar al carrito
+
+                    // 3) Limpiar storage al enviar al carrito
                     form.addEventListener("submit", function () {
-                        setTimeout(() => {
-                            localStorage.removeItem(storageKey);
-                        }, 1000);
+                        setTimeout(() => localStorage.removeItem(storageKey), 500);
                     });
                 });
 
@@ -577,50 +574,54 @@
      * Change view of price (normal price and variations price)
      */
 
-
     add_filter('woocommerce_get_price_html', function($price, $product) {
-        if ( $product->is_type( 'variable' ) ) {
+        if ( $product->is_type('variable') ) {
             $variations = $product->get_available_variations();
-            
             if (!empty($variations)) {
-                // Obtener todos los precios de las variaciones
-                $prices = array_unique(array_map(function($variation) {
-                    return floatval($variation['display_price']); // Precio de la variación
-                }, $variations));
-    
-                // Si todas las variaciones tienen el mismo precio, mostrar el precio normal
+                $prices = array_unique(array_map(fn($v) => floatval($v['display_price']), $variations));
                 if (count($prices) === 1) {
-                    return wc_price($prices[0]); // Mostrar un solo precio en vez de un rango
+                    return wc_price($prices[0]); // todos iguales -> mostrar fijo
                 }
-    
-                // Si hay variaciones con diferentes precios, ocultar el precio por defecto
-                return '';
+                return ''; // distintos -> vaciamos (el JS lo rellenará con la variación)
             }
         }
         return $price;
     }, 10, 2);
 
-    add_action('woocommerce_single_product_summary', function() {
-        ?>
+    add_action('woocommerce_single_product_summary', function () { ?>
         <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                function updatePrice() {
-                    let priceContainer = document.querySelector(".woocommerce-variation-price .price");
-                    let mainPriceContainer = document.querySelector(".summary .price"); // Contenedor principal del precio
-                    
-                    if (priceContainer && mainPriceContainer) {
-                        mainPriceContainer.innerHTML = priceContainer.innerHTML; // Reemplaza el precio original con el de la variación
-                    }
+            jQuery(function ($) {
+                const $form = $('form.variations_form');
+                const $mainPrice = $('.summary .price');
+                const originalPriceHTML = $mainPrice.html(); // Si hay restaurar
+
+                function setMainPrice(html) {
+                    if ($mainPrice.length) $mainPrice.html(html || '');
                 }
-    
-                // Actualizar cuando cambie la variación
-                jQuery(document).on("found_variation", function() {
-                    updatePrice();
+
+                // Cuando Woo encuentra una variación, ya tenemos el precio listo en variation.price_html
+                $form.on('found_variation', function (event, variation) {
+                    if (variation && variation.price_html) {
+                    setMainPrice(variation.price_html);
+                    }
                 });
-    
-                // Forzar actualización al cargar la página
-                updatePrice();
+
+                // Después de renderizar la variación en el DOM
+                $form.on('show_variation', function (event, variation) {
+                    if (variation && variation.price_html) {
+                        setMainPrice(variation.price_html);
+                    }
+                });
+
+                // Si se resetea (no hay combinación válida)
+                $form.on('reset_data hide_variation', function () {
+                    setMainPrice('');
+                    // Restaurar el precio/rango original del producto -> Descomentar:
+                    // setMainPrice(originalPriceHTML);
+                });
+
+                // Forzar un primer chequeo al cargar
+                $form.trigger('check_variations');
             });
         </script>
-        <?php
-    }, 25);
+    <?php }, 25);
